@@ -28,11 +28,11 @@ class Settings {
                     // configurazione locale
                     self::$appPath = 'http://' . $_SERVER['HTTP_HOST'] . '/ProjectAMM2014/';
                     break;
-                /*case 'spano.sc.unica.it':
+                case 'spano.sc.unica.it':
                     // configurazione pubblica
                     self::$appPath = 'http://' . $_SERVER['HTTP_HOST'] . '/amm2014/davide/esami14/';
                     break;
-                */
+                
                 default:
                     self::$appPath = '';
                     break;
