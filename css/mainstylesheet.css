@@ -1,0 +1,248 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+Created on : 19-ago-2014, 15.30.09
+Author: Annalisa Congiu
+*/
+header, footer, section, article, nav, aside {
+    display: block;
+}
+
+input[type=submit], #button  {
+    border-radius: 10%;
+    border: 0px;
+    padding: 3px 12px 3px 12px;
+    background: powderblue;
+    color: black;
+    margin-top: 7px;
+    font-family: UnDinaru, Roboto;
+    font-size: 14px
+}
+
+body {
+    background: #ffffff;
+    color: #222222;
+    font-family: UnDinaru, Roboto;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: left;
+    margin-top: 80px;
+    margin-bottom: 60px;
+}
+
+h1, h2, h3, hQ {
+    font-family: UnDinaru, Helvetica;
+    font-size: 16px ;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 50px;
+}
+
+h2{
+    font-size: 31px;
+    line-height: 37px; 
+}
+
+
+h3 {
+    font-size: 21px;
+    line-height: 27px; 
+}
+
+a:link, a:visited {
+    color: #222222;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    text-decoration: underline;
+}
+
+hr{
+    border:0 #ccc solid;
+    border-top-width:1px;
+    clear:both;
+    height:0;
+}
+
+ol{
+    list-style:decimal;
+}
+
+ul{
+    list-style:disc;
+}
+
+li{
+    margin-left:30px;
+}
+
+p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
+    margin-bottom:15px;
+}
+
+#main {
+    padding: 0px;
+}
+
+//#sidebar2 {width:200px;float:right;margin-left:10px;margin-top:10px;}
+/*.col2 {
+    margin-left:220px; 
+    padding-top:40px;
+    background-color:#fafafa;
+    margin-right:220px;
+    margin-top:10px;
+    padding-bottom:20px;
+    height:440px;
+}*/
+
+.middle{
+    padding: 10px 10px 10px 0px;
+    margin-left: 210px;
+    font-family: YOzFontN-Pro-R, Batang;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: left;
+}
+.login{
+    margin: 10px 10px 10px 10px;
+    padding: 10px 120px 20px 120px;
+    font-family: Courier;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: left;
+    float: left;
+    border: 1px gainsboro solid;
+}
+#login{
+    margin-left: 50px;
+    margin-right: 100px;
+}
+#signup{
+    margin-right: 50px;
+    //margin-left: 200px;
+}
+.login h3{
+    padding-left: 7px;
+    font-family: Undinaru, Roboto, monospace;
+    border-bottom: 1px crimson solid;
+    //font-size: 31px;
+    //line-height: 37px; 
+}
+
+/* --- fixed header --- */
+
+header {
+    background-color: #ffffff;
+    background-image: url("../img/tumblr_static_488027_2.png")/*("http://static.tumblr.com/40bfd838c0bd74918ca61cac9aa9ce9f/10xrfhp/qtNmg85vx/tumblr_static_488027.jpg")*/;
+    background-position: 0% 0%;
+    background-repeat: repeat-x;
+    background-size: 352px;
+    height: 80px;
+    position: fixed;
+    left: 0;
+    right:0;
+    top: 0;
+    border-bottom:2px crimson solid;
+    
+}
+
+#title{
+    background-color: #ffffff;
+    display:inline;
+    padding: 20px 40px 0px 40px;
+    border-bottom:2px crimson solid;
+    font-size: 50px;
+    line-height: 101px;
+    position: relative;
+    left: 0px;
+    right:0px;
+    top: 0px;
+}
+
+#title a:hover, #title a:active {
+    text-decoration: none;
+}
+
+nav#login{
+    display:inline;
+    position: absolute;
+    top:0px;
+    right:0px;
+    position:fixed;
+    padding: 3px 0px 3px 0px;
+    background-color: #ffffff;
+    margin: 0px 0px 0px 0px;
+}
+
+nav#login p{
+    color: crimson;
+    display: inline;
+    margin: 0px 25px 0px 25px;
+}
+
+
+/* --- nav --- */
+nav{
+    padding-top: 15px;
+    //border-bottom:2px crimson solid;
+    text-align: left;
+}
+
+/* --- left sidebar --- */
+#sidebar1 {
+    padding: 0px 0px 0px 0px;
+    width:180px;
+    float:left;
+    height: 100%; 
+    margin: 0px 0px 0px 0px;
+    position:fixed;
+    left:0;
+    border-right: 2px #222222 solid;
+}
+
+nav .page{
+    
+    margin: 0px 0px 0px 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    list-style: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* --- footer --- */
+
+footer{
+    background: #ffffff;
+    margin-top: 20px;
+    padding-top:15px;
+    padding-right:40px;
+    padding-left:40px;
+    padding-bottom: 40px;
+    border-top:2px crimson solid;
+    font-family: UnDinaru, Roboto;
+    font-size: 14px;
+    color: #222222;
+    text-align: left;
+    position: fixed;
+    left: 0;
+    right:0;
+    bottom: 0;
+}
+
+.clear{
+    clear: both; 
+    width: 0px; 
+    height: 0px;
+}
+
