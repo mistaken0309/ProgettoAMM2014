@@ -1,17 +1,12 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Acquirente
  *
- * @author Annalisa
+ * classe che rappresenta un acquirente
+ * @author Annalisa Congiu
  */
-class Acquirente {
+class Acquirente extends UtenteBase{
     public function __construct() {
         // richiamiamo il costruttore della superclasse
         parent::__construct();

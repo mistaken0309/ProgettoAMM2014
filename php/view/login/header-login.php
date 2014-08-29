@@ -1,11 +1,9 @@
 <div>
     <p id="title"><a>Manga Mania</a>
-    <nav id="login">
+    <nav id="topbar">
         <div>
-            <p><a href="<?= basename(__DIR__) . '/../index.php?page=login&subpage=login'?>">Accedi</a></p>
-            <p><a href="<?= basename(__DIR__) . '/../index.php?page=home&subpage=home'?>">Home</a></p>
-            <p><a>Iscriviti</a></p>
-           
+            <p><a href="<?= basename(__DIR__) . '/../login'?>">Accedi</a></p>
+            <p><a href="<?= basename(__DIR__) . '/../home'?>">Home</a></p>
         </div>
     </nav>
 </div>

@@ -2,6 +2,7 @@
     include_once 'control/Controller.php';
     //$content = "view/home-content.php";
     //include 'view/master.php';
+    include_once 'control/AcquirenteController.php';
     FrontController::dispatch($_REQUEST);
     
 class FrontController{
@@ -20,6 +21,16 @@ class FrontController{
                     $controller = new Controller();
                     $controller->handle_input($request);
                 break;
+                
+                case 'acquirente':
+                    $controller = new AcquirenteController();
+                    $controller->handle_input($request);
+                break;
+                /*case 'venditore':
+                    $controller = new VenditoreController();
+                    $controller->handle_input($request);
+                    break;
+                 */
                 default:
                     self::write404();
                     break;

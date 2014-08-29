@@ -1,11 +1,16 @@
 <div>
     <p id="title"><a>Manga Mania</a>
-    <nav id="login">
+    <nav id="topbar">
         <div>
-            <p><a href="<?= basename(__DIR__) . '/../index.php?page=login&subpage=login'?>">Accedi</a></p>
-            <p><a href="<?= basename(__DIR__) . '/../index.php?page=home&subpage=home'?>">Home</a></p>
-            <p><a>Iscriviti</a></p>
-           
+            <form method="post" action="login" >
+            <input type="hidden" name="cmd" value="login"/>
+            <label for="user">Username</label>
+            <input type="text" name="user" id="user"/>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password"/>                 
+            <input type="submit" value="Login" id="button"/>
+            </form>
+            <p><a href="<?= basename(__DIR__) . '/../home'?>">Home</a></p>
         </div>
     </nav>
 </div>

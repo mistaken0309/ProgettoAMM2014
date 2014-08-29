@@ -12,7 +12,7 @@ and open the template in the editor.
     </head>
     <body>
         <div>
-            <a href="php/login">Main page</a>
+            <a href="php/home">Main page</a>
         </div>
         
     </body>

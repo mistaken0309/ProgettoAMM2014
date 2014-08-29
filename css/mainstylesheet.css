@@ -18,14 +18,18 @@ input[type=submit], #button  {
     background: powderblue;
     color: black;
     margin-top: 7px;
-    font-family: UnDinaru, Roboto;
-    font-size: 14px
+    font-family: UnDinaru, Roboto, Raleway;
+    font-size: 14px;
+}
+label{
+    margin: 0 0 0 0;
+    text-align: left;
 }
 
 body {
     background: #ffffff;
     color: #222222;
-    font-family: UnDinaru, Roboto;
+    font-family: UnDinaru, Roboto, Raleway;
     font-size: 16px;
     line-height: 18px;
     text-align: left;
@@ -34,7 +38,7 @@ body {
 }
 
 h1, h2, h3, hQ {
-    font-family: UnDinaru, Helvetica;
+    font-family: UnDinaru, Helvetica, Raleway;
     font-size: 16px ;
 }
 
@@ -105,32 +109,72 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
 .middle{
     padding: 10px 10px 10px 0px;
     margin-left: 210px;
-    font-family: YOzFontN-Pro-R, Batang;
+    font-family: Roboto, Raleway, Batang;
     font-size: 16px;
     line-height: 18px;
     text-align: left;
 }
+
 .login{
     margin: 10px 10px 10px 10px;
     padding: 10px 120px 20px 120px;
     font-family: Courier;
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 12px;
+    line-height: 12px;
     text-align: left;
     float: left;
     border: 1px gainsboro solid;
 }
-#login{
+#topbar{
     margin-left: 50px;
     margin-right: 100px;
+    font-size: 12px;
 }
-#signup{
+
+#topbar form{
+    display: inline;
+    margin-left: 50px;
+    margin-right: 50px;
+    //text-align: left;
+}
+#topbar{
+    margin-left: 50px;
+    margin-right: 100px;
+    font-size: 12px;
+}
+
+#login #button, #topbar #button  {
+    padding: 3px 12px 3px 12px;
+    margin-top: 0px;
+    font-family: UnDinaru, Roboto, Raleway;
+    font-size: 12px;
+}
+
+nav#topbar{
+    display:inline;
+    position: absolute;
+    top:0px;
+    right:0px;
+    position:fixed;
+    padding: 3px 0px 3px 0px;
+    background-color: #ffffff;
+    margin: 0px 0px 0px 0px;
+}
+
+nav#topbar p{
+    color: crimson;
+    display: inline;
+    margin: 0px 25px 0px 25px;
+}
+
+/*#signup{
     margin-right: 50px;
     //margin-left: 200px;
-}
+}*/
+
 .login h3{
     padding-left: 7px;
-    font-family: Undinaru, Roboto, monospace;
+    font-family: UnDinaru, Roboto, Raleway, monospace;
     border-bottom: 1px crimson solid;
     //font-size: 31px;
     //line-height: 37px; 
@@ -170,22 +214,7 @@ header {
     text-decoration: none;
 }
 
-nav#login{
-    display:inline;
-    position: absolute;
-    top:0px;
-    right:0px;
-    position:fixed;
-    padding: 3px 0px 3px 0px;
-    background-color: #ffffff;
-    margin: 0px 0px 0px 0px;
-}
 
-nav#login p{
-    color: crimson;
-    display: inline;
-    margin: 0px 25px 0px 25px;
-}
 
 
 /* --- nav --- */
@@ -230,7 +259,7 @@ footer{
     padding-left:40px;
     padding-bottom: 40px;
     border-top:2px crimson solid;
-    font-family: UnDinaru, Roboto;
+    font-family: UnDinaru, Roboto, Raleway;
     font-size: 14px;
     color: #222222;
     text-align: left;

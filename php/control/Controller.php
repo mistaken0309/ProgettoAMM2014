@@ -16,7 +16,6 @@ class Controller {
     const user = 'user';
     const role = 'role';
     const impersonato = '_imp';
-    private $logged = 0;
     
     public function __construct() {
         
@@ -45,20 +44,27 @@ class Controller {
                     $username = isset($request['user']) ? $request['user'] : '';
                     $password = isset($request['password']) ? $request['password'] : '';
                     $this->login($vista, $username, $password);
-                    /*
+                    
                     // questa variabile viene poi utilizzata dalla vista
-                    if ($this->loggedIn())
+                    /*if ($this->loggedIn())
                         $user = UserFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);*/
                     break;
-                      
-                case 'home':
-                    $this->showHome($vista);
-                break;    
+                case 'logout':
+                    $this->logout($vista);
+                    break;
                 default : 
-                    $this->showLoginPage();
-                break;
+                    $this->showLoginPage($vista);
+                    break;
             }
-        } else if (isset($request["subpage"])) {
+        } else {
+            if($this->loggedIn()){
+                $this->showHomeUtente($vista);
+            } else {
+                    $this->showHome($vista);
+            }
+        }
+        
+        /*else if (isset($request["subpage"])) {
             switch ($request["subpage"]) {
                 //$vista->setSottoPagina($sottopagina);
                 /*case "login":
@@ -69,7 +75,7 @@ class Controller {
                     // questa variabile viene poi utilizzata dalla vista
                     if ($this->loggedIn())
                         $user = UserFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
-                break;*/
+                break;
                 case 'home':
                     $vista->setSottoPagina('home');
                     if($this->loggedIn()){
@@ -84,8 +90,7 @@ class Controller {
                     $vista->setSottoPagina('login');
                     $this->showLoginPage($vista);
                 break;
-            }
-        } 
+            }*/
 
         // richiamo la vista
         require basename(__DIR__) . '/../view/master.php';
@@ -99,13 +104,32 @@ class Controller {
         $vista->setLeftbar(basename(__DIR__) . '/../view/login/leftbar-login.php');
     }
     
-    protected function showHomeUtente($vista){
+    protected function showHomeAcquirente($vista){
         $vista->setTitle("MangaMania - MM");
-        $vista->setContent(basename(__DIR__) . '/../view/homeUtente/content-user.php');
-        $vista->setHeader(basename(__DIR__) . '/../view/homeUtente/header-user.php');
-        $vista->setLeftbar(basename(__DIR__) . '/../view/homeUtente/leftbar-user.php');
+        $vista->setContent(basename(__DIR__) . '/../view/acquirente/content-user.php');
+        $vista->setHeader(basename(__DIR__) . '/../view/acquirente/header-user.php');
+        $vista->setLeftbar(basename(__DIR__) . '/../view/acquirente/leftbar-user.php');
+    }
+        protected function showHomeVenditore($vista){
+        $vista->setTitle("MangaMania - MM");
+        $vista->setContent(basename(__DIR__) . '/../view/venditore/content-user.php');
+        $vista->setHeader(basename(__DIR__) . '/../view/venditore/header-user.php');
+        $vista->setLeftbar(basename(__DIR__) . '/../view/venditore/leftbar-user.php');
     }
     
+    protected function showHomeUtente($vista){
+        //$user = UserFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
+        switch ($_SESSION[self::role]) {
+            case UtenteBase::Acquirente:
+                $this->showHomeAcquirente($vista);
+                break;
+
+            case UtenteBase::Venditore:
+                $this->showHomeVenditore($vista);
+                break;
+
+        }
+    }
     protected function showHome($vista){
         $vista->setTitle("MangaMania - MM");
         $vista->setContent(basename(__DIR__) . '/../view/home/home-content.php');
@@ -117,17 +141,18 @@ class Controller {
     protected function login($vista, $user, $password){
         if (isset($user) && $user == "davide" && $password == "spano") {
             // utente autenticato
-            //$_SESSION[self::user] = $user->getId();
-            //$_SESSION[self::role] = $user->getRuolo();
-            $this->logged = 1;
+            $_SESSION[self::user] = 'davide';
+            $_SESSION[self::role] = UtenteBase::Acquirente;
             $this->showHomeUtente($vista);
         } else {
             ///$vd->setMessaggioErrore("Utente sconosciuto o password errata");
             $this->showLoginPage($vista);
         }
     }
+    
+    
+    
     protected function logout($vista){
-        $this->logged = 0;
         // reset array $_SESSION
         $_SESSION = array();
         // termino la validita' del cookie di sessione
@@ -144,9 +169,6 @@ class Controller {
      * @return boolean true se l'utente era gia' autenticato, false altrimenti
      */
     protected function loggedIn() {
-        if($this->logged == 1){
-            return true;
-        }
-        return false;
+        return isset($_SESSION) && array_key_exists(self::user, $_SESSION);
     }
 }

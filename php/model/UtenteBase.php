@@ -1,14 +1,9 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of UtenteBase
  *
+ * classe che rappresenta un utente generico
  * @author Annalisa
  */
 class UtenteBase {
@@ -21,20 +16,19 @@ class UtenteBase {
      * Costante che definisce il ruolo studente
      */
     const Acquirente = 2;
-
+    
+    /**
+     * Identificatore dell'utente
+     * @var int
+     */
+    private $id;
     
     /**
      * Username per l'autenticazione
      * @var string
      */
     private $username;
-    
-    /**
-     * Password per l'autenticazione
-     * @var string
-     */
-    private $password;
-    
+  
     /**
      * Nome dell'utente
      * @var string
@@ -53,6 +47,12 @@ class UtenteBase {
      */
     private $email;
     
+    /**
+     * Password per l'autenticazione
+     * @var string
+     */
+    private $password;
+      
     /**
      * Il ruolo dell'utente nell'applicazione.
      * Lo utilizzo per implementare il controllo degli accessi
@@ -83,17 +83,13 @@ class UtenteBase {
      * @var string
      */
     private $provincia;
+    
     /**
      * Cap dell'utente. Lo vogliamo max di cinque cifre
      * @var int 
      */
     private $cap;
-    
-    /**
-     * Identificatore dell'utente
-     * @var int
-     */
-    private $id;
+
 
     /**
      * Costruttore
