@@ -1,6 +1,7 @@
 <?php
     include_once basename(__DIR__) . '/../view/ViewDescriptor.php';
     include_once basename(__DIR__) . '/../model/UtenteBase.php';
+    include_once basename(__DIR__) . '/../model/UtenteFactory.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -46,8 +47,8 @@ class Controller {
                     $this->login($vista, $username, $password);
                     
                     // questa variabile viene poi utilizzata dalla vista
-                    /*if ($this->loggedIn())
-                        $user = UserFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);*/
+                    if ($this->loggedIn())
+                        $user = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
                     break;
                 case 'logout':
                     $this->logout($vista);
@@ -58,6 +59,7 @@ class Controller {
             }
         } else {
             if($this->loggedIn()){
+                $user = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
                 $this->showHomeUtente($vista);
             } else {
                     $this->showHome($vista);
@@ -74,7 +76,7 @@ class Controller {
                     /*
                     // questa variabile viene poi utilizzata dalla vista
                     if ($this->loggedIn())
-                        $user = UserFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
+                        $user = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
                 break;
                 case 'home':
                     $vista->setSottoPagina('home');
@@ -110,7 +112,8 @@ class Controller {
         $vista->setHeader(basename(__DIR__) . '/../view/acquirente/header-user.php');
         $vista->setLeftbar(basename(__DIR__) . '/../view/acquirente/leftbar-user.php');
     }
-        protected function showHomeVenditore($vista){
+    
+    protected function showHomeVenditore($vista){
         $vista->setTitle("MangaMania - MM");
         $vista->setContent(basename(__DIR__) . '/../view/venditore/content-user.php');
         $vista->setHeader(basename(__DIR__) . '/../view/venditore/header-user.php');
@@ -118,8 +121,8 @@ class Controller {
     }
     
     protected function showHomeUtente($vista){
-        //$user = UserFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
-        switch ($_SESSION[self::role]) {
+        $user = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
+        switch ($user->getRuolo()) {
             case UtenteBase::Acquirente:
                 $this->showHomeAcquirente($vista);
                 break;
@@ -130,6 +133,7 @@ class Controller {
 
         }
     }
+    
     protected function showHome($vista){
         $vista->setTitle("MangaMania - MM");
         $vista->setContent(basename(__DIR__) . '/../view/home/home-content.php');
@@ -138,14 +142,16 @@ class Controller {
     }
     
     
-    protected function login($vista, $user, $password){
-        if (isset($user) && $user == "davide" && $password == "spano") {
+    protected function login($vista, $username, $password){
+        //carico i dati dell'utente dal database
+        $user = UtenteFactory::instance()->caricaUtente($username, $password);
+        if (isset($user) && $user->esiste()) {
             // utente autenticato
-            $_SESSION[self::user] = 'davide';
-            $_SESSION[self::role] = UtenteBase::Acquirente;
+            $_SESSION[self::user] = $user->getId();
+            $_SESSION[self::role] = $user->getRuolo();
             $this->showHomeUtente($vista);
         } else {
-            ///$vd->setMessaggioErrore("Utente sconosciuto o password errata");
+            ///$vista->setMessaggioErrore("Utente sconosciuto o password errata");
             $this->showLoginPage($vista);
         }
     }

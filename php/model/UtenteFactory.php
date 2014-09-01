@@ -3,6 +3,8 @@
 include_once 'UtenteBase.php';
 include_once 'Acquirente.php';
 include_once 'Venditore.php';
+include_once 'Database.php';
+
 //include_once 'CorsoDiLaureaFactory.php';
 //include_once 'DipartimentoFactory.php';
 
@@ -50,7 +52,7 @@ class UtenteFactory {
 
         // cerco prima nella tabella dei acquirenti
         $query = "select
-            utenti.id u_id,
+            utenti.u_id u_id,
             utenti.username username,
             utenti.password password,
             utenti.email email,
@@ -153,7 +155,7 @@ class UtenteFactory {
             from venditori";*/
         $query = "select * from venditori";
 
-        $mysqli = Db::getInstance()->connectDb();
+        $mysqli = Database::getInstance()->connectDb();
         if (!isset($mysqli)) {
             error_log("[getListaVenditori] impossibile inizializzare il database");
             $mysqli->close();
@@ -182,7 +184,7 @@ class UtenteFactory {
     public function &getListaCompratori() {
         $acquirenti = array();
         $query = "select * from utenti";
-        $mysqli = Db::getInstance()->connectDb();
+        $mysqli = Database::getInstance()->connectDb();
         if (!isset($mysqli)) {
             error_log("[getListaAcquirenti] impossibile inizializzare il database");
             $mysqli->close();
@@ -216,14 +218,14 @@ class UtenteFactory {
             return null;
         }
 
-        $mysqli = Db::getInstance()->connectDb();
+        $mysqli = Database::getInstance()->connectDb();
         if (!isset($mysqli)) {
             error_log("[cercaAcquirentePerMatricola] impossibile inizializzare il database");
             $mysqli->close();
             return null;
         }
 
-        $query = "select utenti.id u_id,
+        $query = "select utenti.u_id u_id,
             utenti.username username,
             utenti.password password,
             utenti.email email,
@@ -271,7 +273,7 @@ class UtenteFactory {
         if (!isset($intval)) {
             return null;
         }
-        $mysqli = Db::getInstance()->connectDb();
+        $mysqli = Database::getInstance()->connectDb();
         if (!isset($mysqli)) {
             error_log("[cercaUtentePerId] impossibile inizializzare il database");
             $mysqli->close();
@@ -281,7 +283,7 @@ class UtenteFactory {
         switch ($role) {
             case UtenteBase::Acquirente:
                 $query = "select
-                    utenti.id u_id,
+                    utenti.u_id u_id,
                     utenti.username username,
                     utenti.password password,
                     utenti.email email,
@@ -294,7 +296,7 @@ class UtenteFactory {
                     utenti.cap cap
 
                     from utenti
-                    where utenti.id = ?";
+                    where utenti.u_id = ?";
                     
                 $stmt = $mysqli->stmt_init();
                 $stmt->prepare($query);
@@ -413,7 +415,7 @@ class UtenteFactory {
      * @return il numero di righe modificate
      */
     public function salva(UtenteBase $utente) {
-        $mysqli = Db::getInstance()->connectDb();
+        $mysqli = Database::getInstance()->connectDb();
         if (!isset($mysqli)) {
             error_log("[salva] impossibile inizializzare il database");
             $mysqli->close();
@@ -453,7 +455,7 @@ class UtenteFactory {
                     citta = ?,
                     provincia = ?,
                     cap = ?
-                    where utenti.id = ?
+                    where utenti.u_id = ?
                     ";
         $stmt->prepare($query);
         if (!$stmt) {

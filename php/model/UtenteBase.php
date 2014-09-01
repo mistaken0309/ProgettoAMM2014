@@ -271,10 +271,10 @@ class UtenteBase {
      * @return boolean true se il valore e' ammissibile ed e' stato aggiornato
      * correttamente, false altrimenti
      */
-    public function setNumeroCivico($civico) {
+    public function setCivico($civico) {
         /*$intVal = filter_var($civico, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
         if (isset($intVal)) {*/
-            $this->numeroCivico = $intVal;
+            $this->civico = $civico;
             //return true;
         /*}
         return false;*/
@@ -360,7 +360,7 @@ class UtenteBase {
         if(!isset($intVal)){
             return false;
         }*/
-        $this->id = $intVal;
+        $this->id = $id;
     }
     
     /**

@@ -1,5 +1,5 @@
 <?php
-
+include_once basename(__DIR__) . '/../Settings.php';
 /**
  * Description of Database
  * 
@@ -21,7 +21,7 @@ class Database {
      */
     public static function getInstance(){
         if(!isset(self::$singleton)){
-            self::$singleton = new Db();
+            self::$singleton = new Database();
         }
         
         return self::$singleton;
@@ -34,15 +34,10 @@ class Database {
      */
     public function connectDb(){
         // creo l'istanza della classe mysqli
-        $mysqli= newmysqli();
+        $mysqli= new mysqli();
 
         // connessione al database
-        $mysqli->connect(
-                Settings::$db_host,
-                Settings::$db_user,
-                Settings::$db_password,
-                Settings::$db_name
-                );
+        $mysqli->connect(Settings::$db_host, Settings::$db_user, Settings::$db_password, Settings::$db_name);
         
         // controllo errori
         if($mysqli->errno != 0){
