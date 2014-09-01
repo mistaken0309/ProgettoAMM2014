@@ -5,9 +5,6 @@ include_once 'Acquirente.php';
 include_once 'Venditore.php';
 include_once 'Database.php';
 
-//include_once 'CorsoDiLaureaFactory.php';
-//include_once 'DipartimentoFactory.php';
-
 /**
  * Classe per la creazione degli utenti del sistema
  *

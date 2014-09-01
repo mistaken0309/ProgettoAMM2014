@@ -1,7 +1,5 @@
 <?php
     include_once 'control/Controller.php';
-    //$content = "view/home-content.php";
-    //include 'view/master.php';
     include_once 'control/AcquirenteController.php';
     FrontController::dispatch($_REQUEST);
     
@@ -24,8 +22,16 @@ class FrontController{
                 
                 case 'acquirente':
                     $controller = new AcquirenteController();
+                    if (isset($_SESSION[Controller::role]) &&
+                        $_SESSION[Controller::role] != UtenteBase::Acquirente) {
+                        self::write403();
+                    }
                     $controller->handle_input($request);
                 break;
+                
+
+            
+            
                 /*case 'venditore':
                     $controller = new VenditoreController();
                     $controller->handle_input($request);

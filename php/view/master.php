@@ -34,6 +34,7 @@ and open the template in the editor.
                 require "$header";
             ?>
         </header>
+        
         <div id="sidebar1">
             <?php
                 $leftbar = $vista->getLeftbar();
@@ -43,10 +44,10 @@ and open the template in the editor.
         
         <!--<div id="sidebar2">prova</div>-->
         <div class="middle">
-            <?php
+            <p><?php
                 $content = $vista->getContent();
                 require "$content";
-            ?>
+                ?></p>
         </div>
         
         <div class="clear"></div>

@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Controller.php';
+include_once basename(__DIR__) . '/../model/UtenteFactory.php';
 
 /**
  * Description of AcquirenteController
@@ -13,7 +14,7 @@ class AcquirenteController extends Controller{
         parent::__construct();
     }
     
-    public function handleInput(&$request) {
+    public function handle_input(&$request) {
         $vista = new ViewDescriptor();
         
         $vista->setPagina($request['page']);
@@ -21,11 +22,14 @@ class AcquirenteController extends Controller{
         if(!$this->loggedIn()){
             $this->showLoginPage($vista);
         } else {
-                       // utente autenticato
-            /*$user = UserFactory::instance()->cercaUtentePerId(
-                    $_SESSION[BaseController::user], $_SESSION[BaseController::role]);*/
+            // utente autenticato
+            $user = UtenteFactory::instance()->cercaUtentePerId(
+                    $_SESSION[Controller::user], $_SESSION[Controller::role]);
             if(isset($request["subpage"])){
                 switch ($request["subpage"]){
+                    case 'anagrafica':
+                        $vista->setSottoPagina('anagrafica');
+                        break;
                     default:
                         $vista->setSottoPagina('home');
                         break;
@@ -40,11 +44,12 @@ class AcquirenteController extends Controller{
                         $this->showHomeUtente($vista);
                 }
             } else{
-                                //$user = UserFactory::instance()->cercaUtentePerId(
-                        //$_SESSION[BaseController::user], $_SESSION[BaseController::role]);
+                $user = UtenteFactory::instance()->cercaUtentePerId(
+                        $_SESSION[Controller::user], $_SESSION[Controller::role]);
                 $this->showHomeUtente($vista);
             }
         }
-        
+        // richiamo la vista
+        require basename(__DIR__) . '/../view/master.php';
     }
 }

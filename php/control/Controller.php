@@ -16,7 +16,6 @@
 class Controller {
     const user = 'user';
     const role = 'role';
-    const impersonato = '_imp';
     
     public function __construct() {
         
@@ -29,9 +28,6 @@ class Controller {
 
         // imposto la pagina
         $vista->setPagina($request['page']);
-        
-        // imposto il token per impersonare un utente (nel lo stia facendo)
-        //$this->setImpToken($vista, $request);
 
         // gestion dei comandi
         // tutte le variabili che vengono create senza essere utilizzate 
@@ -66,34 +62,6 @@ class Controller {
             }
         }
         
-        /*else if (isset($request["subpage"])) {
-            switch ($request["subpage"]) {
-                //$vista->setSottoPagina($sottopagina);
-                /*case "login":
-                    $username = isset($request['user']) ? $request['user'] : '';
-                    $password = isset($request['password']) ? $request['password'] : '';
-                    $this->login($vista, $username, $password);
-                    /*
-                    // questa variabile viene poi utilizzata dalla vista
-                    if ($this->loggedIn())
-                        $user = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
-                break;
-                case 'home':
-                    $vista->setSottoPagina('home');
-                    if($this->loggedIn()){
-                        $this->showHomeUtente($vista);
-                    } else {$this->showHome($vista);}
-                break;    
-                case 'login': 
-                    $vista->setSottoPagina('login');
-                    $this->showLoginPage($vista);
-                break;
-                default : 
-                    $vista->setSottoPagina('login');
-                    $this->showLoginPage($vista);
-                break;
-            }*/
-
         // richiamo la vista
         require basename(__DIR__) . '/../view/master.php';
         
@@ -108,9 +76,9 @@ class Controller {
     
     protected function showHomeAcquirente($vista){
         $vista->setTitle("MangaMania - MM");
-        $vista->setContent(basename(__DIR__) . '/../view/acquirente/content-user.php');
-        $vista->setHeader(basename(__DIR__) . '/../view/acquirente/header-user.php');
-        $vista->setLeftbar(basename(__DIR__) . '/../view/acquirente/leftbar-user.php');
+        $vista->setContent(basename(__DIR__) . '/../view/acquirente/content.php');
+        $vista->setHeader(basename(__DIR__) . '/../view/acquirente/header.php');
+        $vista->setLeftbar(basename(__DIR__) . '/../view/acquirente/leftbar.php');
     }
     
     protected function showHomeVenditore($vista){
