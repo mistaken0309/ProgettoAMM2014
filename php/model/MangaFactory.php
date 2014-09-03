@@ -100,8 +100,8 @@ class MangaFactory {
 
         $stmt->close();
         
-        //$toRet = self::creaMangaDaArray($row);  
-        return $this->creaMangaDaArray($row);  
+        $toRet = self::creaMangaDaArray($row);  
+        return $toRet;
     }
     
     private function creaMangaDaArray($row){
