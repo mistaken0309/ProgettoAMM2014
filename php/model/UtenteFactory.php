@@ -311,7 +311,7 @@ class UtenteFactory {
                     return null;
                 }
                 
-                $toRet =caricaAcquirenteDaStmt($stmt);
+                $toRet = self::caricaAcquirenteDaStmt($stmt);
                 return $toRet;
                 
                 break;
