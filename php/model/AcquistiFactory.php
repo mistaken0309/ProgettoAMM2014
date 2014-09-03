@@ -140,7 +140,8 @@ class AcquistiFactory {
         return $acquisto;
     }
     
-    public function &getListaAcquistiAcquirente($user){
+    public function &getListaAcquistiAcquirente($utente){
+        $intval = filter_var($utente->getId(), FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
         $acquisti = array();
         $query = "select 
                 utente_manga.acquisto_id id,
@@ -173,7 +174,7 @@ class AcquistiFactory {
             return null;
         }
 
-        if (!$stmt->bind_param('i', $user)) {
+        if (!$stmt->bind_param('i', $intval)) {
             error_log("[ListaAcquisti] impossibile effettuare il binding in input");
             $mysqli->close();
             return null;
