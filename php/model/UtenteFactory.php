@@ -311,7 +311,8 @@ class UtenteFactory {
                     return null;
                 }
                 
-                return $this->caricaAcquirenteDaStmt($stmt);
+                $toRet =caricaAcquirenteDaStmt($stmt);
+                return $toRet;
                 
                 break;
 
@@ -572,7 +573,8 @@ class UtenteFactory {
 
         $stmt->close();
 
-        return $this->creaVenditoreDaArray($row);
+        $toRet = self::creaVenditoreDaArray($row);
+        return $toRet;
     }
 
     /**
@@ -614,7 +616,8 @@ class UtenteFactory {
 
         $stmt->close();
 
-        return $this->creaAcquirenteDaArray($row);
+        $toRet = self::creaAcquirenteDaArray($row);
+        return $toRet;
     }
 
 }

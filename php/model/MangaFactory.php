@@ -35,7 +35,8 @@ class MangaFactory {
     public function &getMangaPerId($mangaid){
         $query = "select 
                 manga.id id,
-                manga.titolo titolo,
+              
+manga.titolo titolo,
                 manga.titolo_orig titolo_orig,
                 manga.n_volume n_volume,
                 manga.autore_fk a_id,
