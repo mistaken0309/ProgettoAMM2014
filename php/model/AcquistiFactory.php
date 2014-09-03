@@ -143,7 +143,8 @@ class AcquistiFactory {
 
         $stmt->close();
         
-        return self::creaAcquistiDaArray($row);  
+        $toRet = self::creaAcquistiDaArray($row);  
+        return $toRet;
     }
     
     private function creaAcquistiDaArray($row){

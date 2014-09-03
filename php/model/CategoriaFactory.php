@@ -92,7 +92,9 @@ class CategoriaFactory {
 
         $stmt->close();
         
-        return self::creaCategoriaDaArray($row);
+        
+        $toRet = self::creaCategoriaDaArray($row);
+        return $toRet;
     }
     
     private function creaCategoriaDaArray($row){

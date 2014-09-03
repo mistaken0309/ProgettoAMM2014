@@ -106,7 +106,8 @@ class ProdottiFactory {
 
         $stmt->close();
         
-        return self::creaProdottiDaArray($row);  
+        $toRet = self::creaProdottiDaArray($row);  
+        return $toRet;
     }
     
     private function creaProdottiDaArray($row){

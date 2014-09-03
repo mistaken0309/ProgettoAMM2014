@@ -310,8 +310,9 @@ class UtenteFactory {
                     $mysqli->close();
                     return null;
                 }
-
-                return self::caricaAcquirenteDaStmt($stmt);
+                
+                return $this->caricaAcquirenteDaStmt($stmt);
+                
                 break;
 
             case UtenteBase::Venditore:
@@ -571,7 +572,7 @@ class UtenteFactory {
 
         $stmt->close();
 
-        return self::creaVenditoreDaArray($row);
+        return $this->creaVenditoreDaArray($row);
     }
 
     /**
@@ -613,7 +614,7 @@ class UtenteFactory {
 
         $stmt->close();
 
-        return self::creaAcquirenteDaArray($row);
+        return $this->creaAcquirenteDaArray($row);
     }
 
 }
