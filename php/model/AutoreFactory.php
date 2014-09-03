@@ -118,8 +118,8 @@ class AutoreFactory {
         }
 
         $stmt->close();
-        
-        return self::creaAutoreDaArray($row);
+        $toRet = self::creaAutoreDaArray($row);
+        return $toRet;
     }
     
     private function creaAutoreDaArray($row){
