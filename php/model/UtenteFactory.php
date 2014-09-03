@@ -88,11 +88,11 @@ class UtenteFactory {
 
         // ora cerco un venditore
         $query = "select 
-            venditori.id v_id,
+            venditori.v_id v_id,
             venditori.azienda azienda,
             venditori.password password,
-            venditori.nome nome_tit,
-            venditori.cognome cognome_tit,
+            venditori.nome nome,
+            venditori.cognome cognome,
             venditori.email email,
             venditori.via via,
             venditori.civico civico,
@@ -316,11 +316,11 @@ class UtenteFactory {
 
             case UtenteBase::Venditore:
                 $query = "select 
-                    venditori.id v_id,
+                    venditori.v_id v_id,
                     venditori.azienda azienda,
                     venditori.password password,
-                    venditori.nome nome_tit,
-                    venditori.cognome cognome_tit,
+                    venditori.nome_tit nome,
+                    venditori.cognome_tit cognome,
                     venditori.email email,
                     venditori.via via,
                     venditori.civico civico,
@@ -330,7 +330,9 @@ class UtenteFactory {
                     venditori.descrizione descrizione
 
                     from venditori 
-                    where venditori.id = ?";
+                    where venditori.v_id = ?";
+
+                
 
                 $stmt = $mysqli->stmt_init();
                 $stmt->prepare($query);
@@ -342,8 +344,7 @@ class UtenteFactory {
                 }
 
                 if (!$stmt->bind_param('i', $intval)) {
-                    error_log("[loadUtente] impossibile" .
-                            " effettuare il binding in input");
+                    error_log("[loadUtente] impossibile effettuare il binding in input");
                     $mysqli->close();
                     return null;
                 }
@@ -390,17 +391,17 @@ class UtenteFactory {
     public function creaVenditoreDaArray($row) {
         $venditore = new Venditore();
         $venditore->setId($row['v_id']);
-        $venditore->setAzienda($row['azienda']);
+        $venditore->setUsername($row['azienda']);
         $venditore->setPassword($row['password']);
-        $venditore->setNome($row['nome_tit']);
-        $venditore->setCognome($row['cognome_tit']);
+        $venditore->setNome($row['nome']);
+        $venditore->setCognome($row['cognome']);
         $venditore->setEmail($row['email']);
         $venditore->setVia($row['via']);
         $venditore->setCivico($row['civico']);
         $venditore->setCitta($row['citta']);
         $venditore->setProvincia($row['provincia']);
         $venditore->setCap($row['cap']);
-        $veditore->setDescrizione(['descrizione']);
+        $venditore->setDescrizione($row['descrizione']);
         $venditore->setRuolo(UtenteBase::Venditore);
         
         return $venditore;
@@ -488,15 +489,15 @@ class UtenteFactory {
         $query = " update venditori set 
                     azienda = ?,
                     password = ?,
-                    nome_tit = ?,
-                    cognome_tit = ?,
+                    nome = ?,
+                    cognome = ?,
                     email = ?,
                     via = ?,
                     civico = ?,
                     citta = ?,
                     provincia = ?,
                     cap = ?,
-                    where venditori.id = ?
+                    where venditori.v_id = ?
                     ";
         $stmt->prepare($query);
         if (!$stmt) {
@@ -549,8 +550,8 @@ class UtenteFactory {
                 $row['v_id'],
                 $row['azienda'],
                 $row['password'],
-                $row['nome_tit'], 
-                $row['cognome_tit'], 
+                $row['nome'], 
+                $row['cognome'], 
                 $row['email'], 
                 $row['via'],
                 $row['civico'],

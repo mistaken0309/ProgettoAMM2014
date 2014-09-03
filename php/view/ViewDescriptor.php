@@ -12,12 +12,16 @@
  * @author Annalisa
  */
 class ViewDescriptor {
+    const get = 'get';
+    const post = 'post';
     private $title;
     private $content;
     private $header;
     private $leftbar;
     private $pagina;
     private $sottopagina;
+    private $messaggioErrore;
+    private $messaggioConferma;
     
     public function __construct() {
         
@@ -66,4 +70,37 @@ class ViewDescriptor {
     public function setSottoPagina($sottopagina){
         $this->sottopagina = $sottopagina;
     }
+    
+    /**
+     * Restituisce il testo del messaggio di errore
+     * @return string
+     */
+    public function getMessaggioErrore() {
+        return $this->messaggioErrore;
+    }
+
+      /**
+     * Imposta un messaggio di errore
+     * @return string
+     */
+    public function setMessaggioErrore($msg) {
+        $this->messaggioErrore = $msg;
+    }
+    
+    /**
+     * Restituisce il contenuto del messaggio di conferma
+     * @return string
+     */
+    public function getMessaggioConferma() {
+        return $this->messaggioConferma;
+    }
+
+    /**
+     * Imposta il contenuto del messaggio di conferma
+     * @param string $msg
+     */
+    public function setMessaggioConferma($msg) {
+        $this->messaggioConferma = $msg;
+    }
+    
 }

@@ -17,4 +17,11 @@ class Venditore extends UtenteBase{
         parent::__construct();
         $this->setRuolo(UtenteBase::Venditore);      
     }
+    
+    public function setDescrizione($descrizione){
+        $this->descrizione = $descrizione;   
+    }
+    public function getDescrizione(){
+        return $this->descrizione;
+    }
 }

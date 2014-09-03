@@ -119,7 +119,7 @@ class Controller {
             $_SESSION[self::role] = $user->getRuolo();
             $this->showHomeUtente($vista);
         } else {
-            ///$vista->setMessaggioErrore("Utente sconosciuto o password errata");
+            $vista->setMessaggioErrore("Utente sconosciuto o password errata");
             $this->showLoginPage($vista);
         }
     }
@@ -145,4 +145,28 @@ class Controller {
     protected function loggedIn() {
         return isset($_SESSION) && array_key_exists(self::user, $_SESSION);
     }
+    
+        /**
+     * Crea un messaggio di feedback per l'utente 
+     * @param array $msg lista di messaggi di errore
+     * @param ViewDescriptor $vd il descrittore della pagina
+     * @param string $okMsg il messaggio da mostrare nel caso non ci siano errori
+     */
+    protected function creaFeedbackUtente(&$msg, $vista, $okMsg) {
+        if (count($msg) > 0) {
+            // ci sono messaggi di errore nell'array,
+            // qualcosa e' andato storto...
+            $error = "Si sono verificati i seguenti errori \n<ul>\n";
+            foreach ($msg as $m) {
+                $error = $error . $m . "\n";
+            }
+            // imposto il messaggio di errore
+            $vista->setMessaggioErrore($error);
+        } else {
+            // non ci sono messaggi di errore, la procedura e' andata
+            // quindi a buon fine, mostro un messaggio di conferma
+            $vista->setMessaggioConferma($okMsg);
+        }
+    }
+    
 }

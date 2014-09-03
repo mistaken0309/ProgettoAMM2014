@@ -11,16 +11,25 @@ header, footer, section, article, nav, aside {
     display: block;
 }
 
-input[type=submit], #button  {
+#page{
+    min-width: 1000px;
+}
+
+
+input[type=submit], .button  {
     border-radius: 10%;
     border: 0px;
     padding: 3px 12px 3px 12px;
     background: powderblue;
     color: black;
-    margin-top: 7px;
     font-family: UnDinaru, Roboto, Raleway;
     font-size: 14px;
 }
+.button{
+    margin-top: 7px;
+}
+
+
 label{
     margin: 0 0 0 0;
     text-align: left;
@@ -33,7 +42,10 @@ body {
     font-size: 16px;
     line-height: 18px;
     text-align: left;
-    margin-top: 30px;
+    margin: 30px 0px 0px 0px;
+    width:100%;
+    margin-bottom: 50px;
+    position: static;
     
 }
 
@@ -94,7 +106,10 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
 #main {
     padding: 0px;
 }
-
+/*
+#page{
+    width: 900px;
+}*/
 
 .middle{
     padding: 10px 10px 10px 10px;
@@ -103,8 +118,7 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
     font-size: 16px;
     line-height: 18px;
     text-align: left;
-    border-left: 2px #222222 solid;
-    height: 100%;
+    min-height: 480px;
 }
 
 .input-form{
@@ -128,6 +142,7 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
 }
 
 #topbar{
+    min-width: 800px;
     font-size: 12px;
     display: block;
     position: fixed;
@@ -137,12 +152,12 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
 }
 
 #topbar form{
-    display: inline;
+    display: inline-block;
     margin-left: 50px;
     margin-right: 50px;
 }
 
-#topbar #button  {
+#topbar .button  {
     padding: 3px 12px 3px 12px;
     margin-top: 0px;
     font-family: UnDinaru, Roboto, Raleway;
@@ -192,7 +207,7 @@ header {
 #title{
     display:block;
     padding: 20px 30px 0px 35px;
-    background-image: url("../img/tumblr_static_488027_2.png")/*("http://static.tumblr.com/40bfd838c0bd74918ca61cac9aa9ce9f/10xrfhp/qtNmg85vx/tumblr_static_488027.jpg")*/;
+    background-image: url("../img/tumblr_static_488027_2.png");
     background-position: 0% 0%;
     background-repeat: repeat-x;
     background-size: 352px;
@@ -222,6 +237,7 @@ nav{
     float:left;
     height: 100%; 
     margin: 0px 0px 0px 0px;
+    //height: 520px;
     
 }
 
@@ -243,16 +259,23 @@ nav .page{
 footer{
     background: #ffffff;
     margin: 0px 0px 0px 0px;
+    border-top:2px crimson solid;
+    //position: fixed;
+    //bottom: 0px;
+    //width: 100%;
+    
+
+}
+footer div{
     padding-top:15px;
     padding-right:40px;
     padding-left:40px;
-    padding-bottom: 40px;
-    border-top:2px crimson solid;
+    //padding-bottom: 40px;
     font-family: UnDinaru, Roboto, Raleway;
     font-size: 14px;
     color: #222222;
     text-align: left;
-    //width:100%
+
 }
 
 .clear{
@@ -261,3 +284,65 @@ footer{
     height: 0px;
 }
 
+
+/** -- table -- **/
+th{
+    padding: 5px 15px 5px 15px;
+}
+td{
+    padding: 2px 15px 0px 15px;
+}
+
+
+
+.error li {
+    list-style: none;
+}
+
+/* stile per i messaggi di errore */
+
+.error{
+    width: 90%;
+    background-color: #f5a5a5;
+    border: 5px solid #9e1616;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    margin-top: 5px;
+}
+.error div{
+    margin: 0px;
+    background: url('../images/no.png') no-repeat left top;
+    min-height: 32px;
+    
+}
+
+/* stile per i messaggi di conferma */
+
+.confirm{
+    width: 90%;
+    background-color: #c7edce;
+    border: 5px solid #36956e;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    margin-top: 5px;
+}
+.confirm div{
+    margin: 0px;
+    background: url('../images/ok.png') no-repeat left top;
+    min-height: 32px;
+}
+
+
+.manga{
+    margin-top: 7px;
+}
+.manga h4{
+    display: inline;
+}
+
+option{
+    font-family: UnDinaru, Roboto, Raleway;
+    font-size: 12px; 
+}

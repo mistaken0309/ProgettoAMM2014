@@ -1,35 +1,43 @@
 
+    <h2>Dati Personali</h2>
+    <hr style="solid" width="100%" size="1px" color="gainsboro"/>
+
 <div class="input-anagrafica">
-    
-    <h2>Dati personali</h2>
-    
-    <p><strong>Username:</strong> <?= $user->getUsername() ?></p>
-        
-    <form method="post" action="studente/anagrafica">
-        <input type="hidden" name="cmd" value="indirizzo"/>
+    <h3>Impostazioni Account</h3>
+
+    <form method="post" action="acquirente/anagrafica">
+        <input type="hidden" name="cmd" value="impostazioni"/>
         <label for="nome">Nome</label>
-        <input type="text" name="via" id="via" value="<?= $user->getNome() ?>"/>
+        <input type="text" name="nome" id="nome" value="<?= $user->getNome() ?>"/>
         <br>
         <label for="cognome">Cognome</label>
-        <input type="text" name="civico" id="civico" value="<?= $user->getCognome() ?>"/>
+        <input type="text" name="cognome" id="cognome" value="<?= $user->getCognome() ?>"/>
         <br/>
-        <input type="submit" value="Salva"/>
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" value="<?= $user->getEmail() ?>"/>
+        <br/>
+        <input type="submit" class="button" value="Salva"/>
     </form>
-    
+    <p></p>
+    <form method="post" action="acquirente/anagrafica">
+        <input type="hidden" name="cmd" value="password"/>
+        <label for="pass1">Nuova Password:</label>
+        <input type="password" name="pass1" id="pass1"/>
+        <br/>
+        <label for="pass2">Conferma:</label>
+        <input type="password" name="pass2" id="pass2"/>
+        <br/>
+        <input type="submit" class="button" value="Cambia"/>
+    </form>
 </div>
 <hr style="solid" width="100%" size="1px" color="gainsboro"/>
-
 <div class="input-anagrafica">
+    
     <h3>Indirizzo</h3>
 
-    <form method="post" action="studente/anagrafica">
+    <form method="post" action="acquirente/anagrafica">
         <input type="hidden" name="cmd" value="indirizzo"/>
-
-        
-        <table>
-            <tr><td><label for="via">Via o Piazza</label></td>
-                <td><input type="text" name="via" id="via" value="<?= $user->getVia() ?>"/></td></tr>
-        </table>
+        <label for="via">Via o Piazza</label><input type="text" name="via" id="via" value="<?= $user->getVia() ?>"/>
         <br>
         <label for="civico">Numero Civico</label>
         <input type="text" name="civico" id="civico" value="<?= $user->getNumeroCivico() ?>"/>
@@ -43,36 +51,7 @@
         <label for="cap">CAP</label>
         <input type="text" name="cap" id="cap" value="<?= $user->getCap() ?>"/>
         <br/>
-        <input type="submit" value="Salva"/>
+        <input type="submit" class="button" value="Salva"/>
     </form>
 </div>
 
-<hr style="solid" width="100%" size="1px" color="gainsboro"/>
-
-<div class="input-anagrafica">
-    <h3>Email</h3>
-
-    <form method="post" action="studente/anagrafica">
-        <input type="hidden" name="cmd" value="email"/>
-        <label for="email">Email:</label>
-        <input type="text" name="email" id="email" value="<?= $user->getEmail() ?>"/>
-        <br/>
-        <input type="submit" value="Salva"/>
-    </form>
-</div>
-
-<hr style="solid" width="100%" size="1px" color="gainsboro"/>
-
-<div class="input-anagrafica">
-    <h3>Password</h3>
-    <form method="post" action="studente/anagrafica">
-        <input type="hidden" name="cmd" value="password"/>
-        <label for="pass1">Nuova Password:</label>
-        <input type="password" name="pass1" id="pass1"/>
-        <br/>
-        <label for="pass2">Conferma:</label>
-        <input type="password" name="pass2" id="pass2"/>
-        <br/>
-        <input type="submit" value="Cambia"/>
-    </form>
-</div>

@@ -1,7 +1,10 @@
 <?php
 
-include_once 'Controller.php';
-include_once basename(__DIR__) . '/../model/UtenteFactory.php';
+    include_once 'Controller.php';
+    include_once basename(__DIR__) . '/../model/MangaFactory.php';
+    include_once basename(__DIR__) . '/../model/AutoreFactory.php';
+    include_once basename(__DIR__) . '/../model/UtenteFactory.php';
+    include_once basename(__DIR__) . '/../model/AcquistiFactory.php';
 
 /**
  * Description of AcquirenteController
@@ -30,6 +33,30 @@ class AcquirenteController extends Controller{
                     case 'anagrafica':
                         $vista->setSottoPagina('anagrafica');
                         break;
+                    
+                    case 'manga':
+                        $mangaid = (int)($request['param']);
+                        $manga = MangaFactory::instance()->getMangaPerId((int) $mangaid);
+                        $vista->setSottoPagina('manga');
+                    break;
+                
+                    case 'lista':
+                        $autori = AutoreFactory::instance()->getListaAutori();
+                        $mangas = MangaFactory::instance()->getListaManga();
+                        $vista->setSottoPagina('lista');
+                        break;
+                
+                    case 'lista_per_autore':
+                        $autori = AutoreFactory::instance()->getListaAutori();
+                        $mangas = MangaFactory::instance()->getListaMangaPerAutore($request['param']);
+                        $vista->setSottoPagina('lista_per_autore');
+                        break;
+                    case 'acquisti':
+                        $utente = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
+                        $acquisti = AcquistiFactory::instance()->getListaAcquistiAcquirente($utente);
+                        $vista->setSottoPagina('acquisti');
+                        break;
+                    
                     default:
                         $vista->setSottoPagina('home');
                         break;
@@ -37,8 +64,14 @@ class AcquirenteController extends Controller{
             }
             if(isset($request["cmd"])){
                 switch ($request["cmd"]) {
+                    
                     case 'logout':
                         $this->logout($vista);
+                        break;
+                    case 'e_cerca':
+                        $msg = array();
+                        $this->creaFeedbackUtente($msg, $vista, "Lo implementiamo con il db, fai conto che abbia funzionato ;)");
+                        $this->showHomeUtente($vista);
                         break;
                     default:
                         $this->showHomeUtente($vista);

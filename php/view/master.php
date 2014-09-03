@@ -19,7 +19,7 @@ and open the template in the editor.
         <meta name="description" content="manga shop">
         <meta name="author" content="Annalisa Congiu">
         <!--Ricaricare la pagina ogni 30 secondi-->
-        <meta http-equiv="refresh" content="30">
+        //<meta http-equiv="refresh" content="30">
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         <link href="http://roboto-webfont.googlecode.com/svn/trunk/roboto.all.css" rel="stylesheet" type="text/css">
         <!--<style type="text/css"></style>-->
@@ -28,6 +28,9 @@ and open the template in the editor.
         
     </head>
     <body>
+        
+        <div id="page">
+        
         <header>
             <?php
                 $header = $vista->getHeader();
@@ -41,16 +44,43 @@ and open the template in the editor.
                 require "$leftbar";
             ?>
         </div>
-        
-        <!--<div id="sidebar2">prova</div>-->
+
         <div class="middle">
-            <p><?php
+            <?php
+                    if ($vista->getMessaggioErrore() != null) {
+                        ?>
+                        <div class="error">
+                            <div>
+                                <?=
+                                $vista->getMessaggioErrore();
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                    <?php
+                    if ($vista->getMessaggioConferma() != null) {
+                        ?>
+                        <div class="confirm">
+                            <div>
+                                <?=
+                                $vist->getMessaggioConferma();
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
+            <?php
                 $content = $vista->getContent();
                 require "$content";
-                ?></p>
+            ?>
         </div>
         
         <div class="clear"></div>
+        
+        
         <footer>
             <div>
                 Progetto di Amministrazione di Sistema 2014 di Annalisa Congiu
@@ -65,5 +95,7 @@ and open the template in the editor.
                 </p>-->
             </div>
         </footer>
+        </div>
+        
     </body>
 </html>

@@ -7,13 +7,14 @@
  */
 
 /**
- * Description of Autore
+ * Description of Prodotti
  *
  * @author Annalisa
  */
-class Autore {
+class Prodotti {
     private $id;
-    private $autore;
+    private $venditore;
+    private $manga;
     
     public function __construct() {
         
@@ -27,10 +28,19 @@ class Autore {
         $this->id = $id;
     }
     
-    public function getAutore(){
-        return $this->autore;
+    public function getVenditore(){
+        return $this->venditore;
     }
-    public function setAutore($autore){
-        $this->autore = $autore;
+    public function setVenditore($venditore){
+        $this->venditore = $venditore;
     }
+    
+    public function getManga(){
+        return $this->manga;
+    }
+    public function setManga($manga){
+        $this->manga = $manga;
+    }
+    
+    
 }
