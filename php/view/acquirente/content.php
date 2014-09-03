@@ -24,7 +24,7 @@ switch ($vista->getSottoPagina()) {
         <p>
             Puoi Scegliere tra le seguenti sezioni:
         </p>
-        <ul class="panel">
+        <ul>
             <li><a href="acquirente/anagrafica">Impostazioni Account</a></li>
             <li><a href="acquirente/lista">Sfoglia i Manga</a></li>
             <li><a href="acquirente/acquisti">Storico Acquisti</a></li>

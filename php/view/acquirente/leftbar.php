@@ -1,7 +1,8 @@
 <nav>
-    <div>
-        <p class="page"><a href="<?= basename(__DIR__) . '/../acquirente/lista'?>">Lista</a></p>
-        <p class="page"><a>Cerca</a></p>
-        <p class="page"><a>Genere</a></p>
+    <div>       
+        <!--<p class="page"><a href="acquirente/home">Home</a></p>-->
+        <p class="page"><a href="acquirente/anagrafica">Impostazioni Account</a></p>
+        <p class="page"><a href="acquirente/lista">Sfoglia i Manga</a></p>
+        <p class="page"><a href="acquirente/acquisti">Storico Acquisti</a></p>
     </div>
 </nav>

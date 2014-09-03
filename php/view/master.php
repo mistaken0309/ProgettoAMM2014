@@ -19,7 +19,7 @@ and open the template in the editor.
         <meta name="description" content="manga shop">
         <meta name="author" content="Annalisa Congiu">
         <!--Ricaricare la pagina ogni 30 secondi-->
-        //<meta http-equiv="refresh" content="30">
+        <!--<meta http-equiv="refresh" content="30">-->
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         <link href="http://roboto-webfont.googlecode.com/svn/trunk/roboto.all.css" rel="stylesheet" type="text/css">
         <!--<style type="text/css"></style>-->
