@@ -65,7 +65,7 @@ and open the template in the editor.
                         <div class="confirm">
                             <div>
                                 <?=
-                                $vist->getMessaggioConferma();
+                                $vista->getMessaggioConferma();
                                 ?>
                             </div>
                         </div>
