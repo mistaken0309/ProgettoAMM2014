@@ -80,7 +80,44 @@ class AcquirenteController extends Controller{
                     case 'logout':
                         $this->logout($vista);
                         break;
-
+                    
+                    case 'impostazioni':
+                        // in questo array inserisco i messaggi di 
+                        // cio' che non viene validato
+                        $msg = array();
+                        $this->aggiornaImpostazioni($user, $request, $msg);
+                        $this->creaFeedbackUtente($msg, $vista, "Impostazioni aggiornate");
+                        $this->showHomeUtente($vista);
+                        break;
+                    
+                    case 'email':
+                        // in questo array inserisco i messaggi di 
+                        // cio' che non viene validato
+                        $msg = array();
+                        $this->aggiornaEmail($user, $request, $msg);
+                        $this->creaFeedbackUtente($msg, $vista, "Impostazioni aggiornate");
+                        $this->showHomeUtente($vista);
+                        break;
+                    
+                    
+                    case 'password':
+                        // in questo array inserisco i messaggi di 
+                        // cio' che non viene validato
+                        $msg = array();
+                        $this->aggiornaPassword($user, $request, $msg);
+                        $this->creaFeedbackUtente($msg, $vista, "Password aggiornata");
+                        $this->showHomeUtente($vista);
+                        break;
+                    
+                    case 'indirizzo':
+                        // in questo array inserisco i messaggi di 
+                        // cio' che non viene validato
+                        $msg = array();
+                        $this->aggiornaIndirizzo($user, $request, $msg);
+                        $this->creaFeedbackUtente($msg, $vista, "Indirizzo aggiornato");
+                        $this->showHomeUtente($vista);
+                        break;
+                    
                     // salvataggio permanente dell'acquisto
                     case 'fai_acquisto':
                         if (isset($acquisto)) {                            

@@ -127,9 +127,9 @@ class UtenteBase {
     public function setUsername($username) {
         // utilizzo la funzione filter var specificando un'espressione regolare
         // che implementa la validazione personalizzata
-        /*if (!filter_var($username, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/[a-zA-Z]{5,}/')))) {
+        if (!filter_var($username, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/[a-zA-Z]{5,}/')))) {
             return false;
-        }*/
+        }
         $this->username = $username;
         return true;
     }
@@ -230,9 +230,9 @@ class UtenteBase {
      * @return boolean true il nuovo l
      */
     public function setEmail($email) {
-        /*if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return false;
-        }*/
+        }
         $this->email = $email;
         return true;
     }
@@ -271,13 +271,13 @@ class UtenteBase {
      * @return boolean true se il valore e' ammissibile ed e' stato aggiornato
      * correttamente, false altrimenti
      */
-    public function setCivico($civico) {
-        /*$intVal = filter_var($civico, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
-        if (isset($intVal)) {*/
-            $this->civico = $civico;
-            //return true;
-        /*}
-        return false;*/
+    public function setNumeroCivico($civico) {
+        $intVal = filter_var($civico, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+        if (isset($intVal)) {
+            $this->numeroCivico = $intVal;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -333,9 +333,9 @@ class UtenteBase {
      * impostato, false altrimenti
      */
     public function setCap($cap) {
-        /*if (!filter_var($cap, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/[0-9]{5}/')))) {
+        if (!filter_var($cap, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/[0-9]{5}/')))) {
             return false;
-        }*/
+        }
         $this->cap = $cap;
         return true;
     }
@@ -356,11 +356,11 @@ class UtenteBase {
      * false altrimenti
      */
     public function setId($id){
-        /*$intVal = filter_var($id, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+        $intVal = filter_var($id, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
         if(!isset($intVal)){
             return false;
-        }*/
-        $this->id = $id;
+        }
+        $this->id = $intVal;
     }
     
     /**
@@ -369,7 +369,7 @@ class UtenteBase {
      * @return boolean true se i due oggetti sono logicamente uguali, 
      * false altrimenti
      */
-    public function equals(User $user) {
+    public function equals(UtenteBase $user) {
 
         return  $this->id == $user->id &&
                 $this->nome == $user->nome &&

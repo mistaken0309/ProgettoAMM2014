@@ -18,11 +18,11 @@ and open the template in the editor.
         <meta name="keywords" content="buy manga, manga shop, manga">
         <meta name="description" content="manga shop">
         <meta name="author" content="Annalisa Congiu">
+        <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
         <!--Ricaricare la pagina ogni 30 secondi-->
         <!--<meta http-equiv="refresh" content="30">-->
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         <link href="http://roboto-webfont.googlecode.com/svn/trunk/roboto.all.css" rel="stylesheet" type="text/css">
-        <!--<style type="text/css"></style>-->
         <link rel="stylesheet" type="text/css" href="../css/mainstylesheet.css">
         <!--<script type="text/javascript"></script>-->
         
@@ -84,15 +84,13 @@ and open the template in the editor.
         <footer>
             <div>
                 Progetto di Amministrazione di Sistema 2014 di Annalisa Congiu
-                <!--<p>
-                    <a href="http://jigsaw.w3.org/css-validator/check/refer">
-                        <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS Valido!" />
+                <p>
+                    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                        <img style="border:0;width:88px;height:31px"
+                            src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+                            alt="CSS Valido!" />
                     </a>
-
-                    <a href="http://validator.w3.org/check?uri=referer">
-                        <img class="alignleft" alt="HTML5 valido" src="./img/valid-html5.png">
-                    </a>
-                </p>-->
+                </p>
             </div>
         </footer>
         </div>

@@ -9,16 +9,20 @@
         <input type="hidden" name="cmd" value="impostazioni"/>
         <label for="nome">Nome</label>
         <input type="text" name="nome" id="nome" value="<?= $user->getNome() ?>"/>
-        <br>
+        <br/>
         <label for="cognome">Cognome</label>
         <input type="text" name="cognome" id="cognome" value="<?= $user->getCognome() ?>"/>
         <br/>
-        <label for="email">Email:</label>
-        <input type="text" name="email" id="email" value="<?= $user->getEmail() ?>"/>
-        <br/>
         <input type="submit" class="button" value="Salva"/>
     </form>
-    <p></p>
+    <p> </p>
+    <form method="post" action="acquirente/anagrafica">
+        <input type="hidden" name="cmd" value="email"/>
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" value="<?= $user->getEmail() ?>"/>
+        <input type="submit" class="button" value="Salva"/>
+    </form>
+    <p> </p>
     <form method="post" action="acquirente/anagrafica">
         <input type="hidden" name="cmd" value="password"/>
         <label for="pass1">Nuova Password:</label>

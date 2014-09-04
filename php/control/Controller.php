@@ -199,4 +199,126 @@ class Controller {
         }
     }
     
+    
+    /**
+     * Aggiorno l'indirizzo di un utente (comune a Venditore e Acquirente)
+     * @param UtenteBase $user l'utente da aggiornare
+     * @param array $request la richiesta http da gestire
+     * @param array $msg riferimento ad un array da riempire con eventuali messaggi d'errore
+     */
+    protected function aggiornaImpostazioni($user, &$request, &$msg) {
+
+        if (isset($request['nome'])) {
+            if (!$user->setNome($request['nome'])) {
+                $msg[] = '<li>Il nome specificato non &egrave; corretto</li>';
+            }
+        }
+        if (isset($request['cognome'])) {
+            if (!$user->setCognome($request['cognome'])) {
+                $msg[] = '<li>Il cognome specificato non &egrave; corretto</li>';
+            }
+        }
+        
+
+        // salviamo i dati se non ci sono stati errori
+        if (count($msg) == 0) {
+            if (UtenteFactory::instance()->salva($user) != 1) {
+                $msg[] = '<li>Salvataggio non riuscito</li>';
+            }
+        }
+    }
+    
+    
+    /**
+     * Aggiorno l'indirizzo di un utente (comune a Venditore e Acquirente)
+     * @param UtenteBase $user l'utente da aggiornare
+     * @param array $request la richiesta http da gestire
+     * @param array $msg riferimento ad un array da riempire con eventuali messaggi d'errore
+     */
+    protected function aggiornaEmail($user, &$request, &$msg) {
+
+        if (isset($request['email'])) {
+            if (!$user->setEmail($request['email'])) {
+                $msg[] = '<li>La e-mail specificata non &egrave; corretta</li>';
+            }
+        }
+        
+
+        // salviamo i dati se non ci sono stati errori
+        if (count($msg) == 0) {
+            if (UtenteFactory::instance()->salva($user) != 1) {
+                $msg[] = '<li>Salvataggio non riuscito</li>';
+            }
+        }
+    }
+    
+    /**
+     * Aggiorno la password di un utente (comune a Studente e Docente)
+     * @param User $user l'utente da aggiornare
+     * @param array $request la richiesta http da gestire
+     * @param array $msg riferimento ad un array da riempire con eventuali
+     * messaggi d'errore
+     */
+    protected function aggiornaPassword($user, &$request, &$msg) {
+        if (isset($request['pass1']) && isset($request['pass2'])) {
+            if ($request['pass1'] == $request['pass2']) {
+                if (!$user->setPassword($request['pass1'])) {
+                    $msg[] = '<li>Il formato della password non &egrave; corretto</li>';
+                }
+            } else {
+                $msg[] = '<li>Le due password non coincidono</li>';
+            }
+        }
+        
+        // salviamo i dati se non ci sono stati errori
+        if (count($msg) == 0) {
+            if (UtenteFactory::instance()->salva($user) != 1) {
+                $msg[] = '<li>Salvataggio non riuscito</li>';
+            }
+        }
+    }
+    
+    
+    /**
+     * Aggiorno l'indirizzo di un utente (comune a Venditore e Acquirente)
+     * @param UtenteBase $user l'utente da aggiornare
+     * @param array $request la richiesta http da gestire
+     * @param array $msg riferimento ad un array da riempire con eventuali messaggi d'errore
+     */
+    protected function aggiornaIndirizzo($user, &$request, &$msg) {
+
+        if (isset($request['via'])) {
+            if (!$user->setVia($request['via'])) {
+                $msg[] = '<li>La via specificata non &egrave; corretta</li>';
+            }
+        }
+        if (isset($request['civico'])) {
+            if (!$user->setNumeroCivico($request['civico'])) {
+                $msg[] = '<li>Il formato del numero civico non &egrave; corretto</li>';
+            }
+        }
+        if (isset($request['citta'])) {
+            if (!$user->setCitta($request['citta'])) {
+                $msg[] = '<li>La citt&agrave; specificata non &egrave; corretta</li>';
+            }
+        }
+        if (isset($request['provincia'])) {
+            if (!$user->setProvincia($request['provincia'])) {
+                $msg[] = '<li>La provincia specificata &egrave; corretta</li>';
+            }
+        }
+        if (isset($request['cap'])) {
+            if (!$user->setCap($request['cap'])) {
+                $msg[] = '<li>Il CAP specificato non &egrave; corretto</li>';
+            }
+        }
+
+        // salviamo i dati se non ci sono stati errori
+        if (count($msg) == 0) {
+            if (UtenteFactory::instance()->salva($user) != 1) {
+                $msg[] = '<li>Salvataggio non riuscito</li>';
+            }
+        }
+    }
+    
 }

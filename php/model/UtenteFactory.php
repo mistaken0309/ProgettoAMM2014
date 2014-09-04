@@ -201,62 +201,6 @@ class UtenteFactory {
         return $acquirenti;
     }
 
-    /**
-     * Carica uno acquirente dalla matricola
-     * @param int $matricola la matricola da cercare
-     * @return Acquirente un oggetto Acquirente nel caso sia stato trovato,
-     * NULL altrimenti
-     */
-/*    public function cercaCompratoriPerMatricola($matricola) {
-
-
-        $intval = filter_var($matricola, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
-        if (!isset($intval)) {
-            return null;
-        }
-
-        $mysqli = Database::getInstance()->connectDb();
-        if (!isset($mysqli)) {
-            error_log("[cercaAcquirentePerMatricola] impossibile inizializzare il database");
-            $mysqli->close();
-            return null;
-        }
-
-        $query = "select utenti.u_id u_id,
-            utenti.username username,
-            utenti.password password,
-            utenti.email email,
-            utenti.nome nome,
-            utenti.cognome cognome,
-            utenti.via via,
-            utenti.civico civico,
-            utenti.citta citta,
-            utenti.provincia provincia,
-            utenti.cap cap
-
-            from utenti
-            //where utenti.username = ? and utenti.password = ?";
-            where utenti.matricola = ?";
-        $stmt = $mysqli->stmt_init();
-        $stmt->prepare($query);
-        if (!$stmt) {
-            error_log("[cercaAcquirentePerMatricola] impossibile" .
-                    " inizializzare il prepared statement");
-            $mysqli->close();
-            return null;
-        }
-
-        if (!$stmt->bind_param('i', $intval)) {
-            error_log("[cercaAcquirentePerMatricola] impossibile" .
-                    " effettuare il binding in input");
-            $mysqli->close();
-            return null;
-        }
-
-        $toRet =  self::caricaAcquirenteDaStmt($stmt);
-        $mysqli->close();
-        return $toRet;
-    }*/
 
     /**
      * Cerca uno acquirente per id
@@ -375,7 +319,7 @@ class UtenteFactory {
         $acquirente->setNome($row['nome']);
         $acquirente->setCognome($row['cognome']);
         $acquirente->setVia($row['via']);
-        $acquirente->setCivico($row['civico']);
+        $acquirente->setNumeroCivico($row['civico']);
         $acquirente->setCitta($row['citta']);
         $acquirente->setProvincia($row['provincia']);
         $acquirente->setCap($row['cap']);
@@ -399,7 +343,7 @@ class UtenteFactory {
         $venditore->setCognome($row['cognome']);
         $venditore->setEmail($row['email']);
         $venditore->setVia($row['via']);
-        $venditore->setCivico($row['civico']);
+        $venditore->setNumeroCivico($row['civico']);
         $venditore->setCitta($row['citta']);
         $venditore->setProvincia($row['provincia']);
         $venditore->setCap($row['cap']);
@@ -443,9 +387,8 @@ class UtenteFactory {
      * @param mysqli_stmt $stmt un prepared statement
      * @return int il numero di righe modificate
      */
-    private function salvaAcquirente(Acquirente $s, mysqli_stmt $stmt) {
-        $query = " update acquirenti set 
-                    username = ?,
+    private function salvaAcquirente(Acquirente $b, mysqli_stmt $btmt) {
+        $query = " update utenti set 
                     password = ?,
                     email = ?,
                     nome = ?,
@@ -457,28 +400,30 @@ class UtenteFactory {
                     cap = ?
                     where utenti.u_id = ?
                     ";
-        $stmt->prepare($query);
-        if (!$stmt) {
+        $btmt->prepare($query);
+        if (!$btmt) {
             error_log("[salvaAcquirente] impossibile" .
                     " inizializzare il prepared statement");
             return 0;
         }
-
-      //?????//
-        if (!$stmt->bind_param('ssssississi', $s->getPassword(), $s->getNome(), $s->getCognome(), $s->getEmail(), $s->getNumeroCivico(), $s->getCitta(), $s->getProvincia(), $s->getMatricola(), $s->getCap(), $s->getVia(), $s->getId())) {
+        
+        if (!$btmt->bind_param('sssssisssi', 
+                $b->getPassword(), $b->getEmail(), $b->getNome(), $b->getCognome(), 
+                $b->getVia(), $b->getNumeroCivico(), $b->getCitta(), $b->getProvincia(), 
+                 $b->getCap(), $b->getId()
+                )) {
             error_log("[salvaAcquirente] impossibile" .
                     " effettuare il binding in input");
             return 0;
         }
         
-      //?????//
-        if (!$stmt->execute()) {
+        if (!$btmt->execute()) {
             error_log("[caricaIscritti] impossibile" .
                     " eseguire lo statement");
             return 0;
         }
 
-        return $stmt->affected_rows;
+        return $btmt->affected_rows;
     }
     
     /**
@@ -487,18 +432,18 @@ class UtenteFactory {
      * @param mysqli_stmt $stmt un prepared statement
      * @return int il numero di righe modificate
      */
-    private function salvaVenditore(Venditore $d, mysqli_stmt $stmt) {
+    private function salvaVenditore(Venditore $s, mysqli_stmt $stmt) {
         $query = " update venditori set 
-                    azienda = ?,
                     password = ?,
-                    nome = ?,
-                    cognome = ?,
+                    nome_tit = ?,
+                    cognome_tit = ?,
                     email = ?,
                     via = ?,
                     civico = ?,
                     citta = ?,
                     provincia = ?,
                     cap = ?,
+                    descrizione = ?
                     where venditori.v_id = ?
                     ";
         $stmt->prepare($query);
@@ -507,18 +452,11 @@ class UtenteFactory {
                     " inizializzare il prepared statement");
             return 0;
         }
-//??????//
-        if (!$stmt->bind_param('sssssssssiii', 
-                $d->getPassword(), 
-                $d->getNome(), 
-                $d->getCognome(), 
-                $d->getEmail(), 
-                $d->getVia(), 
-                $d->getCivico(), 
-                $d->getCitta(),
-                $d->getProvincia(),
-                $d->getCap(), 
-                $d->getId())) {
+        
+        if (!$stmt->bind_param('sssssissisi', 
+                $s->getPassword(), $s->getNome(), $s->getCognome(), $s->getEmail(), 
+                $s->getVia(), $s->getNumeroCivico(), $s->getCitta(), $s->getProvincia(),
+                $s->getCap(),  $s->getDescrizione(), $s->getId())) {
             error_log("[salvaAcquirente] impossibile" .
                     " effettuare il binding in input");
             return 0;
@@ -619,6 +557,11 @@ class UtenteFactory {
         $toRet = self::creaAcquirenteDaArray($row);
         return $toRet;
     }
+    
+    
+    
+    
+    
 
 }
 
