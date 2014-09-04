@@ -1,6 +1,8 @@
 <?php
     include_once basename(__DIR__) . '/../view/ViewDescriptor.php';
     include_once basename(__DIR__) . '/../model/UtenteBase.php';
+    include_once basename(__DIR__) . '/../model/Venditore.php';
+    include_once basename(__DIR__) . '/../model/Acquirente.php';
     include_once basename(__DIR__) . '/../model/UtenteFactory.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -91,8 +93,6 @@ class Controller {
     
     protected function showHomeUtente($vista){
         $user = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
-        
-        
         switch ($user->getRuolo()) {
             case UtenteBase::Acquirente:
                 $this->showHomeAcquirente($vista);
