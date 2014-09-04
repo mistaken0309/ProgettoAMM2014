@@ -43,8 +43,9 @@ class Controller {
                     $this->login($vista, $username, $password);
                     
                     // questa variabile viene poi utilizzata dalla vista
-                    if ($this->loggedIn())
+                    if ($this->loggedIn()){
                         $user = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
+                    }
                     break;
                 case 'logout':
                     $this->logout($vista);
@@ -90,6 +91,8 @@ class Controller {
     
     protected function showHomeUtente($vista){
         $user = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
+        
+        
         switch ($user->getRuolo()) {
             case UtenteBase::Acquirente:
                 $this->showHomeAcquirente($vista);

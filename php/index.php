@@ -22,8 +22,7 @@ class FrontController{
                 
                 case 'acquirente':
                     $controller = new AcquirenteController();
-                    if (isset($_SESSION[Controller::role]) &&
-                        $_SESSION[Controller::role] != UtenteBase::Acquirente) {
+                    if (isset($_SESSION[Controller::role]) && $_SESSION[Controller::role] != UtenteBase::Acquirente) {
                         self::write403();
                     }
                     $controller->handle_input($request);
