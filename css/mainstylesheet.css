@@ -226,7 +226,7 @@ header {
 /* --- nav --- */
 nav{
     padding-top: 15px;
-    //border-bottom:2px crimson solid;
+    
     text-align: left;
 }
 
@@ -260,9 +260,6 @@ footer{
     background: #ffffff;
     margin: 0px 0px 0px 0px;
     border-top:2px crimson solid;
-    //position: fixed;
-    //bottom: 0px;
-    //width: 100%;
     
 
 }
@@ -270,7 +267,6 @@ footer div{
     padding-top:15px;
     padding-right:40px;
     padding-left:40px;
-    //padding-bottom: 40px;
     font-family: UnDinaru, Roboto, Raleway;
     font-size: 14px;
     color: #222222;
