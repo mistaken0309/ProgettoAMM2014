@@ -93,6 +93,7 @@ class Controller {
     
     protected function showHomeUtente($vista){
         $user = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
+        
         switch ($user->getRuolo()) {
             case UtenteBase::Acquirente:
                 $this->showHomeAcquirente($vista);

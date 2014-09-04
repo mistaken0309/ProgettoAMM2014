@@ -239,7 +239,7 @@ class AcquistiFactory {
      * @return boolean true se il salvataggio va a buon fine, false altrimenti
      */
     public function salvaAcquisto(Acquisti $acquisto) {
-        $mysqli = Db::getInstance()->connectDb();
+        $mysqli = Database::getInstance()->connectDb();
         if (!isset($mysqli)) {
             error_log("[salvaAcquisto] impossibile inizializzare il database");
             $mysqli->close();

@@ -5,6 +5,7 @@
     include_once basename(__DIR__) . '/../model/AutoreFactory.php';
     include_once basename(__DIR__) . '/../model/UtenteFactory.php';
     include_once basename(__DIR__) . '/../model/AcquistiFactory.php';
+    include_once basename(__DIR__) . '/../model/ProdottiFactory.php';
 
 /**
  * Description of AcquirenteController
@@ -52,10 +53,21 @@ class AcquirenteController extends Controller{
                         $vista->setSottoPagina('lista_per_autore');
                         break;
                     case 'acquisti':
-                        $utente = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
-                        $acquisti = AcquistiFactory::instance()->getListaAcquistiAcquirente($utente);
+                        $acquisti = AcquistiFactory::instance()->getListaAcquistiAcquirente($user);
                         $vista->setSottoPagina('acquisti');
                         break;
+                    case 'compra':
+                        
+                        $acquisto = new Acquisti();
+                        $acquisto->setUtenteId($user);
+                        $prodotto_id = ProdottiFactory::instance()->getProdottiPerMangaId($request['manga_id']);
+                        $acquisto->setProdottoId($prodotto_id);
+                        $acquisto->setQuantita($request['quantita']);
+                        $acquisto->setMangaId($request['manga_id']);
+                        
+                        $vista->setSottoPagina('compra');
+                        break;
+                        
                     
                     default:
                         $vista->setSottoPagina('home');
@@ -70,23 +82,17 @@ class AcquirenteController extends Controller{
                         break;
 
                     // salvataggio permanente dell'acquisto
-                    case 'r_salva_elenco':
-                        if (isset($acquisto)) {
-                            //if (count($_SESSION[self::elenco][$elenco_id]->getEsami()) > 0) {
-                                if (!AcquistiFactory::instance()->salvaAcquisto($_SESSION[self::acquisto][$acquisto])) {
-                                    $msg[] = '<li> Impossibile salvare l\'acquisto</li>';
-                                } else {
-                                    unset($_SESSION[self::elenco][$elenco_id]);
-                                    $elenchi_attivi = $_SESSION[self::elenco];
-                                    $vd->setPagina("reg_esami");
-                                    $vd->setSottoPagina('reg_esami');
-                                }
+                    case 'fai_acquisto':
+                        if (isset($acquisto)) {                            
+                            if (!AcquistiFactory::instance()->salvaAcquisto($acquisto)) {
+                                $msg[] = '<li> Impossibile salvare l\'acquisto</li>';
                             } else {
-                                $msg[] = '<li> &Egrave; necessario inserire almeno un esame</li>';
+                                $vista->setPagina("acquirente");
+                                $vista->setSottoPagina('compra');
                             }
-                            $this->creaFeedbackUtente($msg, $vd, "Esami registrati correttamente");
-                        //}
-                        $this->showHomeUtente($vd);
+                            $this->creaFeedbackUtente($msg, $vista, "Acquisto andato a buon fine");
+                        }
+                        $this->showHomeUtente($vista);
                         break;
                     
                     

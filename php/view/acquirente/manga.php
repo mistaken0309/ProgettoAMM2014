@@ -11,7 +11,7 @@
 <div class="manga"><h4>Prezzo</h4>: <?= $manga->getPrezzo() ?></div>
 <div class="manga"><h4>Disponibilità</h4>: <?= $manga->getNumeroArticoli() ?></div>
 <div class="manga">
-    <form method="post" action="acquirente">
+    <form method="post" action="acquirente/compra">
           <?php 
           $max_disponibili = $manga->getNumeroArticoli();
           if($max_disponibili >0){
@@ -31,7 +31,8 @@
             ?>
         </select>
         <br/>
-        <button name="cmd" type="submit" value="__">Acquista</button>
+        <input type="hidden" name="manga_id" value="<?= $manga->getId()?>">
+        <button type="submit" name="cmd" value="fai_acquisto" class="button">Acquista</button>
     </form>
 
         <?php
