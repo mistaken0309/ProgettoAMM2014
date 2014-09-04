@@ -10,6 +10,36 @@
 <div class="manga"><h4>Descrizione</h4>: <?= $manga->getDescrizione() ?></div>
 <div class="manga"><h4>Prezzo</h4>: <?= $manga->getPrezzo() ?></div>
 <div class="manga"><h4>Disponibilità</h4>: <?= $manga->getNumeroArticoli() ?></div>
+<div class="manga">
+    <form method="post" action="acquirente">
+          <?php 
+          $max_disponibili = $manga->getNumeroArticoli();
+          if($max_disponibili >0){
+                  
+          ?>
+
+        <label for="quantita">Quantità: </label>
+        <select name="quantita" id="quantita">
+            <?php
+            $i=1;
+            while($i <= $max_disponibili) {
+                ?>
+                <option value="<?= $i ?>"><?= $i ?></option>
+            <?php
+                $i++;
+            }
+            ?>
+        </select>
+        <br/>
+        <button name="cmd" type="submit" value="__">Acquista</button>
+    </form>
+
+        <?php
+          } else{
+        ?>
+        Non disponibile
+          <?php }?>
+</div>
 
 
 
