@@ -136,7 +136,8 @@ class Controller {
         }
         // distruggo il file di sessione
         session_destroy();
-        $this->showLoginPage($vista);           
+        $this->showLoginPage($vista);
+        
     }
     /**
      * Verifica se l'utente sia correttamente autenticato

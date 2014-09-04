@@ -68,6 +68,28 @@ class AcquirenteController extends Controller{
                     case 'logout':
                         $this->logout($vista);
                         break;
+
+                    // salvataggio permanente dell'acquisto
+                    case 'r_salva_elenco':
+                        if (isset($acquisto)) {
+                            //if (count($_SESSION[self::elenco][$elenco_id]->getEsami()) > 0) {
+                                if (!AcquistiFactory::instance()->salvaAcquisto($_SESSION[self::acquisto][$acquisto])) {
+                                    $msg[] = '<li> Impossibile salvare l\'acquisto</li>';
+                                } else {
+                                    unset($_SESSION[self::elenco][$elenco_id]);
+                                    $elenchi_attivi = $_SESSION[self::elenco];
+                                    $vd->setPagina("reg_esami");
+                                    $vd->setSottoPagina('reg_esami');
+                                }
+                            } else {
+                                $msg[] = '<li> &Egrave; necessario inserire almeno un esame</li>';
+                            }
+                            $this->creaFeedbackUtente($msg, $vd, "Esami registrati correttamente");
+                        //}
+                        $this->showHomeUtente($vd);
+                        break;
+                    
+                    
                     case 'e_cerca':
                         $msg = array();
                         $this->creaFeedbackUtente($msg, $vista, "Lo implementiamo con il db, fai conto che abbia funzionato ;)");

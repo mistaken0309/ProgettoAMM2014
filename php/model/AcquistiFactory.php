@@ -232,5 +232,96 @@ class AcquistiFactory {
         $mysqli->close();
         return $acquisti; 
     }
+    
+    /**
+     * Salva un acquisto sul DB
+     * @param Acquisti $acquisto l'acquisto da inserire
+     * @return boolean true se il salvataggio va a buon fine, false altrimenti
+     */
+    public function salvaAcquisto(Acquisti $acquisto) {
+        $mysqli = Db::getInstance()->connectDb();
+        if (!isset($mysqli)) {
+            error_log("[salvaAcquisto] impossibile inizializzare il database");
+            $mysqli->close();
+            return false;
+        }
+        $stmt = $mysqli->stmt_init();
+        $stmt2 = $mysqli->stmt_init();
+
+       
+        
+        $insert_acquisto = "insert into utente_manga
+            (acquisto_id, utente_fk, prodotto, data, quantita)
+            values (default, ?, ?, default, ?)";
+        
+        $update_manga = "update manga set
+            n_articoli = (n_articoli - ?)
+            where id = ?";
+
+        
+        $stmt->prepare($insert_acquisto);
+        if (!$stmt) {
+            error_log("[salvaAcquisto] impossibile" .
+                    " inizializzare il prepared statement n 1");
+            $mysqli->close();
+            return false;
+        }
+
+        $stmt2->prepare($update_manga);
+        if (!$stmt2) {
+            error_log("[salvaAcquisto] impossibile" .
+                    " inizializzare il prepared statement n 2");
+            $mysqli->close();
+            return false;
+        }
+        
+        // variabili da collegare agli statements
+        $utente_id = $acquisto->getUtenteId();
+        $prodotto_id = $acquisto->getProdottoId();
+        
+        $quantita = $acquisto->getQuantita();
+
+        $manga_id = $acquisto->getMangaId();
+
+        if (!$stmt->bind_param('iii', $utente_id, $prodotto_id, $quantita)) {
+            error_log("[salvaAcquisto] impossibile" .
+                    " effettuare il binding in input stmt1");
+            $mysqli->close();
+            return false;
+        }
+
+        if (!$stmt2->bind_param('ii', $quantita, $manga_id)) {
+            error_log("[salvaAcquisto] impossibile" .
+                    " effettuare il binding in input stmt1");
+            $mysqli->close();
+            return false;
+        }
+        // inizio la transazione
+        $mysqli->autocommit(false);
+        if (!$stmt->execute()) {
+            error_log("[salvaAcquisto] impossibile eseguire lo statement 1");
+            $mysqli->rollback();
+            $mysqli->close();
+            return false;
+        }
+
+
+        if (!$stmt2->execute()) {
+            error_log("[salvaAcquisto] impossibile eseguire lo statement 2");
+            $mysqli->rollback();
+            $mysqli->close();
+            return false;
+        }
+
+        
+
+        // tutto ok, posso rendere persistente il salvataggio
+        $mysqli->commit();
+        $mysqli->autocommit(true);
+        $mysqli->close();
+
+        return true;
+    }
+    
 
 }
