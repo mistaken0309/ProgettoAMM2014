@@ -31,6 +31,31 @@ class Controller {
         // imposto la pagina
         $vista->setPagina($request['page']);
 
+        
+        if(isset($request["subpage"])){
+            switch ($request["subpage"]){
+                
+                case 'manga':
+                    $mangaid = (int)($request['param']);
+                    $manga = MangaFactory::instance()->getMangaPerId((int) $mangaid);
+                    $vista->setSottoPagina('manga');
+                break;
+            
+                case 'lista_per_autore':
+                    $autori = AutoreFactory::instance()->getListaAutori();
+                    $mangas = MangaFactory::instance()->getListaMangaPerAutore($request['param']);
+                    $vista->setSottoPagina('lista_per_autore');
+                    break;
+                    
+                
+                default:
+                    $autori = AutoreFactory::instance()->getListaAutori();
+                    $mangas = MangaFactory::instance()->getListaManga();
+                    $vista->setSottoPagina('lista');
+                    break;
+            }
+        
+        }
         // gestion dei comandi
         // tutte le variabili che vengono create senza essere utilizzate 
         // direttamente in questo switch, sono quelle che vengono poi lette

@@ -1,13 +1,7 @@
 <?php
 switch ($vista->getSottoPagina()) {
-    case 'anagrafica':
-        include_once 'anagrafica.php';
-        break;
     case 'lista':
         include_once 'lista.php';
-        break;
-    case 'manga':
-        include_once 'manga.php';
         break;
     case 'lista_per_autore':
         include_once 'lista_per_autore.php';
@@ -15,9 +9,7 @@ switch ($vista->getSottoPagina()) {
     case 'acquisti':
         include_once 'acquisti.php';
         break;
-    case 'compra':
-        include_once 'compra.php';
-        break;
+    
     default:
         
 ?>

@@ -1,21 +1,4 @@
-<?php
-switch ($vista->getSottoPagina()) {
-    case 'lista':
-        include_once 'lista.php';
-        break;
-    case 'lista_per_autore':
-        include_once 'lista_per_autore.php';
-        break;
-    case 'manga':
-        include_once 'manga.php';
-        break;
-    
-    default:
-        
-?>
 <h2>Elenco manga</h2>
-
-
 <table>
     <thead>
         <tr>
@@ -37,8 +20,3 @@ switch ($vista->getSottoPagina()) {
         <?php } ?>
     </tbody>
 </table>
-<?php
-    break;
-}
-?>
-
