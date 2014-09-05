@@ -82,7 +82,7 @@ class ProdottiFactory {
             $mysqli->close();
             return null;
         }   
-        $toRet  = self::caricaProdottiDaStmt($stmt);
+        $toRet  = self::caricaProdottoDaStmt($stmt);
         $mysqli->close();
         return $toRet;    
     }
@@ -139,12 +139,12 @@ class ProdottiFactory {
             $mysqli->close();
             return null;
         }   
-        $toRet  = self::caricaProdottiDaStmt($stmt);
+        $toRet  = self::caricaProdottoDaStmt($stmt);
         $mysqli->close();
         return $toRet;    
     }
     
-    private function caricaProdottiDaStmt(mysqli_stmt $stmt){
+    private function caricaProdottoDaStmt(mysqli_stmt $stmt){
         if (!$stmt->execute()) {
             error_log("[caricaProdottiDaStmt] impossibile" .
                     " eseguire lo statement");
@@ -165,6 +165,29 @@ class ProdottiFactory {
         
         $toRet = self::creaProdottiDaArray($row);  
         return $toRet;
+    }
+    
+    private function &caricaProdottiDaStmt(mysqli_stmt $stmt){
+        $prodotti = array();
+        if (!$stmt->execute()) {
+            error_log("[caricaProdottiDaStmt] impossibile" .
+                    " eseguire lo statement");
+            return null;
+        }
+        $row = array();
+        $bind = $stmt->bind_result($row['id'], $row['v_id'], $row['manga_id']);
+        if (!$bind) {
+            error_log("[caricaProdottiDaStmt] impossibile effettuare il binding in output");
+            return null;
+        }
+
+        while ($stmt->fetch()) {
+            $prodotti[] = self::creaProdottiDaArray($row);
+        }
+
+        $stmt->close();
+        
+        return $prodotti;
     }
     
     private function creaProdottiDaArray($row){

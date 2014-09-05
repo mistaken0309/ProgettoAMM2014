@@ -111,9 +111,9 @@ class Controller {
     
     protected function showHomeVenditore($vista){
         $vista->setTitle("MangaMania - MM");
-        $vista->setContent(basename(__DIR__) . '/../view/venditore/content-user.php');
-        $vista->setHeader(basename(__DIR__) . '/../view/venditore/header-user.php');
-        $vista->setLeftbar(basename(__DIR__) . '/../view/venditore/leftbar-user.php');
+        $vista->setContent(basename(__DIR__) . '/../view/venditore/content.php');
+        $vista->setHeader(basename(__DIR__) . '/../view/venditore/header.php');
+        $vista->setLeftbar(basename(__DIR__) . '/../view/venditore/leftbar.php');
     }
     
     protected function showHomeUtente($vista){
@@ -198,6 +198,89 @@ class Controller {
             $vista->setMessaggioConferma($okMsg);
         }
     }
+        /**
+     * Aggiorno l'indirizzo di un utente (comune a Venditore e Acquirente)
+     * @param UtenteBase $user l'utente da aggiornare
+     * @param array $request la richiesta http da gestire
+     * @param array $msg riferimento ad un array da riempire con eventuali messaggi d'errore
+     */
+    protected function aggiornaManga($manga, &$request, &$msg) {
+            
+        if (isset($request['titolo'])){
+            if(!$manga->setTitolo($request['titolo'])){
+                $msg[] = '<li>Il titolo specificato non &egrave; corretto</li>';
+            }
+        
+        }
+        
+        if (isset($request['titolo_originale'])){
+            if(!$manga->setTitoloOriginale($request['titolo_originale'])){
+                $msg[] = '<li>Il titolo specificato non &egrave; corretto</li>';
+                }
+        }
+        
+        if (isset($request['n_volume'])){
+            if(!$manga->setNumeroVolume($request['n_volume'])){
+                $msg[] = '<li>Il numero del volume specificato non &egrave; corretto</li>';
+            }
+                
+        }
+        
+        if (isset($request['autore'])){            
+            if(!$manga->setAutore($request['autore'])){
+                $msg[] = '<li>L\'autore specificato non &egrave; corretto</li>';   
+            }    
+        }
+        
+        if (isset($request['casa_ed'])){
+            if(!$manga->setCasaEditrice($request['casa_ed'])){
+                $msg[] = '<li>La case editrice specificata non &egrave; corretta</li>';
+            }
+        }
+        if (isset($request['pubblicazione'])){
+            if(!$manga->setAnnoPubblicazione($request['pubblicazione'])){
+                $msg[] = '<li>L\'anno di pubblicazione specificato non &egrave; corretto</li>'; 
+            }
+        }
+        if (isset($request['lingua'])){
+            if(!$manga->setLingua($request['lingua'])){
+                $msg[] = '<li>La lingua specificata non &egrave; corretta</li>';   
+            }   
+        }
+        if (isset($request['categoria'])){
+            if(!$manga->setCategoria($request['categoria'])){
+                $msg[] = '<li>La categoria specificata non &egrave; corretta</li>';
+            }
+        }
+        if (isset($request['genere'])){
+            if(!$manga->setGenere($request['genere'])){
+                $msg[] = '<li>Il genere specificato non &egrave; corretto</li>';
+            }
+        }
+        if (isset($request['descrizione'])){
+            if(!$manga->setDescrizione($request['descrizione'])){
+                $msg[] = '<li>La descrizione specificata non &egrave; corretta</li>';
+            }
+        }
+        if (isset($request['prezzo'])){
+            if(!$manga->setPrezzo($request['prezzo'])){
+                $msg[] = '<li>Il prezzo specificato non &egrave; corretto</li>';
+            }
+        }
+        if (isset($request['n_articoli'])){
+            if(!$manga->setNumeroArticoli($request['n_articoli'])){
+                $msg[] = '<li>Il numero di articoli specificato non &egrave; corretto</li>';
+            }
+        }
+        
+
+        // salviamo i dati se non ci sono stati errori
+        if (count($msg) == 0) {
+            if (MangaFactory::instance()->salvaManga($manga) != 1) {
+                $msg[] = '<li>Salvataggio non riuscito</li>';
+            }
+        }
+    }
     
     
     /**
@@ -230,7 +313,29 @@ class Controller {
     
     
     /**
-     * Aggiorno l'indirizzo di un utente (comune a Venditore e Acquirente)
+     * Aggiorno la descrizione di un acquirente 
+     * @param Venditore $user l'utente da aggiornare
+     * @param array $request la richiesta http da gestire
+     * @param array $msg riferimento ad un array da riempire con eventuali messaggi d'errore
+     */
+    protected function aggiornaDescrizione($user, &$request, &$msg) {
+
+        if (isset($request['descrizione'])) {
+            if (!$user->setDescrizione($request['descrizione'])) {
+                $msg[] = '<li>La descrizione specificata non &egrave; corretta</li>';
+            }
+        }
+        
+
+        // salviamo i dati se non ci sono stati errori
+        if (count($msg) == 0) {
+            if (UtenteFactory::instance()->salva($user) != 1) {
+                $msg[] = '<li>Salvataggio non riuscito</li>';
+            }
+        }
+    }
+    /**
+     * Aggiorno la email di un utente (comune a Venditore e Acquirente)
      * @param UtenteBase $user l'utente da aggiornare
      * @param array $request la richiesta http da gestire
      * @param array $msg riferimento ad un array da riempire con eventuali messaggi d'errore
@@ -253,11 +358,10 @@ class Controller {
     }
     
     /**
-     * Aggiorno la password di un utente (comune a Studente e Docente)
-     * @param User $user l'utente da aggiornare
+     * Aggiorno la password di un utente (comune a Venditore e Acquirente)
+     * @param UtenteBase $user l'utente da aggiornare
      * @param array $request la richiesta http da gestire
-     * @param array $msg riferimento ad un array da riempire con eventuali
-     * messaggi d'errore
+     * @param array $msg riferimento ad un array da riempire con eventuali messaggi d'errore
      */
     protected function aggiornaPassword($user, &$request, &$msg) {
         if (isset($request['pass1']) && isset($request['pass2'])) {

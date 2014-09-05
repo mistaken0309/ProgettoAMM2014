@@ -35,8 +35,7 @@ class MangaFactory {
     public function &getMangaPerId($mangaid){
         $query = "select 
                 manga.id id,
-              
-manga.titolo titolo,
+                manga.titolo titolo,
                 manga.titolo_orig titolo_orig,
                 manga.n_volume n_volume,
                 manga.autore_fk a_id,
@@ -246,6 +245,68 @@ manga.titolo titolo,
         $stmt->close();
 
         return $mangas;
+    }
+    
+    
+    /**
+     * Salva i dati relativi ad un manga sul db
+     * @param Manga $manga
+     * @return il numero di righe modificate
+     */
+    
+    
+    public function salvaManga(Manga $manga) {
+        $mysqli = Database::getInstance()->connectDb();
+        if (!isset($mysqli)) {
+            error_log("[salvaManga] impossibile inizializzare il database");
+            $mysqli->close();
+            return 0;
+        }
+
+        $stmt = $mysqli->stmt_init();
+        
+        $query = " update manga set 
+                    titolo = ?,
+                    titolo_orig = ?,
+                    n_volume = ?,
+                    autore_fk = ?,
+                    casa_ed = ?,
+                    anno_pub =?,
+                    lingua = ?,
+                    categoria_fk = ?,
+                    genere = ?,
+                    descrizione = ?,
+                    prezzo = ?,
+                    n_articoli = ?
+                    
+                    where manga.id = ?";
+       
+        $stmt->prepare($query);
+        if (!$stmt) {
+            error_log("[salvaManga] impossibile inizializzare il prepared statement");
+            return 0;
+        }
+        
+        if (!$stmt->bind_param('ssiisisssssii', 
+                $manga->getTitolo(), $manga->getTitoloOriginale(), $manga->getNumeroVolume(),
+                $manga->getAutore(), $manga->getCasaEditrice(), $manga->getAnnoPubblicazione(),
+                $manga->getLingua(), $manga->getCategoria(), $manga->getGenere(), 
+                $manga->getDescrizione(), $manga->getPrezzo(), $manga->getNumeroArticoli(), 
+                $manga->getId())) {
+            error_log("[salvaAcquirente] impossibile effettuare il binding in input");
+            return 0;
+        }
+        
+        if (!$stmt->execute()) {
+            error_log("[salvaManga] impossibile eseguire lo statement");
+            return 0;
+        }
+
+ 
+        $count = $stmt->affected_rows;
+        $stmt->close();
+        $mysqli->close();
+        return $count;
     }
     
 

@@ -19,7 +19,8 @@ class Venditore extends UtenteBase{
     }
     
     public function setDescrizione($descrizione){
-        $this->descrizione = $descrizione;   
+        $this->descrizione = $descrizione;
+        return true;
     }
     public function getDescrizione(){
         return $this->descrizione;

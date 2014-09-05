@@ -6,13 +6,14 @@
     include_once basename(__DIR__) . '/../model/UtenteFactory.php';
     include_once basename(__DIR__) . '/../model/AcquistiFactory.php';
     include_once basename(__DIR__) . '/../model/ProdottiFactory.php';
+    include_once basename(__DIR__) . '/../model/CategoriaFactory.php';
 
 /**
- * Description of AcquirenteController
+ * Description of VenditoreController
  *
  * @author Annalisa
  */
-class AcquirenteController extends Controller{
+class VenditoreController extends Controller{
     
     public function __construct() {
         parent::__construct();
@@ -41,6 +42,15 @@ class AcquirenteController extends Controller{
                         $vista->setSottoPagina('manga');
                     break;
                 
+                    case 'modifica':
+                        $mangaid = $request['manga_id'];
+                        $manga = MangaFactory::instance()->getMangaPerId($mangaid);
+                        $autori = AutoreFactory::instance()->getListaAutori();
+                        $categorie = CategoriaFactory::instance()->getListaCategorie();
+                        $vista->setSottoPagina('modifica');
+                        break;
+
+                
                     case 'lista':
                         $autori = AutoreFactory::instance()->getListaAutori();
                         $mangas = MangaFactory::instance()->getListaManga();
@@ -52,12 +62,13 @@ class AcquirenteController extends Controller{
                         $mangas = MangaFactory::instance()->getListaMangaPerAutore($request['param']);
                         $vista->setSottoPagina('lista_per_autore');
                         break;
+                    
                     case 'acquisti':
-                        $acquisti = AcquistiFactory::instance()->getListaAcquistiAcquirente($user);
+                        $acquisti = AcquistiFactory::instance()->getListaAcquistiVenditore($user);
                         $vista->setSottoPagina('acquisti');
                         break;
-                    
                     case 'compra':
+                        
                         $acquisto = new Acquisti();
                         $acquisto->setUtenteId($user);
                         $prodotto_id = ProdottiFactory::instance()->getProdottiPerMangaId($request['manga_id']);
@@ -81,13 +92,29 @@ class AcquirenteController extends Controller{
                         $this->logout($vista);
                         break;
                     
-                        
+                                        
+                    case 'modifica':
+                        $msg = array();
+                        $this->aggiornaManga($manga, $request, $msg);
+                        $this->creaFeedbackUtente($msg, $vista, "Informazioni sul manga aggiornate");
+                        $this->showHomeUtente($vista);
+                        break;
+                    
                     case 'impostazioni':
                         // in questo array inserisco i messaggi di 
                         // cio' che non viene validato
                         $msg = array();
                         $this->aggiornaImpostazioni($user, $request, $msg);
                         $this->creaFeedbackUtente($msg, $vista, "Impostazioni aggiornate");
+                        $this->showHomeUtente($vista);
+                        break;
+                    
+                    case 'descrizione':
+                        // in questo array inserisco i messaggi di 
+                        // cio' che non viene validato
+                        $msg = array();
+                        $this->aggiornaDescrizione($user, $request, $msg);
+                        $this->creaFeedbackUtente($msg, $vista, "Descrizione aggiornata");
                         $this->showHomeUtente($vista);
                         break;
                     
@@ -125,7 +152,7 @@ class AcquirenteController extends Controller{
                             if (!AcquistiFactory::instance()->salvaAcquisto($acquisto)) {
                                 $msg[] = '<li> Impossibile salvare l\'acquisto</li>';
                             } else {
-                                $vista->setPagina("acquirente");
+                                $vista->setPagina("venditore");
                                 $vista->setSottoPagina('compra');
                             }
                             $this->creaFeedbackUtente($msg, $vista, "Acquisto andato a buon fine");

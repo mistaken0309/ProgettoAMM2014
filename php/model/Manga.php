@@ -30,6 +30,7 @@ class Manga {
     }
     public function setId($id){
         $this->id = $id;
+        return true;
     }
     
     public function getTitolo(){
@@ -37,6 +38,7 @@ class Manga {
     }
     public function setTitolo($titolo){
         $this->titolo = $titolo;
+        return true;
     }
     
     public function getTitoloOriginale(){
@@ -44,6 +46,7 @@ class Manga {
     }
     public function setTitoloOriginale($titoloOriginale){
         $this->titoloOriginale = $titoloOriginale;
+        return true;
     }
     
     public function getNumeroVolume(){
@@ -51,6 +54,7 @@ class Manga {
     }
     public function setNumeroVolume($volumi){
         $this->volumi = $volumi;
+        return true;
     }
     
     public function getAutore(){
@@ -58,6 +62,7 @@ class Manga {
     }
     public function setAutore($autore){
         $this->autore = $autore;
+        return true;
     }
     
     public function getCasaEditrice(){
@@ -65,6 +70,7 @@ class Manga {
     }
     public function setCasaEditrice($casaEditrice){
         $this->casaEditrice = $casaEditrice;
+        return true;
     }
     
     public function getAnnoPubblicazione(){
@@ -72,6 +78,7 @@ class Manga {
     }
     public function setAnnoPubblicazione($annoPubblicazione){
         $this->annoPubblicazione = $annoPubblicazione;
+        return true;
     }
     
     public function getLingua(){
@@ -79,6 +86,7 @@ class Manga {
     }
     public function setLingua($lingua){
         $this->lingua = $lingua;
+        return true;
     }
     
     public function getCategoria(){
@@ -86,6 +94,7 @@ class Manga {
     }
     public function setCategoria($categoria){
         $this->categoria = $categoria;
+        return true;
     }
     
     public function getGenere(){
@@ -93,6 +102,7 @@ class Manga {
     }
     public function setGenere($genere){
         $this->genere = $genere;
+        return true;
     }
     
     public function getDescrizione(){
@@ -100,6 +110,7 @@ class Manga {
     }
     public function setDescrizione($descrizione){
         $this->descrizione = $descrizione;
+        return true;
     }
     
     public function getPrezzo(){
@@ -107,6 +118,7 @@ class Manga {
     }
     public function setPrezzo($prezzo){
         $this->prezzo = $prezzo;
+        return true;
     }
     
     public function getNumeroArticoli(){
@@ -114,5 +126,6 @@ class Manga {
     }
     public function setNumeroArticoli($numeroArticoli){
         $this->numeroArticoli = $numeroArticoli;
+        return true;
     }
 }

@@ -91,8 +91,8 @@ class UtenteFactory {
             venditori.v_id v_id,
             venditori.azienda azienda,
             venditori.password password,
-            venditori.nome nome,
-            venditori.cognome cognome,
+            venditori.nome_tit nome,
+            venditori.cognome_tit cognome,
             venditori.email email,
             venditori.via via,
             venditori.civico civico,
@@ -102,7 +102,7 @@ class UtenteFactory {
             venditori.descrizione descrizione
 
             from venditori 
-            where venditori.username = ? and venditori.password = ?";
+            where venditori.azienda = ? and venditori.password = ?";
 
         $stmt = $mysqli->stmt_init();
         $stmt->prepare($query);
@@ -398,8 +398,8 @@ class UtenteFactory {
                     citta = ?,
                     provincia = ?,
                     cap = ?
-                    where utenti.u_id = ?
-                    ";
+                    
+                    where utenti.u_id = ?";
         $btmt->prepare($query);
         if (!$btmt) {
             error_log("[salvaAcquirente] impossibile" .

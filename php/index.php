@@ -1,6 +1,7 @@
 <?php
     include_once 'control/Controller.php';
     include_once 'control/AcquirenteController.php';
+    include_once 'control/VenditoreController.php';
     FrontController::dispatch($_REQUEST);
     
 class FrontController{
@@ -31,11 +32,14 @@ class FrontController{
 
             
             
-                /*case 'venditore':
+                case 'venditore':
                     $controller = new VenditoreController();
+                    if (isset($_SESSION[Controller::role]) && $_SESSION[Controller::role] != UtenteBase::Venditore) {
+                        self::write403();
+                    }
                     $controller->handle_input($request);
                     break;
-                 */
+                 
                 default:
                     self::write404();
                     break;

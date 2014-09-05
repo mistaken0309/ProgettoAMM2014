@@ -140,6 +140,9 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
     line-height: 12px;
     text-align: left;
 }
+.input-anagrafica input[type=text],.input-anagrafica input[type=password]{
+    margin-top: 5px;
+}
 
 #topbar{
     min-width: 800px;
@@ -335,6 +338,11 @@ td{
 }
 
 option{
+    font-family: UnDinaru, Roboto, Raleway;
+    font-size: 12px; 
+}
+
+.label_manga{
     font-family: UnDinaru, Roboto, Raleway;
     font-size: 12px; 
 }
