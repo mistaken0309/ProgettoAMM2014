@@ -4,7 +4,7 @@
 <div class="input-anagrafica">
 
     <form method="post" action="venditore/aggiungi-manga">
-        <label class="label_manga" class="label_manga" for="titolo">Titolo</label>
+        <label class="label_manga" for="titolo">Titolo</label>
         <input type="text" name="titolo" id="titolo" value=""/>
         <br/>
         <label class="label_manga" for="titolo_originale">Titolo Originale</label>
