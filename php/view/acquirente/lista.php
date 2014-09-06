@@ -2,8 +2,10 @@
 <?php
     include_once 'filtro.php';
 ?>
-
-
+<p>Cliccare sul titolo del manga per acquistarlo o vedere i dettagli.</p>
+<?php
+if( count($mangas) > 0){
+?>
 <table>
     <thead>
         <tr>
@@ -22,3 +24,8 @@
         <?php } ?>
     </tbody>
 </table>
+<?php
+} else {
+?>
+<p>Non ci sono ancora manga in vendita.</p>
+<?php } ?>

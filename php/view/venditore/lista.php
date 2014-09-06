@@ -1,5 +1,8 @@
 <h2>Elenco prodotti</h2>
 <p>Cliccare sul titolo del manga per modificarne le relative informazioni</p>
+<?php
+if(count($prodotti) >0){
+?>
 <table>
     <thead>
         <tr>
@@ -25,3 +28,8 @@
         <?php } ?>
     </tbody>
 </table>
+<?php
+} else {?>
+<p>Non sono ancora stati aggiunti dei prodotti</p>
+<p><a href="venditore/aggiungi-manga">Aggiungi un prodotto</a></p>
+<?php } ?>
