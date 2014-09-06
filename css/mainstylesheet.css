@@ -15,6 +15,13 @@ header, footer, section, article, nav, aside {
     min-width: 1000px;
 }
 
+.division{
+    border:0;
+    height: 1px;
+    background: gainsboro;
+    width: 100%;
+}
+
 
 input[type=submit], .button, .button-inline  {
     border-radius: 10%;

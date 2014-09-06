@@ -1,7 +1,6 @@
 
 <h2>Vendite</h2>
-<hr style="solid" width="100%" size="1px" color="gainsboro"/>
-
+<hr class="division">
 <?php
 if (count($vendite) > 0){
 ?>
@@ -12,7 +11,7 @@ if (count($vendite) > 0){
             <th>Prezzo</th>
             <th>Data</th>
             <th>Acquirente</th>
-            <th>Quantit&agrave</th>
+            <th>Quantit&agrave;</th>
         </tr>
     </thead>
     <tbody>
@@ -47,6 +46,6 @@ if (count($vendite) > 0){
 </table>
 <?php
 } else {?>
-Nessun prodotto &egrave; stato venduto.
+<p>Nessun prodotto &egrave; stato venduto.</p>
 <?php } ?>
 

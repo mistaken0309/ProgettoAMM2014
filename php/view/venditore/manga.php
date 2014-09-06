@@ -1,3 +1,4 @@
+
 <h3><?= $manga->getTitolo() ?></h3>
 <div class="manga"><h4>Titolo Originale</h4>: <?= $manga->getTitoloOriginale() ?></div>
 <div class="manga"><h4># volume</h4>: <?= $manga->getNumeroVolume() ?></div>

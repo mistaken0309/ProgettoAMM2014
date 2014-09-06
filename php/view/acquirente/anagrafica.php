@@ -1,6 +1,6 @@
 
     <h2>Dati Personali</h2>
-    <hr style="solid" width="100%" size="1px" color="gainsboro"/>
+    <hr class="division">
 
 <div class="input-anagrafica">
     <h3>Impostazioni Account</h3>
@@ -34,7 +34,7 @@
         <input type="submit" class="button" value="Cambia"/>
     </form>
 </div>
-<hr style="solid" width="100%" size="1px" color="gainsboro"/>
+<hr class="division">
 <div class="input-anagrafica">
     
     <h3>Indirizzo</h3>
