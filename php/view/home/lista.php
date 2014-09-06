@@ -17,9 +17,9 @@ if( count($mangas) > 0){
     <tbody>
         <?php foreach ($mangas as $manga) { ?>
         <tr>
-            <td><a href="acquirente/manga?param=<?= $manga->getId() ?>"><?= $manga->getTitolo() ?></a></td>
+            <td><a href="home/manga?param=<?= $manga->getId() ?>"><?= $manga->getTitolo() ?></a></td>
             <td><?= $manga->getNumeroVolume() ?></td>
-            <td><a href="acquirente/lista_per_autore?param=<?= $manga->getAutore()?>"><?= AutoreFactory::getAutorePerId($manga->getAutore())->getAutore() ?></a></td>
+            <td><a href="home/lista_per_autore?param=<?= $manga->getAutore()?>"><?= AutoreFactory::getAutorePerId($manga->getAutore())->getAutore() ?></a></td>
             <td><?= $manga->getPrezzo() ?></td>
         </tr>
         <?php } ?>
