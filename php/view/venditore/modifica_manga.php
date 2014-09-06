@@ -1,6 +1,6 @@
 
     <h2>Modifica Prodotto</h2>
-
+    <hr class="division">
 <div class="input-anagrafica">
 
     <form method="post" action="venditore/modifica">
