@@ -59,8 +59,8 @@ class AcquirenteController extends Controller{
                     
                     case 'compra':
                         $acquisto = new Acquisti();
-                        $acquisto->setUtenteId($user);
-                        $prodotto_id = ProdottiFactory::instance()->getProdottiPerMangaId($request['manga_id']);
+                        $acquisto->setUtenteId($user->getId());
+                        $prodotto_id = ProdottiFactory::instance()->getProdottiPerMangaId($request['manga_id'])->getId();
                         $acquisto->setProdottoId($prodotto_id);
                         $acquisto->setQuantita($request['quantita']);
                         $acquisto->setMangaId($request['manga_id']);

@@ -67,27 +67,7 @@ class ProdottiFactory {
     }
     
     public function getProdottiPerMangaId($mangaid){
-        /*$query = "select 
-                utente_manga.acquisto_id id,
-                utente_manga.utente_fk u_id,
-                utenti.username utente_username,
-                utente_manga.prodotto prodotto_id,
-                venditore_manga.venditore_fk v_id,
-                venditore_manga.manga_fk manga_id,
-                manga.titolo titolo,
-                manga.n_volume n_volume,
-                autore.autore autore,
-                manga.prezzo prezzo,
-                utente_manga.data data,
-                utente_manga.quantita quantita
-                
-                from utente_manga
-                join utenti on utente_manga.utente_fk = utenti.u_id
-                join venditore_manga on utente_manga.prodotto = venditore_manga.id
-                join venditori on venditore_manga.venditore_fk = venditori.v_id
-                join manga on venditore_manga.manga_fk = manga.id
-                join autore on manga.autore_fk = autore.id
-                where utente_manga.acquisto_id = ?";*/
+
         $query = "select 
                 venditore_manga.id id,
                 venditore_manga.venditore_fk v_id,
