@@ -7,9 +7,9 @@ if(count($prodotti) >0){
     <thead>
         <tr>
             <th>Titolo</th>
+            <th>Volume</th>
             <th>Autore</th>
             <th>Prezzo</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@ if(count($prodotti) >0){
                $manga = MangaFactory::instance()->getMangaPerId($prodotto->getManga());
                
             ?>
-            <td><a href="venditore/manga?param=<?= $prodotto->getManga() ?>"><?= $manga->getTitolo() ?> vol. <?= $manga->getNumeroVolume() ?></a></td>
+            <td><a href="venditore/manga?param=<?= $prodotto->getManga() ?>"><?= $manga->getTitolo() ?></a></td>
             <td><?= $manga->getNumeroVolume() ?></td>
             <td><?= AutoreFactory::getAutorePerId($manga->getAutore())->getAutore() ?></td>
             <td><?= $manga->getPrezzo() ?></td>
