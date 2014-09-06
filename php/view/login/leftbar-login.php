@@ -1,6 +1,6 @@
 <nav>
-    <div>
-        <p class="page"><a>Cerca</a></p>
-        <p class="page"><a>Genere</a></p>
+    <h2>Navigazione</h2>
+    <div>       
+        <p class="page"><a href="home/lista">Sfoglia i manga</a></p>
     </div>
 </nav>
