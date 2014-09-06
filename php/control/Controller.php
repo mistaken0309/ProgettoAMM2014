@@ -43,7 +43,7 @@ class Controller {
                 break;
             
                 case 'lista_per_autore':
-                    $autori = AutoreFactory::instance()->getListaAutori();
+                    $autore = AutoreFactory::instance()->getAutorePerId($request['param'])->getAutore();
                     $mangas = MangaFactory::instance()->getListaMangaPerAutore($request['param']);
                     $vista->setSottoPagina('lista_per_autore');
                     break;
