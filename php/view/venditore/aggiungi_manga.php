@@ -1,5 +1,5 @@
 
-    <h2>Aggiungi un nuovo prodotto</h2>
+    <h2 class="title">Aggiungi un nuovo prodotto</h2>
 
 <div class="input-anagrafica">
 

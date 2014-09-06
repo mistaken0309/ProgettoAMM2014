@@ -1,5 +1,5 @@
-<h2>Elenco prodotti</h2>
-<p>Cliccare sul titolo del manga per modificarne le relative informazioni</p>
+<h2 class="title">Elenco prodotti</h2>
+<p class="italic">Cliccare sul titolo del manga per modificarne le relative informazioni</p>
 <?php
 if(count($prodotti) >0){
 ?>

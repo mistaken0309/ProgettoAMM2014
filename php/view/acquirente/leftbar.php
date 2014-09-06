@@ -1,5 +1,5 @@
 <nav>
-    <h2>Navigazione</h2>
+    <h2 class="title">Navigazione</h2>
     <div>       
         <!--<p class="page"><a href="acquirente/home">Home</a></p>-->
         <p class="page"><a href="acquirente/anagrafica">Impostazioni Account</a></p>

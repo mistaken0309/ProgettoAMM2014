@@ -70,15 +70,23 @@ h1 {
 h2{
     font-size: 31px;
     line-height: 37px;
+}
+.title{
     padding-bottom: 20px;
     font-weight: bold;
     border-bottom: 1px solid gainsboro;
 }
-
+nav h2{
+    font-size: 22px;
+    line-height: 25px; 
+}
 
 h3 {
     font-size: 21px;
     line-height: 27px; 
+}
+.italic{
+    font-style: italic;
 }
 
 .manga-title {

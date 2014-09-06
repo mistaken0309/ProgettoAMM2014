@@ -1,5 +1,5 @@
 
-<h2>Vendite</h2>
+<h2 class="title">Vendite</h2>
 <?php
 if (count($vendite) > 0){
 ?>

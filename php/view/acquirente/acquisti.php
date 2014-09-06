@@ -1,4 +1,4 @@
-<h2>Prodotti acquistati</h2>
+<h2 class="title">Prodotti acquistati</h2>
 <?php
 if(count($acquisti) > 0){
 ?>

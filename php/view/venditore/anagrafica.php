@@ -1,4 +1,4 @@
-<h2>Dati Personali</h2>
+<h2 class="title">Dati Personali</h2>
 <div class="input-anagrafica">
     
     <h3>Impostazioni Account</h3>

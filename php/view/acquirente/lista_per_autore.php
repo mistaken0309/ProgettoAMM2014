@@ -1,4 +1,4 @@
-<h2>Elenco manga</h2>
+<h2 class="title">Elenco manga di <?= $manga->getAutore()->getAutore()?></h2>
 <table>
     <thead>
         <tr>
