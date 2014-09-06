@@ -9,20 +9,24 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($vendite as $vendita) { ?>
+        <?php foreach ($vendite as $vendita) { 
+            $manga = MangaFactory::instance()->getMangaPerId($vendita->getMangaId());
+            $utente = UtenteFactory::instance()->cercaUtentePerId($vendita->getUtenteId(),2)->getUsername();
+            ?>
         <tr>
             <td>
                 <a href="venditore/manga?param=<?= $vendita->getMangaId()?>">
-                <?= MangaFactory::instance()->getMangaPerId($vendita->getMangaId())->getTitolo() ?></a>
+                <?= $manga->getTitolo() ?> vol. <?= $manga->getNumeroVolume() ?></a></td>
+                </a>
             </td>
             <td>
-                <?= MangaFactory::instance()->getMangaPerId($vendita->getMangaId())->getPrezzo() ?>
+                <?= $manga->getPrezzo() ?>
             </td>
             <td>
                 <?= $vendita->getData() ?>
             </td>
             <td>
-                <?= UtenteFactory::instance()->cercaUtentePerId($vendita->getUtenteId(),2)->getUsername() ?>
+                <?= $utente->getUsername() ?>
             </td>
             <td>
                 <?= $vendita->getQuantita() ?>
