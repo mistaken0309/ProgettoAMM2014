@@ -17,9 +17,9 @@
             <td>
                 <a href="venditore/manga?param=<?= $vendita->getMangaId()?>">
                 <?= $manga->getTitolo() ?> vol. <?= $manga->getNumeroVolume() ?>
-                </a></td>
-                
+                </a>
             </td>
+
             <td>
                 <?= $manga->getPrezzo() ?>
             </td>
