@@ -50,8 +50,8 @@ class Controller {
                     
                 
                 default:
-                    //$autori = AutoreFactory::instance()->getListaAutori();
-                    //$mangas = MangaFactory::instance()->getListaManga();
+                    $autori = AutoreFactory::instance()->getListaAutori();
+                    $mangas = MangaFactory::instance()->getListaManga();
                     $vista->setSottoPagina('home');
                     break;
             }
