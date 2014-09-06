@@ -1,3 +1,10 @@
+
+<h2>Vendite</h2>
+<hr style="solid" width="100%" size="1px" color="gainsboro"/>
+
+<?php
+if (count($vendite) > 0){
+?>
 <table>
     <thead>
         <tr>
@@ -38,3 +45,8 @@
         <?php } ?>
     </tbody>
 </table>
+<?php
+} else {?>
+Nessun prodotto &egrave; stato venduto.
+<?php } ?>
+
