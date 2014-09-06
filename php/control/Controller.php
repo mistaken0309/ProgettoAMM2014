@@ -4,6 +4,7 @@
     include_once basename(__DIR__) . '/../model/Venditore.php';
     include_once basename(__DIR__) . '/../model/Acquirente.php';
     include_once basename(__DIR__) . '/../model/UtenteFactory.php';
+    include_once basename(__DIR__) . '/../model/ProdottiFactory.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -51,7 +52,7 @@ class Controller {
                 default:
                     $autori = AutoreFactory::instance()->getListaAutori();
                     $mangas = MangaFactory::instance()->getListaManga();
-                    $vista->setSottoPagina('lista');
+                    $vista->setSottoPagina('home');
                     break;
             }
         
@@ -198,9 +199,96 @@ class Controller {
             $vista->setMessaggioConferma($okMsg);
         }
     }
-        /**
-     * Aggiorno l'indirizzo di un utente (comune a Venditore e Acquirente)
-     * @param UtenteBase $user l'utente da aggiornare
+    
+    
+    
+    /**
+     * Aggiorno un manga già esistente
+     * @param Manga $manga il manga da aggiornare
+     * @param array $request la richiesta http da gestire
+     * @param array $msg riferimento ad un array da riempire con eventuali messaggi d'errore
+     */
+    protected function creaManga($manga, $venditore_id, &$request, &$msg) {
+            
+        if (isset($request['titolo'])){
+            if(!$manga->setTitolo($request['titolo'])){
+                $msg[] = '<li>Il titolo specificato non &egrave; corretto</li>';
+            }
+        
+        }
+        
+        if (isset($request['titolo_originale'])){
+            if(!$manga->setTitoloOriginale($request['titolo_originale'])){
+                $msg[] = '<li>Il titolo specificato non &egrave; corretto</li>';
+                }
+        }
+        
+        if (isset($request['n_volume'])){
+            if(!$manga->setNumeroVolume($request['n_volume'])){
+                $msg[] = '<li>Il numero del volume specificato non &egrave; corretto</li>';
+            }
+                
+        }
+        
+        if (isset($request['autore'])){            
+            //if(!$manga->setAutore(AutoreFactory::instance()->getAutorePerNome($request['autore'])->getId())){
+            if(!$manga->setAutore($request['autore'])){
+                $msg[] = '<li>L\'autore specificato non &egrave; corretto</li>';   
+            }    
+        }
+        
+        if (isset($request['casa_ed'])){
+            if(!$manga->setCasaEditrice($request['casa_ed'])){
+                $msg[] = '<li>La case editrice specificata non &egrave; corretta</li>';
+            }
+        }
+        if (isset($request['pubblicazione'])){
+            if(!$manga->setAnnoPubblicazione($request['pubblicazione'])){
+                $msg[] = '<li>L\'anno di pubblicazione specificato non &egrave; corretto</li>'; 
+            }
+        }
+        if (isset($request['lingua'])){
+            if(!$manga->setLingua($request['lingua'])){
+                $msg[] = '<li>La lingua specificata non &egrave; corretta</li>';   
+            }   
+        }
+        if (isset($request['categoria'])){
+            if(!$manga->setCategoria($request['categoria'])){
+                $msg[] = '<li>La categoria specificata non &egrave; corretta</li>';
+            }
+        }
+        if (isset($request['genere'])){
+            if(!$manga->setGenere($request['genere'])){
+                $msg[] = '<li>Il genere specificato non &egrave; corretto</li>';
+            }
+        }
+        if (isset($request['descrizione'])){
+            if(!$manga->setDescrizione($request['descrizione'])){
+                $msg[] = '<li>La descrizione specificata non &egrave; corretta</li>';
+            }
+        }
+        if (isset($request['prezzo'])){
+            if(!$manga->setPrezzo($request['prezzo'])){
+                $msg[] = '<li>Il prezzo specificato non &egrave; corretto</li>';
+            }
+        }
+        if (isset($request['n_articoli'])){
+            if(!$manga->setNumeroArticoli($request['n_articoli'])){
+                $msg[] = '<li>Il numero di articoli specificato non &egrave; corretto</li>';
+            }
+        }
+        
+
+        // salviamo i dati se non ci sono stati errori
+        if (count($msg) == 0) {
+            if (MangaFactory::instance()->creaManga($manga, $venditore_id) != true) {
+                $msg[] = '<li>Salvataggio non riuscito</li>';
+            }
+        }
+    }
+    /**
+     * Aggiorno un manga già esistente
+     * @param Manga $manga il manga da aggiornare
      * @param array $request la richiesta http da gestire
      * @param array $msg riferimento ad un array da riempire con eventuali messaggi d'errore
      */

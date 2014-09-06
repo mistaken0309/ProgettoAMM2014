@@ -52,8 +52,10 @@ class Manga {
     public function getNumeroVolume(){
         return $this->volumi;
     }
-    public function setNumeroVolume($volumi){
-        $this->volumi = $volumi;
+    public function setNumeroVolume($volume){
+        if($volume!=null){
+            $this->volumi = $volume;
+        }
         return true;
     }
     

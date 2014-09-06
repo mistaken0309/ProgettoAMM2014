@@ -21,10 +21,12 @@
         ?>
 </div>
 <div class="manga">
-    <form method="post" action="venditore/modifica">
+    <form method="post" action="venditore/modifica" class="inline">
         <input type="hidden" name="manga_id" value="<?= $manga->getId()?>">
-        <button type="submit" class="button"> <!--name="cmd" value="modifica"--> Modifica</button>
+        <button type="submit" class="button"> Modifica</button>
     </form>
+    <a href="venditore/lista"><button type="submit" class="button">Torna all'elenco</button></a>
+    
 </div>
 
 

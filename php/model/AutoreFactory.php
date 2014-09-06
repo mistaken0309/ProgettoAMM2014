@@ -87,7 +87,7 @@ class AutoreFactory {
         }
 
         
-        if (!$stmt->bind_param('i', $autore->getId())) {
+        if (!$stmt->bind_param('s', $autore)) {
             error_log("[getAutorePerNome] impossibile" .
                     " effettuare il binding in input");
             $mysqli->close();

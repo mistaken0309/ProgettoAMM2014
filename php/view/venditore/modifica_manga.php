@@ -76,7 +76,8 @@
         <label for="n_articoli">NumeroArticoli</label>
         <input type="text" name="n_articoli" id="n_articoli" value="<?= $manga->getNumeroArticoli() ?>"/>
         <br/>
-        <input type="submit" name="cmd" value="modifica" class="button" value="Salva"/>
+        <input type="hidden" name="cmd" value="modifica">
+        <input type="submit" class="button" value="Salva"/>
     </form>
 </div>
 

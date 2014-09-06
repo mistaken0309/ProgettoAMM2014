@@ -49,23 +49,24 @@ class VenditoreController extends Controller{
                         $categorie = CategoriaFactory::instance()->getListaCategorie();
                         $vista->setSottoPagina('modifica');
                         break;
+                    
+                    case 'aggiungi-manga':
+                        $autori = AutoreFactory::instance()->getListaAutori();
+                        $categorie = CategoriaFactory::instance()->getListaCategorie();
+                        $vista->setSottoPagina('aggiungi-manga');
+                        break;
 
                 
                     case 'lista':
                         $autori = AutoreFactory::instance()->getListaAutori();
-                        $mangas = MangaFactory::instance()->getListaManga();
+                        $venditore_id = $user->getId();
+                        $prodotti = ProdottiFactory::instance()->getListaProdottiPerVenditore($venditore_id);
                         $vista->setSottoPagina('lista');
                         break;
-                
-                    case 'lista_per_autore':
-                        $autori = AutoreFactory::instance()->getListaAutori();
-                        $mangas = MangaFactory::instance()->getListaMangaPerAutore($request['param']);
-                        $vista->setSottoPagina('lista_per_autore');
-                        break;
                     
-                    case 'acquisti':
-                        $acquisti = AcquistiFactory::instance()->getListaAcquistiVenditore($user);
-                        $vista->setSottoPagina('acquisti');
+                    case 'vendite':
+                        $vendite = AcquistiFactory::instance()->getListaAcquistiVenditore($user);
+                        $vista->setSottoPagina('vendite');
                         break;
                     case 'compra':
                         
@@ -97,6 +98,16 @@ class VenditoreController extends Controller{
                         $msg = array();
                         $this->aggiornaManga($manga, $request, $msg);
                         $this->creaFeedbackUtente($msg, $vista, "Informazioni sul manga aggiornate");
+                        $this->showHomeUtente($vista);
+                        break;
+                    
+                                        
+                    case 'aggiungi':
+                        $msg = array();
+                        $manga = new Manga();
+                        $venditoreid = $user->getId();
+                        $this->creaManga($manga, $venditoreid, $request, $msg);
+                        $this->creaFeedbackUtente($msg, $vista, "Manga aggiunto");
                         $this->showHomeUtente($vista);
                         break;
                     

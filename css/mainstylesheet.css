@@ -16,7 +16,7 @@ header, footer, section, article, nav, aside {
 }
 
 
-input[type=submit], .button  {
+input[type=submit], .button, .button-inline  {
     border-radius: 10%;
     border: 0px;
     padding: 3px 12px 3px 12px;
@@ -27,6 +27,12 @@ input[type=submit], .button  {
 }
 .button{
     margin-top: 7px;
+}
+
+
+.inline{
+    margin: 7px 6px 0px 0px;
+    display: inline;
 }
 
 

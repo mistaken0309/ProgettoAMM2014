@@ -15,10 +15,7 @@
     <tbody>
         <?php foreach ($mangas as $manga) { ?>
         <tr>
-            <?php
-            $mangaid = $manga->getId();
-            ?>
-            <td><a href="acquirente/manga?param=<?= "$mangaid" ?>"><?= $manga->getTitolo() ?></a></td>
+            <td><a href="acquirente/manga?param=<?= $manga->getId() ?>"><?= $manga->getTitolo() ?></a></td>
             <td><a href="acquirente/lista_per_autore?param=<?= $manga->getAutore()?>"><?= AutoreFactory::getAutorePerId($manga->getAutore())->getAutore() ?></a></td>
             <td><?= $manga->getPrezzo() ?></td>
         </tr>

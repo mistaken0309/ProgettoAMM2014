@@ -293,7 +293,7 @@ class MangaFactory {
                 $manga->getLingua(), $manga->getCategoria(), $manga->getGenere(), 
                 $manga->getDescrizione(), $manga->getPrezzo(), $manga->getNumeroArticoli(), 
                 $manga->getId())) {
-            error_log("[salvaAcquirente] impossibile effettuare il binding in input");
+            error_log("[salvaManga] impossibile effettuare il binding in input");
             return 0;
         }
         
@@ -307,6 +307,168 @@ class MangaFactory {
         $stmt->close();
         $mysqli->close();
         return $count;
+    }
+        
+    /**
+     * Salva un acquisto sul DB
+     * @param Acquisti $acquisto l'acquisto da inserire
+     * @return boolean true se il salvataggio va a buon fine, false altrimenti
+     */
+    public function salvaAcquisto(Acquisti $acquisto) {
+       
+        $stmt = $mysqli->stmt_init();
+        $stmt2 = $mysqli->stmt_init();
+
+       
+        
+        $insert_acquisto = "insert into utente_manga
+            (acquisto_id, utente_fk, prodotto, data, quantita)
+            values (default, ?, ?, default, ?)";
+        
+        $update_manga = "update manga set
+            n_articoli = (n_articoli - ?)
+            where id = ?";
+
+        
+        $stmt->prepare($insert_acquisto);
+        if (!$stmt) {
+            error_log("[salvaAcquisto] impossibile" .
+                    " inizializzare il prepared statement n 1");
+            $mysqli->close();
+            return false;
+        }
+
+        $stmt2->prepare($update_manga);
+        if (!$stmt2) {
+            error_log("[salvaAcquisto] impossibile" .
+                    " inizializzare il prepared statement n 2");
+            $mysqli->close();
+            return false;
+        }
+        
+        // variabili da collegare agli statements
+        $utente_id = $acquisto->getUtenteId();
+        $prodotto_id = $acquisto->getProdottoId();
+        
+        $quantita = $acquisto->getQuantita();
+
+        $manga_id = $acquisto->getMangaId();
+
+        if (!$stmt->bind_param('iii', $utente_id, $prodotto_id, $quantita)) {
+            error_log("[salvaAcquisto] impossibile" .
+                    " effettuare il binding in input stmt1");
+            $mysqli->close();
+            return false;
+        }
+
+        if (!$stmt2->bind_param('ii', $quantita, $manga_id)) {
+            error_log("[salvaAcquisto] impossibile" .
+                    " effettuare il binding in input stmt1");
+            $mysqli->close();
+            return false;
+        }
+        // inizio la transazione
+        $mysqli->autocommit(false);
+        if (!$stmt->execute()) {
+            error_log("[salvaAcquisto] impossibile eseguire lo statement 1");
+            $mysqli->rollback();
+            $mysqli->close();
+            return false;
+        }
+
+
+        if (!$stmt2->execute()) {
+            error_log("[salvaAcquisto] impossibile eseguire lo statement 2");
+            $mysqli->rollback();
+            $mysqli->close();
+            return false;
+        }
+
+        
+
+        // tutto ok, posso rendere persistente il salvataggio
+        $mysqli->commit();
+        $mysqli->autocommit(true);
+        $mysqli->close();
+
+        return true;
+    }
+    /**
+     * Crea un nuovo manga salvando i relativi dati sul db
+     * @param Manga $manga
+     * @return il numero di righe modificate
+     */
+    public function creaManga(Manga $manga, $venditore_id) {
+        $mysqli = Database::getInstance()->connectDb();
+        if (!isset($mysqli)) {
+            error_log("[salvaManga] impossibile inizializzare il database");
+            $mysqli->close();
+            return false;
+        }
+
+        $stmt = $mysqli->stmt_init();
+        $stmt2 = $mysqli->stmt_init();
+        
+        $create_manga = " insert into manga 
+                    (id, titolo, titolo_orig, n_volume, autore_fk,
+                    casa_ed, anno_pub, lingua, categoria_fk, 
+                    genere, descrizione, prezzo, n_articoli) 
+                    values
+                    (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+       
+        $create_prodotto = "insert into venditore_manga (id, venditore_fk, manga_fk)
+                values (default, ?, ?)";
+        
+        
+        $stmt->prepare($create_manga);
+        if (!$stmt) {
+            error_log("[creaManga] impossibile inizializzare il prepared statement");
+            return false;
+        }
+        $stmt2->prepare($create_prodotto);
+        if (!$stmt2) {
+            error_log("[creaManga] impossibile inizializzare il prepared statement");
+            return false;
+        }
+        
+        if (!$stmt->bind_param('ssiisisssssi', 
+                $manga->getTitolo(), $manga->getTitoloOriginale(),
+                $manga->getNumeroVolume(), $manga->getAutore(),
+                $manga->getCasaEditrice(), $manga->getAnnoPubblicazione(),
+                $manga->getLingua(), $manga->getCategoria(),
+                $manga->getGenere(), $manga->getDescrizione(),
+                $manga->getPrezzo(), $manga->getNumeroArticoli() )) {
+            error_log("[creaManga] impossibile effettuare il binding in input");
+            return false;
+        }
+        
+        
+        $mysqli->autocommit(false);
+        if (!$stmt->execute()) {
+            error_log("[creaManga] impossibile eseguire lo statement #1");
+            $mysqli->rollback();
+            $mysqli->close();
+            return false;
+        }
+        $new_product_id = $stmt->insert_id;
+        if (!$stmt2->bind_param('ii', $venditore_id, $new_product_id)) {
+            error_log("[creaManga] impossibile effettuare il binding in input");
+            $mysqli->rollback();
+            $mysqli->close();
+            return false;
+        }
+        
+        if (!$stmt2->execute()) {
+            error_log("[creaManga] impossibile eseguire lo statement #2");
+            $mysqli->rollback();
+            $mysqli->close();
+            return false;
+        }
+
+        $mysqli->commit();
+        $mysqli->autocommit(true);
+        $mysqli->close();
+        return true;
     }
     
 

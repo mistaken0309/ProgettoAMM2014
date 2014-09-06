@@ -6,6 +6,9 @@ switch ($vista->getSottoPagina()) {
     case 'lista':
         include_once 'lista.php';
         break;
+    case 'aggiungi-manga':
+        include_once 'aggiungi_manga.php';
+        break;
     case 'manga':
         include_once 'manga.php';
         break;
@@ -15,8 +18,8 @@ switch ($vista->getSottoPagina()) {
     case 'lista_per_autore':
         include_once 'lista_per_autore.php';
         break;
-    case 'acquisti':
-        include_once 'acquisti.php';
+    case 'vendite':
+        include_once 'vendite.php';
         break;
     default:
         
@@ -29,8 +32,9 @@ switch ($vista->getSottoPagina()) {
         </p>
         <ul>
             <li><a href="venditore/anagrafica">Impostazioni Account</a></li>
-            <li><a href="venditore/lista">Sfoglia i Manga</a></li>
-            <li><a href="venditore/acquisti">Storico Acquisti</a></li>
+            <li><a href="venditore/lista">Elenco prodotti</a></li>
+            <li><a href="venditore/aggiungi-manga">Aggiungi un nuovo prodotto</a></li>
+            <li><a href="venditore/acquisti">Storico vendite</a></li>
         </ul>
 <?php
     break;
