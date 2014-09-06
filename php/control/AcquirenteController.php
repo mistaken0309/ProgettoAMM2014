@@ -49,7 +49,8 @@ class AcquirenteController extends Controller{
                 
                     case 'lista_per_autore':
                         $autori = AutoreFactory::instance()->getListaAutori();
-                        $mangas = MangaFactory::instance()->getListaMangaPerAutore($request['param']);
+                        $autore = $request['param'];
+                        $mangas = MangaFactory::instance()->getListaMangaPerAutore($autore);
                         $vista->setSottoPagina('lista_per_autore');
                         break;
                     case 'acquisti':
