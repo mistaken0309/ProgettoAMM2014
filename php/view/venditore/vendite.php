@@ -1,6 +1,5 @@
 
 <h2>Vendite</h2>
-<hr class="division">
 <?php
 if (count($vendite) > 0){
 ?>
