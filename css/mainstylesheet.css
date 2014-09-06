@@ -79,6 +79,9 @@ h2{
 nav h2{
     font-size: 22px;
     line-height: 25px; 
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid ghostwhite;
 }
 
 h3 {
