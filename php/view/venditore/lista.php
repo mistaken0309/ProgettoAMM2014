@@ -17,7 +17,7 @@
                $manga = MangaFactory::instance()->getMangaPerId($prodotto->getManga());
                
             ?>
-            <td><a href="venditore/manga?param=<?= $prodotto->getManga() ?>"><?= $manga->getTitolo() ?></a></td>
+            <td><a href="venditore/manga?param=<?= $prodotto->getManga() ?>"><?= $manga->getTitolo() ?>vol. <?= $manga->getNumeroVolume() ?></a></td>
             <td><?= AutoreFactory::getAutorePerId($manga->getAutore())->getAutore() ?></td>
             <td><?= $manga->getPrezzo() ?></td>
             <td></td>
