@@ -21,6 +21,7 @@ if(count($prodotti) >0){
                
             ?>
             <td><a href="venditore/manga?param=<?= $prodotto->getManga() ?>"><?= $manga->getTitolo() ?> vol. <?= $manga->getNumeroVolume() ?></a></td>
+            <td><?= $manga->getNumeroVolume() ?></td>
             <td><?= AutoreFactory::getAutorePerId($manga->getAutore())->getAutore() ?></td>
             <td><?= $manga->getPrezzo() ?></td>
             <td></td>

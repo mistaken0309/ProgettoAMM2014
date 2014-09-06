@@ -3,6 +3,7 @@
     <thead>
         <tr>
             <th>Titolo</th>
+            <th>Volume</th>
             <th>Prezzo</th>
         </tr>
     </thead>
@@ -10,6 +11,7 @@
         <?php foreach ($mangas as $manga) { ?>
         <tr>
             <td><a href="acquirente/manga?param=<?= $manga->getId()?>"><?= $manga->getTitolo() ?></a></td>
+            <td><?= $manga->getNumeroVolume() ?></td>
             <td><?= $manga->getPrezzo() ?></td>
         </tr>
         <?php } ?>
