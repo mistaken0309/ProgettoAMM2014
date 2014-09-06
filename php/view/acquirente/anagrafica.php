@@ -1,6 +1,5 @@
 
-    <h2>Dati Personali</h2>
-    <hr class="division">
+<h2>Dati Personali</h2>
 
 <div class="input-anagrafica">
     <h3>Impostazioni Account</h3>

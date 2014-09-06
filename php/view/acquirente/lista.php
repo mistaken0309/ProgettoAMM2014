@@ -1,9 +1,8 @@
 <h2>Elenco manga</h2>
+<p>Clicca sul titolo del manga per acquistarlo o vedere i dettagli.</p>
 <?php
     include_once 'filtro.php';
-?>
-<p>Cliccare sul titolo del manga per acquistarlo o vedere i dettagli.</p>
-<?php
+
 if( count($mangas) > 0){
 ?>
 <table>

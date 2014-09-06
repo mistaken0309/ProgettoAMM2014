@@ -1,4 +1,4 @@
-<h3><?= $manga->getTitolo() ?></h3>
+<h3 class="manga-title"><?= $manga->getTitolo() ?></h3>
 <div class="manga"><h4>Titolo Originale</h4>: <?= $manga->getTitoloOriginale() ?></div>
 <div class="manga"><h4># volume</h4>: <?= $manga->getNumeroVolume() ?></div>
 <div class="manga"><h4>Autore</h4>: <a href="acquirente/lista_per_autore?param=<?= $manga->getAutore()?>"><?= AutoreFactory::instance()->getAutorePerId($manga->getAutore())->getAutore() ?></a></div>

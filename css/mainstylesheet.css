@@ -15,12 +15,7 @@ header, footer, section, article, nav, aside {
     min-width: 1000px;
 }
 
-.division{
-    border:0;
-    height: 1px;
-    background: gainsboro;
-    width: 100%;
-}
+
 
 
 input[type=submit], .button, .button-inline  {
@@ -74,13 +69,25 @@ h1 {
 
 h2{
     font-size: 31px;
-    line-height: 37px; 
+    line-height: 37px;
+    padding-bottom: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid gainsboro;
 }
 
 
 h3 {
     font-size: 21px;
     line-height: 27px; 
+}
+
+.manga-title {
+    margin-top: 15px;
+    padding-left: 20px;
+    font-size: 26px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid gainsboro; 
 }
 
 a:link, a:visited {

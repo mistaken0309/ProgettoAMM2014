@@ -1,3 +1,8 @@
+<h2>Prodotti acquistati</h2>
+<?php
+if(count($acquisti) > 0){
+?>
+
 <table>
     <thead>
         <tr>
@@ -33,3 +38,7 @@
         <?php } ?>
     </tbody>
 </table>
+<?php
+} else {?>
+<p>Non hai ancora effettuato nessun acquisto.</p>
+<?php } ?>
