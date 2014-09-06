@@ -1,4 +1,4 @@
-<h2>Elenco manga</h2>
+<h2 class="title">Elenco manga di <?= $autore ?></h2>
 <table>
     <thead>
         <tr>
@@ -9,7 +9,7 @@
     <tbody>
         <?php foreach ($mangas as $manga) { ?>
         <tr>
-            <td><a href="home/manga?param=<?= $manga->getId()?>"><?= $manga->getTitolo() ?></a></td>
+            <td><a href="acquirente/manga?param=<?= $manga->getId()?>"><?= $manga->getTitolo() ?></a></td>
             <td><?= $manga->getPrezzo() ?></td>
         </tr>
         <?php } ?>

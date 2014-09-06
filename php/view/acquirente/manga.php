@@ -9,7 +9,7 @@
 <div class="manga"><h4>Genere</h4>: <?= $manga->getGenere() ?></div>
 <div class="manga"><h4>Descrizione</h4>: <?= $manga->getDescrizione() ?></div>
 <div class="manga"><h4>Prezzo</h4>: <?= $manga->getPrezzo() ?></div>
-<div class="manga"><h4>Disponibilit&agrave</h4>: <?= $manga->getNumeroArticoli() ?></div>
+<div class="manga"><h4>Disponibilit&agrave;</h4>: <?= $manga->getNumeroArticoli() ?></div>
 <div class="manga">
     <form method="post" action="acquirente/compra">
           <?php 
