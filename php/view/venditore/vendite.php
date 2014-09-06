@@ -11,7 +11,7 @@
     <tbody>
         <?php foreach ($vendite as $vendita) { 
             $manga = MangaFactory::instance()->getMangaPerId($vendita->getMangaId());
-            $utente = UtenteFactory::instance()->cercaUtentePerId($vendita->getUtenteId(),2)->getUsername();
+            $utente = UtenteFactory::instance()->cercaUtentePerId($vendita->getUtenteId(),2);
             ?>
         <tr>
             <td>
