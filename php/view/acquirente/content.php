@@ -3,6 +3,7 @@ switch ($vista->getSottoPagina()) {
     case 'anagrafica':
         include_once 'anagrafica.php';
         break;
+    
     case 'lista':
         include_once 'lista.php';
         break;

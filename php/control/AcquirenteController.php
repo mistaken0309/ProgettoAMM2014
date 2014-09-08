@@ -132,6 +132,7 @@ class AcquirenteController extends Controller{
                             }
                             $this->creaFeedbackUtente($msg, $vista, "Acquisto andato a buon fine");
                         }
+                        $acquisti = AcquistiFactory::instance()->getListaAcquistiAcquirente($user);
                         $this->showHomeUtente($vista);
                         break;
                     
