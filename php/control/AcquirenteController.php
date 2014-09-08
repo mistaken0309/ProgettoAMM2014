@@ -80,6 +80,7 @@ class AcquirenteController extends Controller{
                 switch ($request["cmd"]) {
                     
                     case 'logout':
+                        $vista->setSottoPagina('login');
                         $this->logout($vista);
                         break;
                     

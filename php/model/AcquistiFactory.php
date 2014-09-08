@@ -158,7 +158,7 @@ class AcquistiFactory {
                 join venditori on venditore_manga.venditore_fk = venditori.v_id
                 join manga on venditore_manga.manga_fk = manga.id
                 where utenti.u_id = ?                
-                order by prodotto_id, data desc";
+                order by data desc, prodotto_id";
         
         $mysqli = Database::getInstance()->connectDb();
         if(!isset($mysqli)){
