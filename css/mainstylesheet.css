@@ -299,7 +299,7 @@ nav .page{
     font-weight: bold;
 }
 
-/* --- ---*/
+/* --- titolo per il form del login---*/
 .login{
     padding-left: 7px;
     font-family: UnDinaru, Roboto, Raleway, monospace;
@@ -348,6 +348,17 @@ footer div{
     clear: both; 
     width: 0px; 
     height: 0px;
+}
+
+/* stile per la pagina di errore (errore.php) */
+
+#error{
+    padding: 10px 10px 10px 10px;
+    margin-left: 50px;
+    font-family: Roboto, Raleway, Batang;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: left;
 }
 
 /* stile per i messaggi di errore */

@@ -6,14 +6,10 @@
     include_once basename(__DIR__) . '/../model/UtenteFactory.php';
     include_once basename(__DIR__) . '/../model/ProdottiFactory.php';
     include_once basename(__DIR__) . '/../model/AutoreFactory.php';
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- * Description of Controller
+ * Controller che gestisce gli utenti non autenticati, 
+ * fornendo le funzionalita' comuni anche agli altri controller
  *
  * @author Annalisa
  */
@@ -60,7 +56,7 @@ class Controller {
             }
         
         }
-        // gestion dei comandi
+        // gestione dei comandi
         // tutte le variabili che vengono create senza essere utilizzate 
         // direttamente in questo switch, sono quelle che vengono poi lette
         // dalla vista, ed utilizzano le classi del modello
@@ -128,7 +124,7 @@ class Controller {
 
         }
     }
-    
+    //imposta la pagina per gli utenti non autenticati
     protected function showHome($vista){
         $vista->setTitle("MangaMania - MM");
         $vista->setContent(basename(__DIR__) . '/../view/home/home-content.php');
@@ -166,6 +162,7 @@ class Controller {
         $this->showHome($vista);
         
     }
+   
     /**
      * Verifica se l'utente sia correttamente autenticato
      * @return boolean true se l'utente era gia' autenticato, false altrimenti
@@ -174,7 +171,7 @@ class Controller {
         return isset($_SESSION) && array_key_exists(self::user, $_SESSION);
     }
     
-        /**
+    /**
      * Crea un messaggio di feedback per l'utente 
      * @param array $msg lista di messaggi di errore
      * @param ViewDescriptor $vd il descrittore della pagina
@@ -196,14 +193,14 @@ class Controller {
             $vista->setMessaggioConferma($okMsg);
         }
     }
-    
-    
+
     
     /**
-     * Aggiorno un manga già esistente
-     * @param Manga $manga il manga da aggiornare
-     * @param array $request la richiesta http da gestire
-     * @param array $msg riferimento ad un array da riempire con eventuali messaggi d'errore
+     * Crea un nuovo manga
+     * @param Manga $manga oggetto Manga
+     * @param int $venditore_id id del venditore che sta inserendo il nuovo manga
+     * @param array $request
+     * @param array $msg
      */
     protected function creaManga($manga, $venditore_id, &$request, &$msg) {
             
@@ -290,6 +287,7 @@ class Controller {
             }
         }
     }
+    
     /**
      * Aggiorno un manga già esistente
      * @param Manga $manga il manga da aggiornare
