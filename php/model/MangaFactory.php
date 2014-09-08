@@ -142,7 +142,8 @@ class MangaFactory {
                 
                 from manga
                 join autore on manga.autore_fk = autore.id
-                join categoria on manga.categoria_fk = tipo";
+                join categoria on manga.categoria_fk = tipo
+                order by manga.titolo, manga.n_volume";
         
         $mysqli = Database::getInstance()->connectDb();
         if(!isset($mysqli)){

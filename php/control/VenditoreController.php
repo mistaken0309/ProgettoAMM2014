@@ -91,7 +91,7 @@ class VenditoreController extends Controller{
                 switch ($request["cmd"]) {
                     
                     case 'logout':
-                        $vista->setSottoPagina('logout');
+                        $vista->setSottoPagina('login');
                         $this->logout($vista);
                         break;
                     

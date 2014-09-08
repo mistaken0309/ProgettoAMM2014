@@ -37,8 +37,11 @@ class Manga {
         return $this->titolo;
     }
     public function setTitolo($titolo){
-        $this->titolo = $titolo;
-        return true;
+        if($titolo){
+            $this->titolo = $titolo;
+            return true;
+        }
+        return false;
     }
     
     public function getTitoloOriginale(){
@@ -53,7 +56,7 @@ class Manga {
         return $this->volumi;
     }
     public function setNumeroVolume($volume){
-        if($volume!=null){
+        if($volume){
             $this->volumi = $volume;
         }
         return true;
