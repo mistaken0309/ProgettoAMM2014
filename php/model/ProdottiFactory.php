@@ -201,7 +201,8 @@ class ProdottiFactory {
                 from venditore_manga
                 join venditori on venditore_manga.venditore_fk = venditori.v_id
                 join manga on venditore_manga.manga_fk = manga.id
-                where venditore_manga.venditore_fk = ?";
+                where venditore_manga.venditore_fk = ?
+                order by manga.titolo, manga.n_volume";
         
         $mysqli = Database::getInstance()->connectDb();
         if(!isset($mysqli)){

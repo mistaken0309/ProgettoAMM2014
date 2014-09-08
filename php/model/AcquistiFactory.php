@@ -368,6 +368,4 @@ class AcquistiFactory {
 
         return true;
     }
-    
-
 }
