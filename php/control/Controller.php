@@ -36,12 +36,14 @@ class Controller {
         
         if(isset($request["subpage"])){
             switch ($request["subpage"]){
-                
                 case 'manga':
                     $mangaid = (int)($request['param']);
                     $manga = MangaFactory::instance()->getMangaPerId((int) $mangaid);
                     $vista->setSottoPagina('manga');
                 break;
+                case 'login':
+                    $vista->setSottoPagina('login');
+                    break;
             
                 case 'lista_per_autore':
                     $autore = AutoreFactory::instance()->getAutorePerId($request['param'])->getAutore();

@@ -9,7 +9,9 @@ switch ($vista->getSottoPagina()) {
     case 'manga':
         include_once 'manga.php';
         break;
-    
+    case 'login':
+        include_once  '/../login/content-login.php';
+        break;
     default:
         
 ?>
