@@ -18,7 +18,7 @@ class AutoreFactory {
     
     
     /**
-     * Restiuisce un singleton per creare appelli
+     * Restiuisce un singleton per creare autori
      * @return \MangaFactory
      */
     public static function instance(){
@@ -31,9 +31,9 @@ class AutoreFactory {
     
     
     /**
-     * Restiuisce un Autore in base all'id
+     * Restituisce un Autore in base all'id
      * @param $id id dell'autore ricercato
-     * @return 
+     * @return \Autore
      */
     public function &getAutorePerId($id) {
         $query = "select *
@@ -67,6 +67,11 @@ class AutoreFactory {
         return $toRet;
     }
     
+    /**
+     * Restituisce un Autore in base al nome
+     * @param $nome nome dell'autore ricercato
+     * @return \Autore
+     */
     public function &getAutorePerNome($autore) {
         $query = "select *
                 from autore where autore = ?";
@@ -130,6 +135,10 @@ class AutoreFactory {
         
     }
     
+    /**
+     * Restituisce un array contenente tutti gli autori presenti nel sistema
+     * @return array di Autori
+     */
     public function &getListaAutori(){
         $autori = array();
         $query = "select * from autore;";
@@ -155,60 +164,11 @@ class AutoreFactory {
         return $autori;
         
     }
-    public function &getListaMangaPerAutore($autoreid){
-        $mangas = array();
-        $query = "select 
-                manga.id id,
-                manga.titolo titolo,
-                manga.titolo_orig titolo_orig,
-                manga.n_volume n_volume,
-                autore.id id,
-                autore.autore autore,
-                manga.casa_ed casa_ed,
-                manga.anno_pub anno_pub,
-                manga.lingua lingua,
-                categoria.tipo tipo,
-                manga.genere genere,
-                manga.descrizione descrizione,
-                manga.prezzo prezzo,
-                manga.n_articoli n_articoli
-                
-                from autore
-                join autore on manga.autore_fk = autore.id
-                join categoria on manga.categoria_fk = tipo
-                where autore.id = ?";
-                
-        $mysqli = Database::getInstance()->connectDb();
-        if(!isset($mysqli)){
-            error_log("[ListaMangaPerAutore] impossibile inizializzare il database");
-            $mysqli->close();
-            return $mangas;
-            
-        }
-        
-        $stmt = $mysqli->stmt_init();
-        $stmt->prepare($query);
-        if (!$stmt) {
-            error_log("[ListaMangaPerAutore] impossibile inizializzare il prepared statement");
-            $mysqli->close();
-            return $mangas;
-        }
-        
-        if (!$stmt->bind_param('i', $autoreid)) {
-            error_log("[ListaMangaPerAutore] impossibile effettuare il binding in input");
-            $mysqli->close();
-            return $mangas;
-        }
-
-        
-        $mangas = self::creaMangaDaStmt($stmt);
-                
-        $mysqli->close();
-        return $mangas;
-        
-    }
-    /*
-     * 
+    
+    /**
+     * Crea un nuovo autore 
+     * @param $nome nome dell'autore da creare
+     * @return boolean false se l'operazione non va a buon fine o l'id dell'autore creato
      */
     public function &creaNuovoAutore($nome){
         $query = "insert into autore(id, autore)

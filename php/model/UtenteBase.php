@@ -4,7 +4,7 @@
  * Description of UtenteBase
  *
  * classe che rappresenta un utente generico
- * @author Annalisa
+ * @author Annalisa Congiu
  */
 class UtenteBase {
         /**

@@ -3,11 +3,7 @@
 include_once 'Database.php';
 include_once 'Categoria.php';
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 /**
  * Description of CategoriaFactory
@@ -35,9 +31,10 @@ class CategoriaFactory {
     
     
     /**
-     * Restiuisce la lista di CorsiDiLaurea per un Dipartimento
-     * @param Dipartimento $dip il Dipartimento in questione
-     * @return array|\CorsoDiLaurea
+     * Cerca una categoria in base al valore di $tipo
+     * @param $tipo
+     * @return null se l'operazione non va a buon fine
+     * @return la categoria cercata altrimenti
      */
     public function &getCategoriaPerTipo($tipo) {
         $query = "select *
@@ -104,6 +101,10 @@ class CategoriaFactory {
         
     }
     
+    /**
+     * Restituisce un array contenente tutte le categorie presenti nel sistema
+     * @return array di categorie
+     */
     public function &getListaCategorie(){
         $categorie = array();
         $query = "select tipo from categoria;";

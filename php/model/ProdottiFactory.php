@@ -19,7 +19,7 @@ class ProdottiFactory {
     
     
     /**
-     * Restiuisce un singleton per creare appelli
+     * Restiuisce un singleton per creare Prodotti
      * @return \ProdottiFactory
      */
     public static function instance(){
@@ -29,7 +29,11 @@ class ProdottiFactory {
         
         return self::$singleton;
     }
-    
+    /**
+     * Restituisce un Prodotto cercato in base all'id
+     * @param type $prodottid
+     * @return null se l'operazione non va a buon fine, il prodotto cercato altrimenti
+     */
     public function getProdottiPerId($prodottid){
         $query = "select 
                 venditore_manga.id id,
@@ -66,6 +70,11 @@ class ProdottiFactory {
         return $toRet;    
     }
     
+    /**
+     * Restituisce un prodotto cercato in base all'id del manga
+     * @param $mangaid
+     * @return null se l'operazione non va a buon fine, il prodotto cercato altrimenti
+     */    
     public function getProdottiPerMangaId($mangaid){
 
         $query = "select 
@@ -158,6 +167,10 @@ class ProdottiFactory {
         return $prodotto;
     }
     
+    /**
+     * Restituisce un array contenente tutti i prodotti presenti nel sistema
+     * @return array
+     */
     public function &getListaProdotti(){
         $prodotti = array();
         $query = "select 
@@ -191,6 +204,12 @@ class ProdottiFactory {
         return $prodotti;  
     }
     
+    /**
+     * Restituisce un array contenente tutti i prodotti caricati nel sistema 
+     * da un determinato venditore
+     * @param type $venditore_id id del venditore
+     * @return null|array
+     */
     public function &getListaProdottiPerVenditore($venditore_id){
         $prodotti = array();
         $query = "select 

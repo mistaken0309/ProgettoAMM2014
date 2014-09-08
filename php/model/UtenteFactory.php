@@ -8,7 +8,7 @@ include_once 'Database.php';
 /**
  * Classe per la creazione degli utenti del sistema
  *
- * @author Davide Spano
+ * @author Annalisa Congiu
  */
 class UtenteFactory {
 
@@ -36,7 +36,7 @@ class UtenteFactory {
      * @param string $password
      * @return \UtenteBase|\Venditore|\Acquirente
      */
-    //DONE
+    
     public function caricaUtente($username, $password) {
 
 
@@ -47,7 +47,7 @@ class UtenteFactory {
             return null;
         }
 
-        // cerco prima nella tabella dei acquirenti
+        // cerco prima nella tabella degli acquirenti
         $query = "select
             utenti.u_id u_id,
             utenti.username username,
@@ -132,24 +132,8 @@ class UtenteFactory {
      * Restituisce un array con i Venditori presenti nel sistema
      * @return array
      */
-    // DONE
     public function &getListaVenditori() {
         $venditori = array(); 
-        /*$query = "select 
-            venditori.id v_id,
-            venditori.azienda azienda,
-            venditori.password password,
-            venditori.nome nome_tit,
-            venditori.cognome cognome_tit,
-            venditori.email email,
-            venditori.via via,
-            venditori.civico civico,
-            venditori.citta citta,
-            venditori.provincia provincia,
-            venditori.cap cap,
-            venditori.descrizione descrizione
-
-            from venditori";*/
         $query = "select * from venditori";
 
         $mysqli = Database::getInstance()->connectDb();
@@ -177,7 +161,6 @@ class UtenteFactory {
      * Restituisce la lista dei acquirenti presenti nel sistema
      * @return array
      */
-    //DONE
     public function &getListaCompratori() {
         $acquirenti = array();
         $query = "select * from utenti";
@@ -208,7 +191,6 @@ class UtenteFactory {
      * @return Acquirente un oggetto Acquirente nel caso sia stato trovato,
      * NULL altrimenti
      */
-    //DONE
     public function cercaUtentePerId($id, $role) {
         $intval = filter_var($id, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
         if (!isset($intval)) {
@@ -309,7 +291,6 @@ class UtenteFactory {
      * @param type $row
      * @return \Acquirente
      */
-    //DONE
     public function creaAcquirenteDaArray($row) {
         $acquirente = new Acquirente();
         $acquirente->setId($row['u_id']);
@@ -333,7 +314,6 @@ class UtenteFactory {
      * @param type $row
      * @return \Venditore
      */
-    //DONE
     public function creaVenditoreDaArray($row) {
         $venditore = new Venditore();
         $venditore->setId($row['v_id']);
@@ -383,11 +363,11 @@ class UtenteFactory {
 
     /**
      * Rende persistenti le modifiche all'anagrafica di uno acquirente sul db
-     * @param Acquirente $s lo acquirente considerato
+     * @param Acquirente $b lo acquirente considerato
      * @param mysqli_stmt $stmt un prepared statement
      * @return int il numero di righe modificate
      */
-    private function salvaAcquirente(Acquirente $b, mysqli_stmt $btmt) {
+    private function salvaAcquirente(Acquirente $b, mysqli_stmt $stmt) {
         $query = " update utenti set 
                     password = ?,
                     email = ?,
@@ -400,14 +380,14 @@ class UtenteFactory {
                     cap = ?
                     
                     where utenti.u_id = ?";
-        $btmt->prepare($query);
-        if (!$btmt) {
+        $stmt->prepare($query);
+        if (!$stmt) {
             error_log("[salvaAcquirente] impossibile" .
                     " inizializzare il prepared statement");
             return 0;
         }
         
-        if (!$btmt->bind_param('sssssisssi', 
+        if (!$stmt->bind_param('sssssisssi', 
                 $b->getPassword(), $b->getEmail(), $b->getNome(), $b->getCognome(), 
                 $b->getVia(), $b->getNumeroCivico(), $b->getCitta(), $b->getProvincia(), 
                  $b->getCap(), $b->getId()
@@ -417,18 +397,18 @@ class UtenteFactory {
             return 0;
         }
         
-        if (!$btmt->execute()) {
+        if (!$stmt->execute()) {
             error_log("[caricaIscritti] impossibile" .
                     " eseguire lo statement");
             return 0;
         }
 
-        return $btmt->affected_rows;
+        return $stmt->affected_rows;
     }
     
     /**
      * Rende persistenti le modifiche all'anagrafica di un venditore sul db
-     * @param Venditore $d il venditore considerato
+     * @param Venditore $s il venditore considerato
      * @param mysqli_stmt $stmt un prepared statement
      * @return int il numero di righe modificate
      */
@@ -476,7 +456,6 @@ class UtenteFactory {
      * @param mysqli_stmt $stmt
      * @return null
      */
-    //DONE
     private function caricaVenditoreDaStmt(mysqli_stmt $stmt) {
 
         if (!$stmt->execute()) {
@@ -520,7 +499,6 @@ class UtenteFactory {
      * @param mysqli_stmt $stmt
      * @return null
      */
-    //DONE
     private function caricaAcquirenteDaStmt(mysqli_stmt $stmt) {
 
         if (!$stmt->execute()) {
@@ -557,12 +535,6 @@ class UtenteFactory {
         $toRet = self::creaAcquirenteDaArray($row);
         return $toRet;
     }
-    
-    
-    
-    
-    
 
 }
 
-?>

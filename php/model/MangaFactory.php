@@ -20,7 +20,7 @@ class MangaFactory {
     
     
     /**
-     * Restiuisce un singleton per creare appelli
+     * Restiuisce un singleton per creare Manga
      * @return \MangaFactory
      */
     public static function instance(){
@@ -31,7 +31,11 @@ class MangaFactory {
         return self::$singleton;
     }
     
-    
+    /**
+     * Restituisce un manga cercato in base all'id
+     * @param type $mangaid
+     * @return null se l'operazione non va a buon fine, il manga cercato altrimenti
+     */
     public function &getMangaPerId($mangaid){
         $query = "select 
                 manga.id id,
@@ -76,6 +80,7 @@ class MangaFactory {
         $mysqli->close();
         return $toRet;    
     }
+    
     private function &caricaMangaDaStmt(mysqli_stmt $stmt){
         if (!$stmt->execute()) {
             error_log("[caricaMangaDaStmt] impossibile eseguire lo statement");
@@ -122,6 +127,10 @@ class MangaFactory {
         return $manga;
     }
     
+    /**
+     * Restituisce un array contenente tutti i manga presenti nel sistema
+     * @return array
+     */
     public function &getListaManga(){
         $mangas = array();
         $query = "select 
@@ -166,6 +175,13 @@ class MangaFactory {
         $mysqli->close();
         return $mangas;  
     }
+    
+    /**
+     * Restituisce un array contenente tutti i manga scritti da un determinato autore
+     * @param $autoreid id dell'autore
+     * @return null se l'operazione non va a buon fine
+     * un array di Manga altrimenti
+     */
     public function &getListaMangaPerAutore($autoreid){
         $mangas = array();
         $query = "select 
@@ -254,8 +270,6 @@ class MangaFactory {
      * @param Manga $manga
      * @return il numero di righe modificate
      */
-    
-    
     public function salvaManga(Manga $manga) {
         $mysqli = Database::getInstance()->connectDb();
         if (!isset($mysqli)) {

@@ -19,7 +19,7 @@ class AcquistiFactory {
     
     
     /**
-     * Restiuisce un singleton per creare appelli
+     * Restiuisce un singleton per creare acquisti
      * @return \AcquistiFactory
      */
     public static function instance(){
@@ -30,6 +30,11 @@ class AcquistiFactory {
         return self::$singleton;
     }
     
+    /**
+     * Restituisce un Acquisti in base all'id
+     * @param $id id dell'acquisto ricercato
+     * @return 
+     */
     public function getAcquistiPerId($acquistoid){
 
         $query = "select 
@@ -139,7 +144,11 @@ class AcquistiFactory {
 
         return $acquisto;
     }
-    
+    /**
+     * Restituisce la lista dei manga acquistati dall'utente corrente
+     * @param \Utente $utente
+     * @return \Acquisti $acquisti array di Acquisti
+     */
     public function &getListaAcquistiAcquirente($utente){
         $intval = filter_var($utente->getId(), FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
         $acquisti = array();
@@ -187,6 +196,11 @@ class AcquistiFactory {
             return $acquisti;
     }
     
+    /**
+     * Restituisce la lista dei manga venduti dall'utente corrente
+     * @param Utente $utente
+     * @return Acquisti $acquisti array di Acquisti
+     */
     public function &getListaAcquistiVenditore($utente){
         $intval = filter_var($utente->getId(), FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
         $acquisti = array();

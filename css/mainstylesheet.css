@@ -7,13 +7,6 @@ and open the template in the editor.
 Created on : 19-ago-2014, 15.30.09
 Author: Annalisa Congiu
 */
-header, footer, section, article, nav, aside {
-    display: block;
-}
-
-#page{
-    min-width: 1000px;
-}
 
 /* --- css per la pagina di descrizione --- */
 #description-page{
@@ -22,29 +15,24 @@ header, footer, section, article, nav, aside {
 }
 
 
-input[type=submit], .button, .button-inline  {
-    border-radius: 10%;
-    border: 0px;
-    padding: 3px 12px 3px 12px;
-    background: powderblue;
-    color: black;
-    font-family: UnDinaru, Roboto, Raleway;
-    font-size: 14px;
+/* --- generali --- */
+header, footer, section, article, nav, aside {
+    display: block;
 }
-.button{
-    margin-top: 7px;
+
+#page{
+    min-width: 1000px;
 }
 
 
-.inline{
-    margin: 7px 6px 0px 0px;
-    display: inline;
-}
-
-
-label{
-    margin: 0 0 0 0;
+.middle{
+    padding: 10px 10px 10px 10px;
+    margin-left: 210px;
+    font-family: Roboto, Raleway, Batang;
+    font-size: 16px;
+    line-height: 18px;
     text-align: left;
+    min-height: 480px;
 }
 
 body {
@@ -75,35 +63,12 @@ h2{
     font-size: 31px;
     line-height: 37px;
 }
-.title{
-    padding-bottom: 20px;
-    font-weight: bold;
-    border-bottom: 1px solid gainsboro;
-}
-nav h2{
-    font-size: 22px;
-    line-height: 25px; 
-    padding-left: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid ghostwhite;
-}
 
 h3 {
     font-size: 21px;
     line-height: 27px; 
 }
-.italic{
-    font-style: italic;
-}
 
-.manga-title {
-    margin-top: 15px;
-    padding-left: 20px;
-    font-size: 26px;
-    padding-bottom: 15px;
-    font-weight: bold;
-    border-bottom: 1px solid gainsboro; 
-}
 
 a:link, a:visited {
     color: #222222;
@@ -114,6 +79,8 @@ a:hover, a:active {
     text-decoration: underline;
     font-weight: bold;
 }
+
+
 
 hr{
     border:0 #ccc solid;
@@ -138,19 +105,54 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
     margin-bottom:15px;
 }
 
+.inline{
+    margin: 7px 6px 0px 0px;
+    display: inline;
+}
+
+
+
+nav{
+    padding-top: 15px;    
+    text-align: left;
+}
+
+.italic{
+    font-style: italic;
+}
+
 #main {
     padding: 0px;
 }
 
+/* --- table --- */
+th{
+    padding: 5px 15px 5px 15px;
+}
+td{
+    padding: 2px 15px 0px 15px;
+}
 
-.middle{
-    padding: 10px 10px 10px 10px;
-    margin-left: 210px;
-    font-family: Roboto, Raleway, Batang;
-    font-size: 16px;
-    line-height: 18px;
-    text-align: left;
-    min-height: 480px;
+/* titolo delle pagine */
+.title{
+    padding-bottom: 20px;
+    font-weight: bold;
+    border-bottom: 1px solid gainsboro;
+}
+
+/* --- form --- */
+
+input[type=submit], .button, .button-inline  {
+    border-radius: 10%;
+    border: 0px;
+    padding: 3px 12px 3px 12px;
+    background: powderblue;
+    color: black;
+    font-family: UnDinaru, Roboto, Raleway;
+    font-size: 14px;
+}
+.button{
+    margin-top: 7px;
 }
 
 .input-form{
@@ -164,6 +166,26 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
     border: 1px gainsboro solid;
 }
 
+.input-anagrafica input[type=text],.input-anagrafica input[type=password]{
+    margin-top: 5px;
+}
+
+label{
+    margin: 0 0 0 0;
+    text-align: left;
+}
+
+option{
+    font-family: UnDinaru, Roboto, Raleway;
+    font-size: 12px; 
+}
+
+.label_manga{
+    font-family: UnDinaru, Roboto, Raleway;
+    font-size: 14px; 
+}
+
+
 .input-anagrafica{
     margin: 0px 0px 0px 0px;
     padding: 10px 80px 20px 80px;
@@ -172,9 +194,9 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
     line-height: 12px;
     text-align: left;
 }
-.input-anagrafica input[type=text],.input-anagrafica input[type=password]{
-    margin-top: 5px;
-}
+
+
+/* --- barra in cima alla pagina --- */
 
 #topbar{
     min-width: 800px;
@@ -219,20 +241,11 @@ nav#topbar a{
     padding: 5px 0px 5px 0px;
 }
 
-.login h3{
-    padding-left: 7px;
-    font-family: UnDinaru, Roboto, Raleway, monospace;
-    border-bottom: 1px crimson solid;
-}
 
-/* --- fixed header --- */
+/* --- header --- */
 
 header {
     background-color: #ffffff;
-    /*position: fixed;
-    left: 0;
-    right:0;
-    top: 0;*/
     border-bottom:2px crimson solid;
     
 }
@@ -246,6 +259,7 @@ header {
     background-size: 352px;
     height: 60px;
 }
+
 #title div{
     display: inline;
     background-color: white;
@@ -255,14 +269,6 @@ header {
 }
 
 
-
-/* --- nav --- */
-nav{
-    padding-top: 15px;
-    
-    text-align: left;
-}
-
 /* --- left sidebar --- */
 #sidebar1 {
     padding: 0px 0px 0px 0px;
@@ -270,6 +276,15 @@ nav{
     float:left;
     height: 100%; 
     margin: 0px 0px 0px 0px;
+}
+
+
+nav h2{
+    font-size: 22px;
+    line-height: 25px; 
+    padding-left: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid ghostwhite;
 }
 
 nav .page{
@@ -284,6 +299,30 @@ nav .page{
     font-weight: bold;
 }
 
+/* --- ---*/
+.login{
+    padding-left: 7px;
+    font-family: UnDinaru, Roboto, Raleway, monospace;
+    border-bottom: 1px crimson solid;
+}
+
+
+/* --- css per la visualizzazione dei dettagli dei manga --- */
+.manga{
+    margin-top: 7px;
+}
+.manga h4{
+    display: inline;
+}
+
+.manga-title {
+    margin-top: 15px;
+    padding-left: 20px;
+    font-size: 26px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid gainsboro; 
+}
 
 /* --- footer --- */
 
@@ -311,27 +350,12 @@ footer div{
     height: 0px;
 }
 
-
-/** -- table -- **/
-th{
-    padding: 5px 15px 5px 15px;
-}
-td{
-    padding: 2px 15px 0px 15px;
-}
-
-
-
-.error li {
-    list-style: none;
-}
-
 /* stile per i messaggi di errore */
 
 .error{
     width: 90%;
     background-color: #f5a5a5;
-    border: 5px solid #9e1616;
+    border: 3px solid #9e1616;
     margin: auto;
     padding: 10px;
     text-align: center;
@@ -339,9 +363,12 @@ td{
 }
 .error div{
     margin: 0px;
-    background: url('../images/no.png') no-repeat left top;
+    background: url('../img/no.png') no-repeat left top;
     min-height: 32px;
     
+}
+.error li {
+    list-style: none;
 }
 
 /* stile per i messaggi di conferma */
@@ -349,7 +376,7 @@ td{
 .confirm{
     width: 90%;
     background-color: #c7edce;
-    border: 5px solid #36956e;
+    border: 3px solid #36956e;
     margin: auto;
     padding: 10px;
     text-align: center;
@@ -357,25 +384,6 @@ td{
 }
 .confirm div{
     margin: 0px;
-    background: url('../images/ok.png') no-repeat left top;
+    background: url('../img/ok.png') no-repeat left top;
     min-height: 32px;
 }
-
-
-.manga{
-    margin-top: 7px;
-}
-.manga h4{
-    display: inline;
-}
-
-option{
-    font-family: UnDinaru, Roboto, Raleway;
-    font-size: 12px; 
-}
-
-.label_manga{
-    font-family: UnDinaru, Roboto, Raleway;
-    font-size: 14px; 
-}
-
