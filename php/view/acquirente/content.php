@@ -12,11 +12,9 @@ switch ($vista->getSottoPagina()) {
     case 'lista_per_autore':
         include_once 'lista_per_autore.php';
         break;
+    case 'compra':
     case 'acquisti':
         include_once 'acquisti.php';
-        break;
-    case 'compra':
-        include_once 'compra.php';
         break;
     default:
         

@@ -157,7 +157,8 @@ class AcquistiFactory {
                 join venditore_manga on utente_manga.prodotto = venditore_manga.id
                 join venditori on venditore_manga.venditore_fk = venditori.v_id
                 join manga on venditore_manga.manga_fk = manga.id
-                where utenti.u_id = ?";
+                where utenti.u_id = ?                
+                order by prodotto_id, data desc";
         
         $mysqli = Database::getInstance()->connectDb();
         if(!isset($mysqli)){
@@ -203,7 +204,8 @@ class AcquistiFactory {
                 join venditore_manga on utente_manga.prodotto = venditore_manga.id
                 join venditori on venditore_manga.venditore_fk = venditori.v_id
                 join manga on venditore_manga.manga_fk = manga.id
-                where venditori.v_id = ?";
+                where venditori.v_id = ?
+                order by prodotto_id, data desc";
         
         $mysqli = Database::getInstance()->connectDb();
         if(!isset($mysqli)){
