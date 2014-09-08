@@ -79,10 +79,11 @@ class Controller {
                     }
                     break;
                 case 'logout':
+                    $vista->setSottoPagina('login');
                     $this->logout($vista);
                     break;
                 default : 
-                    $this->showLoginPage($vista);
+                    $this->showHome($vista);
                     break;
             }
         } else {
@@ -97,13 +98,6 @@ class Controller {
         // richiamo la vista
         require basename(__DIR__) . '/../view/master.php';
         
-    }
-    
-    protected function showLoginPage($vista){
-        $vista->setTitle("Login");
-        $vista->setContent(basename(__DIR__) . '/../view/login/content-login.php');
-        $vista->setHeader(basename(__DIR__) . '/../view/login/header-login.php');
-        $vista->setLeftbar(basename(__DIR__) . '/../view/login/leftbar-login.php');
     }
     
     protected function showHomeAcquirente($vista){
@@ -153,7 +147,7 @@ class Controller {
             $this->showHomeUtente($vista);
         } else {
             $vista->setMessaggioErrore("Utente sconosciuto o password errata");
-            $this->showLoginPage($vista);
+            $this->showHome($vista);
         }
     }
     
@@ -169,7 +163,7 @@ class Controller {
         }
         // distruggo il file di sessione
         session_destroy();
-        $this->showLoginPage($vista);
+        $this->showHome($vista);
         
     }
     /**
