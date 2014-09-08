@@ -205,7 +205,7 @@ class AcquistiFactory {
                 join venditori on venditore_manga.venditore_fk = venditori.v_id
                 join manga on venditore_manga.manga_fk = manga.id
                 where venditori.v_id = ?
-                order by prodotto_id, data desc";
+                order by data desc";
         
         $mysqli = Database::getInstance()->connectDb();
         if(!isset($mysqli)){
@@ -233,53 +233,7 @@ class AcquistiFactory {
             $mysqli->close();
             return $acquisti;
     }
-    
-    public function &getListaAcquistiPerAutore($autoreid){
-        $acquisti = array();
-        $query = $query = "select 
-                utente_manga.acquisto_id id,
-                utente_manga.utente_fk u_id,
-                utente_manga.prodotto prodotto_id,
-                venditore_manga.venditore_fk v_id,
-                venditore_manga.manga_fk manga_id,
-                utente_manga.data data,
-                utente_manga.quantita quantita
-                
-                from utente_manga
-                join utenti on utente_manga.utente_fk = utenti.u_id
-                join venditore_manga on utente_manga.prodotto = venditore_manga.id
-                join venditori on venditore_manga.venditore_fk = venditori.v_id
-                join manga on venditore_manga.manga_fk = manga.id
-                where utente_manga.acquisto_id = ?";
-                
-        $mysqli = Database::getInstance()->connectDb();
-        if(!isset($mysqli)){
-            error_log("[getListaAcquistiPerAutore] impossibile inizializzare il database");
-            $mysqli->close();
-            return null;
-        }
-        
-        $stmt = $mysqli->stmt_init();
-        $stmt->prepare($query);
-        
-        if (!$stmt) {
-            error_log("[getListaAcquistiPerAutore] impossibile" .
-                    " inizializzare il prepared statement");
-            $mysqli->close();
-            return null;
-        }
-        
-        if (!$stmt->bind_param('i', $autoreid)) {
-            error_log("[getListaAcquistiPerAutore] impossibile" .
-                    " effettuare il binding in input");
-            $mysqli->close();
-            return null;
-        }   
-        
-        $acquisti  = self::caricaAcquistiDaStmt($stmt);
-        $mysqli->close();
-        return $acquisti; 
-    }
+
     
     /**
      * Salva un acquisto sul DB
