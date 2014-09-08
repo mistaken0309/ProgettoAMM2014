@@ -15,7 +15,11 @@ header, footer, section, article, nav, aside {
     min-width: 1000px;
 }
 
-
+/* --- css per la pagina di descrizione --- */
+#description-page{
+    min-width: 900px;
+    margin: 50px 10px 0px 50px;
+}
 
 
 input[type=submit], .button, .button-inline  {
@@ -137,10 +141,7 @@ p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{
 #main {
     padding: 0px;
 }
-/*
-#page{
-    width: 900px;
-}*/
+
 
 .middle{
     padding: 10px 10px 10px 10px;
@@ -377,3 +378,4 @@ option{
     font-family: UnDinaru, Roboto, Raleway;
     font-size: 14px; 
 }
+
