@@ -12,10 +12,10 @@ class FrontController{
         if(isset($request["page"])){
             switch($request["page"]){
                 
-                case "login":
+                /*case "login":
                     $controller = new Controller();
                     $controller->handle_input($request);
-                break;
+                break;*/
                 case "home":
                     $controller = new Controller();
                     $controller->handle_input($request);

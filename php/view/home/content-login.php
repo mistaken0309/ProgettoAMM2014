@@ -1,6 +1,6 @@
 <div class="input-form" >
     <h3>Accedi</h3>
-    <form method="post" action="login">
+    <form method="post" action="home/login">
         <input type="hidden" name="cmd" value="login"/>
         <label for="user">Username</label><br/>
         <input type="text" name="user" id="user"/><br/>

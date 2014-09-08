@@ -25,7 +25,8 @@ class VenditoreController extends Controller{
         $vista->setPagina($request['page']);
         
         if(!$this->loggedIn()){
-            $this->showLoginPage($vista);
+            $vista->setSottoPagina('login');
+            $this->showHome($vista);
         } else {
             // utente autenticato
             $user = UtenteFactory::instance()->cercaUtentePerId(
