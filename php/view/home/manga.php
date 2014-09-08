@@ -11,7 +11,7 @@
 <div class="manga"><h4>Prezzo</h4>: <?= $manga->getPrezzo() ?></div>
 <div class="manga"><h4>Disponibilit&agrave;</h4>: <?= $manga->getNumeroArticoli() ?></div>
 <div>
-    <p><a href="login">Accedi</a> per acquistare questo manga</p>
+    <p><a href="home/login">Accedi</a> per acquistare questo manga</p>
 </div>
 
 
