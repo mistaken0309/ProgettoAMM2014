@@ -1,7 +1,6 @@
 <h2 class="title">Elenco manga</h2>
 <p class="italic">Clicca sul titolo del manga per acquistarlo o vedere i dettagli.</p>
 <?php
-    include_once 'filtro.php';
 
 if( count($mangas) > 0){
 ?>
