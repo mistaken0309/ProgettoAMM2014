@@ -359,8 +359,6 @@ class AcquistiFactory {
             return false;
         }
 
-        
-
         // tutto ok, posso rendere persistente il salvataggio
         $mysqli->commit();
         $mysqli->autocommit(true);

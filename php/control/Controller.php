@@ -5,6 +5,7 @@
     include_once basename(__DIR__) . '/../model/Acquirente.php';
     include_once basename(__DIR__) . '/../model/UtenteFactory.php';
     include_once basename(__DIR__) . '/../model/ProdottiFactory.php';
+    include_once basename(__DIR__) . '/../model/AutoreFactory.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -230,11 +231,18 @@ class Controller {
                 
         }
         
-        if (isset($request['autore'])){            
-            //if(!$manga->setAutore(AutoreFactory::instance()->getAutorePerNome($request['autore'])->getId())){
+        if (isset($request['autore']) && $request['autore']){
             if(!$manga->setAutore($request['autore'])){
                 $msg[] = '<li>L\'autore specificato non &egrave; corretto</li>';   
             }    
+        } 
+        if(isset($request['nuovo_autore']) && $request['nuovo_autore']){
+            $autore_id = AutoreFactory::instance()->creaNuovoAutore($request['nuovo_autore']);
+            if(!$autore_id){
+                $msg[] = '<li>Ci sono stati dei problemi con il salvataggio del nuovo autore</li>';
+            } else if(!$manga->setAutore($autore_id)){
+                $msg[] = '<li>Il nuovo autore non &egrave; corretto</li>';   
+            } 
         }
         
         if (isset($request['casa_ed'])){

@@ -31,9 +31,9 @@ class AutoreFactory {
     
     
     /**
-     * Restiuisce la lista di CorsiDiLaurea per un Dipartimento
-     * @param Dipartimento $dip il Dipartimento in questione
-     * @return array|\CorsoDiLaurea
+     * Restiuisce un Autore in base all'id
+     * @param $id id dell'autore ricercato
+     * @return 
      */
     public function &getAutorePerId($id) {
         $query = "select *
@@ -185,25 +185,6 @@ class AutoreFactory {
             return $mangas;
             
         }
-         
-        /*
-        
-        $result = $mysqli->query($query);
-        if ($mysqli->errno > 0) {
-            error_log("[getListaManga] impossibile eseguire la query");
-            $mysqli->close();
-            return $mangas;
-        }
-        while ($row = $result->fetch_array()) {
-            $mangas[] = self::creaMangaDaArray($row);
-        }
-
-        $mysqli->close();
-        return $mangas; 
-        
-        */
-        
-        
         
         $stmt = $mysqli->stmt_init();
         $stmt->prepare($query);
@@ -224,6 +205,44 @@ class AutoreFactory {
                 
         $mysqli->close();
         return $mangas;
+        
+    }
+    /*
+     * 
+     */
+    public function &creaNuovoAutore($nome){
+        $query = "insert into autore(id, autore)
+                 values (default, ?)";
+        
+        $mysqli = Database::getInstance()->connectDb();
+        if(!isset($mysqli)){
+            error_log("[creaNuovoAutore] impossibile inizializzare il database");
+            $mysqli->close();
+            return false;   
+        }
+        $stmt = $mysqli->stmt_init();
+        $stmt->prepare($query);
+        if (!$stmt) {
+            error_log("[creaNuovoAutore] impossibile inizializzare il prepared statement");
+            return false;
+        }
+        
+        if (!$stmt->bind_param('s', $nome)) {
+            error_log("[creaNuovoAutore] impossibile effettuare il binding in input");
+            return false;
+        }
+        
+        
+        if (!$stmt->execute()) {
+            error_log("[creaNuovoAutore] impossibile eseguire lo statement #1");
+            $mysqli->rollback();
+            $mysqli->close();
+            return false;
+        }
+        $new_autore_id = $stmt->insert_id;
+
+        $mysqli->close();
+        return $new_autore_id;
         
     }
     

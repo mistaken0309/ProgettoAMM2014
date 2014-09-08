@@ -1,7 +1,7 @@
 <h2 class="title">Modifica Prodotto</h2>
 <div class="input-anagrafica">
 
-    <form method="post" action="venditore/modifica">
+    <form method="post" action="venditore/modifica" class="inline">
         <input type="hidden" name="manga_id" value="<?= $manga->getId()?>">
         <label class="label_manga" for="titolo">Titolo</label>
         <input type="text" name="titolo" id="titolo" value="<?= $manga->getTitolo() ?>"/>
@@ -77,5 +77,6 @@
         <input type="hidden" name="cmd" value="modifica">
         <input type="submit" class="button" value="Salva"/>
     </form>
+    <a href="venditore/lista"><button type="submit" class="button">Torna all'elenco</button></a>
 </div>
 

@@ -63,8 +63,11 @@ class Manga {
         return $this->autore;
     }
     public function setAutore($autore){
-        $this->autore = $autore;
-        return true;
+        if($autore){
+            $this->autore = $autore;
+            return true;
+        }
+        return false;
     }
     
     public function getCasaEditrice(){
@@ -79,24 +82,33 @@ class Manga {
         return $this->annoPubblicazione;
     }
     public function setAnnoPubblicazione($annoPubblicazione){
-        $this->annoPubblicazione = $annoPubblicazione;
-        return true;
+        if($annoPubblicazione){
+            $this->annoPubblicazione = $annoPubblicazione;
+            return true;
+        }
+        return false;
     }
     
     public function getLingua(){
         return $this->lingua;
     }
     public function setLingua($lingua){
-        $this->lingua = $lingua;
-        return true;
+        if($lingua){
+            $this->lingua = $lingua;
+            return true;
+        }
+        return false;
     }
     
     public function getCategoria(){
         return $this->categoria;
     }
     public function setCategoria($categoria){
-        $this->categoria = $categoria;
-        return true;
+        if($categoria){
+            $this->categoria = $categoria;
+            return true;
+        }
+        return false;
     }
     
     public function getGenere(){
@@ -119,15 +131,21 @@ class Manga {
         return $this->prezzo;
     }
     public function setPrezzo($prezzo){
-        $this->prezzo = $prezzo;
-        return true;
+        if($prezzo){
+            $this->prezzo = $prezzo;
+            return true;
+        }
+        return false;
     }
     
     public function getNumeroArticoli(){
         return $this->numeroArticoli;
     }
     public function setNumeroArticoli($numeroArticoli){
-        $this->numeroArticoli = $numeroArticoli;
-        return true;
+        if($numeroArticoli){
+            $this->numeroArticoli = $numeroArticoli;
+            return true;
+        }
+        return false;
     }
 }

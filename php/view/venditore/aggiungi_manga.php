@@ -1,9 +1,9 @@
 
     <h2 class="title">Aggiungi un nuovo prodotto</h2>
-
+    <p class="italic">Digitare il nome dell'autore solo se questo non sia già presente nella lista</p>
 <div class="input-anagrafica">
 
-    <form method="post" action="venditore/aggiungi-manga">
+    <form method="post" action="venditore/aggiungi-manga" class="inline">
         <label class="label_manga" for="titolo">Titolo</label>
         <input type="text" name="titolo" id="titolo" value=""/>
         <br/>
@@ -15,7 +15,7 @@
         <br/>
         <label class="label_manga" for="autore">Autore</label>
         <select name="autore" id="autore">
-            
+            <option value=""></option>
             <?php
                 foreach($autori as $autore){           
             ?>
@@ -25,6 +25,7 @@
             ?>
             
         </select>
+        <input type="text" name="nuovo_autore" id="nuovo_autore" value=""/>
         <br/>
         <label class="label_manga" for="casa_ed">CasaEditrice</label>
         <input type="text" name="casa_ed" id="casa_ed" value=""/>
@@ -64,5 +65,6 @@
         <input type="hidden" name="cmd" value="aggiungi">
         <input type="submit" class="button" value="Salva"/>
     </form>
+    <a href="venditore/lista"><button type="submit" class="button">Torna all'elenco</button></a>
 </div>
 

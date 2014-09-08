@@ -29,9 +29,6 @@ class FrontController{
                     $controller->handle_input($request);
                 break;
                 
-
-            
-            
                 case 'venditore':
                     $controller = new VenditoreController();
                     if (isset($_SESSION[Controller::role]) && $_SESSION[Controller::role] != UtenteBase::Venditore) {
