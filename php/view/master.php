@@ -18,7 +18,7 @@ and open the template in the editor.
         <meta name="keywords" content="buy manga, manga shop, manga">
         <meta name="description" content="manga shop">
         <meta name="author" content="Annalisa Congiu">
-        <link rel="shortcut icon" type="image/x-icon" href="<?=basename(__DIR__)?>/../../img/apple-touch-icon.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="<?=basename(__DIR__)?>/../../img/icona.png" />
         <!--Ricaricare la pagina ogni 30 secondi-->
         <!--<meta http-equiv="refresh" content="30">-->
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
