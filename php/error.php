@@ -9,6 +9,8 @@ include_once 'Settings.php';
         <base href="<?= Settings::getApplicationPath() ?>"/>
         <link rel="stylesheet" type="text/css" href="<?=basename(__DIR__)?>/../css/mainstylesheet.css">
         <title>Errore</title>
+        <link rel="shortcut icon" type="image/x-icon" href="<?=basename(__DIR__)?>/../img/error-icon.png" />
+        
     </head>
     <body>
         <div id="error">

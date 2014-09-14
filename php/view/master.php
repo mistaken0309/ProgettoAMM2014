@@ -18,7 +18,7 @@ and open the template in the editor.
         <meta name="keywords" content="buy manga, manga shop, manga">
         <meta name="description" content="manga shop">
         <meta name="author" content="Annalisa Congiu">
-        <link rel="shortcut icon" type="image/x-icon" href="../img/apple-touch-icon.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="<?=basename(__DIR__)?>/../../img/apple-touch-icon.png" />
         <!--Ricaricare la pagina ogni 30 secondi-->
         <!--<meta http-equiv="refresh" content="30">-->
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
@@ -84,21 +84,26 @@ and open the template in the editor.
         <footer>
             <div>
                 Progetto di Amministrazione di Sistema 2014 di Annalisa Congiu
-                <!--p>
-                    <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                        <img style="border:0;width:88px;height:31px"
-                            src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+                
+                <div class="validator">
+                    
+                        <a href="http://validator.w3.org/check/referer">
+                            <img style="border:0;"
+                                src="../img/html-valid-icon.png"
+                                alt="HTML Valido!" />
+                            HTML Valido
+                        </a>
+                        
+                        
+                        <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                        <img style="border:0;"
+                            src="../img/css-valid-icon.png"
                             alt="CSS Valido!" />
-                    </a>
-                </p-->
-                
-                <p>
-                    <a href="http://validator.w3.org/check/referer" class="xhtml" title="Questa pagina contiene HTML valido">
-                        <abbr title="eXtensible HyperText Markup Language">HTML</abbr> Valido</a>
-                    <a href="http://jigsaw.w3.org/css-validator/check/referer" class="css" title="Questa pagina ha CSS validi">
-                        <abbr title="Cascading Style Sheets">CSS</abbr> Valido</a>
-                </p>
-                
+                            CSS Valido!
+                        </a>
+                        
+                    
+                </div>
             </div>
         </footer>
         </div>
