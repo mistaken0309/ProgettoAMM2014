@@ -3,11 +3,11 @@
         <div>
             
             <form method="post" action="home/login" >
-            <input type="hidden" name="cmd" value="login"/>
             <label for="user">Username</label>
             <input type="text" name="user" />
             <label for="password">Password</label>
-            <input type="password" name="password"/>                 
+            <input type="password" name="password"/>
+            <input type="hidden" name="cmd" value="login"/>
             <input type="submit" value="Login" id="button"/>
             </form>
             
