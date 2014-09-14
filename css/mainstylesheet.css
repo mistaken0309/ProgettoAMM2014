@@ -334,6 +334,7 @@ footer{
 
 }
 footer div{
+    margin-bottom: 0px;
     padding-top:15px;
     padding-right:40px;
     padding-left:40px;
@@ -344,6 +345,16 @@ footer div{
 
 }
 
+/* --- decorazioni elementi del footer --- */
+.validator{
+    display: inline;
+}
+.validator img{
+    padding-left: 20px;
+    margin-left: 10px;
+    max-height: 20px;
+    
+}
 .clear{
     clear: both; 
     width: 0px; 
@@ -364,7 +375,7 @@ footer div{
 /* stile per i messaggi di errore */
 
 .error{
-    width: 90%;
+    width: 85%;
     background-color: #f5a5a5;
     border: 3px solid #9e1616;
     margin: auto;
@@ -374,7 +385,7 @@ footer div{
 }
 .error div{
     margin: 0px;
-    background: url('../img/no.png') no-repeat left top;
+    background: url('../img/Error-Symbol-icon.png') no-repeat left top;
     min-height: 32px;
     
 }
@@ -395,6 +406,7 @@ footer div{
 }
 .confirm div{
     margin: 0px;
-    background: url('../img/ok.png') no-repeat left top;
+    background: url('../img/Checkmark-icon.png') no-repeat left top;
     min-height: 32px;
 }
+
