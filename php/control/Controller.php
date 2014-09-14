@@ -11,17 +11,24 @@
  * Controller che gestisce gli utenti non autenticati, 
  * fornendo le funzionalita' comuni anche agli altri controller
  *
- * @author Annalisa
+ * @author Annalisa Congiu
  */
 class Controller {
     const user = 'user';
     const role = 'role';
     
+    
+    /**
+     * Costruttore
+     */
     public function __construct() {
         
     }
     
-    
+    /**
+     * Metodo per gestire l'input dell'utente. Le sottoclassi lo sovrascrivono
+     * @param type $request la richiesta da gestire
+     */
     public function handle_input(&$request){
         $vista = new ViewDescriptor();
 
@@ -95,14 +102,22 @@ class Controller {
         require basename(__DIR__) . '/../view/master.php';
         
     }
-    
+    /**
+     * Imposta la vista master.php per visualizzare la pagina di gestione
+     * dell'acquirente
+     * @param ViewDescriptor $vista il descrittore della vista
+     */
     protected function showHomeAcquirente($vista){
         $vista->setTitle("MangaMania - MM");
         $vista->setContent(basename(__DIR__) . '/../view/acquirente/content.php');
         $vista->setHeader(basename(__DIR__) . '/../view/acquirente/header.php');
         $vista->setLeftbar(basename(__DIR__) . '/../view/acquirente/leftbar.php');
     }
-    
+    /**
+     * Imposta la vista master.php per visualizzare la pagina di gestione
+     * del venditore
+     * @param ViewDescriptor $vista il descrittore della vista
+     */
     protected function showHomeVenditore($vista){
         $vista->setTitle("MangaMania - MM");
         $vista->setContent(basename(__DIR__) . '/../view/venditore/content.php');
@@ -110,6 +125,10 @@ class Controller {
         $vista->setLeftbar(basename(__DIR__) . '/../view/venditore/leftbar.php');
     }
     
+    /**
+     * Seleziona quale pagina mostrare in base al ruolo dell'utente corrente
+     * @param ViewDescriptor $vd il descrittore della vista
+     */
     protected function showHomeUtente($vista){
         $user = UtenteFactory::instance()->cercaUtentePerId($_SESSION[self::user], $_SESSION[self::role]);
         
@@ -125,6 +144,10 @@ class Controller {
         }
     }
     //imposta la pagina per gli utenti non autenticati
+    /**
+     * Imposta la vista master.php per gli utenti non autenticati
+     * @param ViewDescriptor $vista
+     */
     protected function showHome($vista){
         $vista->setTitle("MangaMania - MM");
         $vista->setContent(basename(__DIR__) . '/../view/home/home-content.php');
@@ -132,7 +155,12 @@ class Controller {
         $vista->setLeftbar(basename(__DIR__) . '/../view/home/leftbar-home.php');
     }
     
-    
+    /**
+     * Procedura di autenticazione 
+     * @param ViewDescriptor $vista descrittore della vista
+     * @param string $username lo username specificato
+     * @param string $password la password specificata
+     */
     protected function login($vista, $username, $password){
         //carico i dati dell'utente dal database
         $user = UtenteFactory::instance()->caricaUtente($username, $password);
@@ -148,7 +176,10 @@ class Controller {
     }
     
     
-    
+    /**
+     * Procedura di logout dal sistema 
+     * @param type $vista il descrittore della pagina
+     */
     protected function logout($vista){
         // reset array $_SESSION
         $_SESSION = array();
@@ -174,7 +205,7 @@ class Controller {
     /**
      * Crea un messaggio di feedback per l'utente 
      * @param array $msg lista di messaggi di errore
-     * @param ViewDescriptor $vd il descrittore della pagina
+     * @param ViewDescriptor $vista il descrittore della pagina
      * @param string $okMsg il messaggio da mostrare nel caso non ci siano errori
      */
     protected function creaFeedbackUtente(&$msg, $vista, $okMsg) {

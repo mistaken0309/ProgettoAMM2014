@@ -3,14 +3,20 @@
     include_once basename(__DIR__) . '/../Settings.php';    
 ?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<!-- 
+         pagina master, contiene tutto il layout della applicazione 
+         le varie pagine vengono caricate a "pezzi" a seconda della zona
+         del layout:
+         - header (header)
+         - leftBar (sidebar sinistra)
+         - content (la parte centrale con il contenuto)
+
+          Queste informazioni sono manentute in una struttura dati, chiamata ViewDescriptor
+          la classe contiene anche le stringhe per i messaggi di feedback per 
+          l'utente (errori e conferme delle operazioni)
+    -->
 <html>
     <head>
-        <!--<base href="http://spano.sc.unica.it/amm2014/congiuAnnalisa/">-->
         <title><?= $vista->getTitle()?></title>
         <base href="<?= Settings::getApplicationPath() ?>php/"/>
         <meta charset="UTF-8">
@@ -20,11 +26,10 @@ and open the template in the editor.
         <meta name="author" content="Annalisa Congiu">
         <link rel="shortcut icon" type="image/x-icon" href="<?=basename(__DIR__)?>/../../img/icona.png" />
         <!--Ricaricare la pagina ogni 30 secondi-->
-        <!--<meta http-equiv="refresh" content="30">-->
+        <meta http-equiv="refresh" content="30">
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         <link href="http://roboto-webfont.googlecode.com/svn/trunk/roboto.all.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="../css/mainstylesheet.css">
-        <!--<script type="text/javascript"></script>-->
         
     </head>
     <body>
