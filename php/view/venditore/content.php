@@ -34,7 +34,7 @@ switch ($vista->getSottoPagina()) {
             <li><a href="venditore/anagrafica">Impostazioni Account</a></li>
             <li><a href="venditore/lista">Elenco prodotti</a></li>
             <li><a href="venditore/aggiungi-manga">Aggiungi un nuovo prodotto</a></li>
-            <li><a href="venditore/acquisti">Storico vendite</a></li>
+            <li><a href="venditore/vendite">Storico vendite</a></li>
         </ul>
 <?php
     break;

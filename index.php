@@ -74,6 +74,7 @@
             <li>Due ruoli (venditore e utente)</li>
             <li>Transazione per la registrazione di un acquisto (metodo salvaAcquisto della classe AcquistiFactory.php)</li>
             <li>Transazione per la registrazione di un nuovo manga (metodo creaManga della classe MangaFactory.php)</li>
+            <li>Caricamento ajax dei risultati della ricerca dei manga (ruolo acquirente)</li>
         </ul>
     </div>
 </body>
