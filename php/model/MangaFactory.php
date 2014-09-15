@@ -418,8 +418,7 @@ class MangaFactory {
         
         // costruisco la where "a pezzi" a seconda di quante 
         // variabili sono definite
-        $bind = "i";
-        $where = " where manga.autore_fk = ? ";
+        $where;
         $par = array();
         //$par[] = $user->getId();
         /*
@@ -449,6 +448,8 @@ class MangaFactory {
          *
          */
         if(isset($autore)){
+            $bind = "i";
+            $where = " where manga.autore_fk = ? ";
             $par[] = $autore;
         }
          

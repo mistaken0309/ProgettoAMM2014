@@ -57,7 +57,7 @@ class AcquirenteController extends Controller{
                         $mangas = MangaFactory::instance()->getListaManga();
                         $vista->setSottoPagina('lista');
                         $vista->addScript("../js/jquery-2.1.1.min.js");
-                        $vista->addScript("../js/elencoEsami.js");
+                        $vista->addScript("../js/elencoManga.js");
                         break;
                     
                      // gestione della richiesta ajax di filtro esami

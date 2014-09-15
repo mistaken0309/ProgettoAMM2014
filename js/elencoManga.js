@@ -48,20 +48,28 @@ $(document).ready(function () {
         
                             $("#table_manga tbody").append(
                                 "<tr id=\"row_" + i + "\" >\n\
-                                       <td>a</td>\n\
-                                       <td>a</td>\n\
-                                       <td>a</td>\n\
-                                       <td>a</td>\n\
+                                        <td id=\"1_\"><a href=\"acquirente/manga?param="+ manga['id'] + "\">a</a></td>\n\
+                                        <td id=\"2_\">a</td>\n\
+                                        <td id=\"3_\"><a href=\"acquirente/lista_per_autore?param="+ manga['autore_id'] +"\">a</a></td>\n\
+                                        <td id=\"4_\">a</td>\n\
                                  </tr>");
                             /*if(i%2 == 0){
                                 $("#row_" + i).addClass("alt-row");
                             }*/
                             
-                            var colonne = $("#row_"+ i +" td");
-                            $(colonne[0]).text(manga['titolo']);
-                            $(colonne[1]).text(manga['volume']);
-                            $(colonne[2]).text(manga['autore']);
-                            $(colonne[3]).text(manga['prezzo']);
+                            
+                            var colonna2 = $("#row_"+ i +" td#2_");
+                            var colonna4 = $("#row_"+ i +" td#4_");
+                            colonna2.text(manga['volume']);
+                            colonna4.text(manga['prezzo']);
+                            
+                            var colonna1 = $("#row_"+ i +" td#1_ a");
+                            var colonna3 = $("#row_"+ i +" td#3_ a");
+                            colonna1.text(manga['titolo']);
+                            colonna3.text(manga['autore']);
+                            
+                            
+                            
                             i++;
                             
                            
