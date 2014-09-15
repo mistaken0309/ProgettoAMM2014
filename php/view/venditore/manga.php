@@ -26,6 +26,10 @@
         <input type="hidden" name="manga_id" value="<?= $manga->getId()?>">
         <button type="submit" class="button"> Modifica</button>
     </form>
+    <form method="post" action="venditore/lista" class="inline">
+        <input type="hidden" name="manga_id" value=<?= $manga->getId()?>>
+        <button type="submit" class="button" name="cmd" value="elimina"> Elimina</button>
+    </form>
     <a href="venditore/lista"><button type="submit" class="button">Torna all'elenco</button></a>
     
 </div>

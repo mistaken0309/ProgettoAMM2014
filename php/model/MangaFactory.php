@@ -402,6 +402,50 @@ class MangaFactory {
         $mysqli->close();
         return true;
     }
+    /**
+     * Elimina i dati relativi ad un manga dal db
+     * @param int $manga
+     * @return il numero di righe modificate
+     */
+    public function eliminaManga( $manga) {
+        $mysqli = Database::getInstance()->connectDb();
+        if (!isset($mysqli)) {
+            error_log("[salvaManga] impossibile inizializzare il database");
+            $mysqli->close();
+            return 0;
+        }
+
+        $stmt = $mysqli->stmt_init();
+        
+        $query = " DELETE FROM manga WHERE manga.id = ?";
+        
+       
+        $stmt->prepare($query);
+        if (!$stmt) {
+            error_log("[salvaManga] impossibile inizializzare il prepared statement");
+            return 0;
+        }
+        
+        if (!$stmt->bind_param('i', $manga)) {
+            error_log("[salvaManga] impossibile effettuare il binding in input");
+            return 0;
+        }
+        
+        if (!$stmt->execute()) {
+            error_log("[salvaManga] impossibile eseguire lo statement");
+            return 0;
+        }
+/*
+ * "Cannot delete or update a parent row: a foreign key constraint fails (`amm14_congiuannalisa`.`venditore_manga`, 
+ * CONSTRAINT `venditore_manga_ibfk_2` FOREIGN KEY (`manga_fk`) REFERENCES `manga` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE)"
+ */
+ 
+        $count = $stmt->affected_rows;
+        $stmt->close();
+        $mysqli->close();
+        return $count;
+    }
+    
     
     /**
      * 

@@ -1,6 +1,8 @@
 <?php
 
     include_once 'Controller.php';
+    
+    include_once basename(__DIR__) . '/../model/Manga.php';
     include_once basename(__DIR__) . '/../model/MangaFactory.php';
     include_once basename(__DIR__) . '/../model/AutoreFactory.php';
     include_once basename(__DIR__) . '/../model/UtenteFactory.php';
@@ -45,7 +47,7 @@ class VenditoreController extends Controller{
                 
                     case 'modifica':
                         $mangaid = $request['manga_id'];
-                        $manga = MangaFactory::instance()->getMangaPerId($mangaid);
+                        $manga = MangaFactory::instance()->getMangaPerId((int) $mangaid);
                         $autori = AutoreFactory::instance()->getListaAutori();
                         $categorie = CategoriaFactory::instance()->getListaCategorie();
                         $vista->setSottoPagina('modifica');
@@ -178,6 +180,20 @@ class VenditoreController extends Controller{
                         $msg = array();
                         $this->creaFeedbackUtente($msg, $vista, "Lo implementiamo con il db, fai conto che abbia funzionato ;)");
                         $this->showHomeUtente($vista);
+                        break;
+                    
+                    case 'elimina':
+                        if(isset($request['manga_id'])){
+                            $manga_id = $request['manga_id'];
+                            if (!MangaFactory::instance()->eliminaManga((int) $manga_id)) {
+                                $msg[] = '<li> Impossibile eliminare il manga</li>';
+                            } else {
+                                $vista->setPagina("venditore");
+                                $vista->setSottoPagina('home');
+                            }
+                            $this->creaFeedbackUtente($msg, $vista, "Il manga è stato eliminato");
+                        }
+                        $this->showHomeUtente($vista); 
                         break;
                     default:
                         $this->showHomeUtente($vista);
