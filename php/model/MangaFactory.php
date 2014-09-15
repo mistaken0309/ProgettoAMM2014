@@ -403,6 +403,150 @@ class MangaFactory {
         return true;
     }
     
+    /**
+     * 
+     * @param Docente $user
+     * @param type $insegnamento
+     * @param type $matricola
+     * @param type $nome
+     * @param type $cognome
+     * @return array
+     */
+    public function &filtraManga(/*Docente $user, $insegnamento, $matricola, $nome, $cognome*/
+            $autore) {
+        $mangas = array();
+        
+        // costruisco la where "a pezzi" a seconda di quante 
+        // variabili sono definite
+        $bind = "i";
+        $where = " where manga.autore_fk = ? ";
+        $par = array();
+        //$par[] = $user->getId();
+        /*
+        if(isset($insegnamento)){
+            $where .= " and insegnamenti.id = ? ";
+            $bind .="i";
+            $par[] = $insegnamento;
+        }
+        
+        if(isset($matricola)){
+            $where .= " and studenti.matricola = ? ";
+            $bind .="s";
+            $par[] = $matricola;
+        }
+        
+        if(isset($nome)){
+            $where .= " and lower(studenti.nome) like lower(?) ";
+            $bind .="s";
+            $par[] = "%".$nome."%";
+        }
+        
+        if(isset($cognome)){
+            $where .= " and lower(studenti.cognome) like lower(?) ";
+            $bind .="s";
+            $par[] = "%".$cognome."%";
+        }
+         *
+         */
+        if(isset($autore)){
+            $par[] = $autore;
+        }
+         
+        
+        
+        
+        
+        
+        
+        $query = "select 
+                manga.id id,
+                manga.titolo titolo,
+                manga.titolo_orig titolo_orig,
+                manga.n_volume n_volume,
+                autore.id a_id,
+                autore.autore autore,
+                manga.casa_ed casa_ed,
+                manga.anno_pub anno_pub,
+                manga.lingua lingua,
+                categoria.tipo tipo,
+                manga.genere genere,
+                manga.descrizione descrizione,
+                manga.prezzo prezzo,
+                manga.n_articoli n_articoli
+                
+                from manga
+                join autore on manga.autore_fk = autore.id
+                join categoria on manga.categoria_fk = tipo
+                  ".$where;
+        
+        $mysqli = Database::getInstance()->connectDb();
+        if (!isset($mysqli)) {
+            error_log("[filtraManga] impossibile inizializzare il database");
+            $mysqli->close();
+            return $mangas;
+        }
+
+        $stmt = $mysqli->stmt_init();
+        $stmt->prepare($query);
+        if (!$stmt) {
+            error_log("[filtraManga] impossibile" .
+                    " inizializzare il prepared statement");
+            $mysqli->close();
+            return $mangas;
+        }
+
+        switch (count($par)) {
+            case 1:
+                if (!$stmt->bind_param($bind, $par[0])) {
+                    error_log("[filtraManga] impossibile" .
+                            " effettuare il binding in input");
+                    $mysqli->close();
+                    return $mangas;
+                }
+                break;
+            case 2:
+                if (!$stmt->bind_param($bind, $par[0], $par[1])) {
+                    error_log("[filtraManga] impossibile" .
+                            " effettuare il binding in input");
+                    $mysqli->close();
+                    return $mangas;
+                }
+                break;
+
+            case 3:
+                if (!$stmt->bind_param($bind, $par[0], $par[1], $par[2])) {
+                    error_log("[filtraManga] impossibile" .
+                            " effettuare il binding in input");
+                    $mysqli->close();
+                    return $mangas;
+                }
+                break;
+
+            case 4:
+                if (!$stmt->bind_param($bind, $par[0], $par[1], $par[2], $par[3])) {
+                    error_log("[filtraManga] impossibile" .
+                            " effettuare il binding in input");
+                    $mysqli->close();
+                    return $mangas;
+                }
+                break;
+
+            case 5:
+                if (!$stmt->bind_param($bind, $par[0], $par[1], $par[2], $par[3], $par[4])) {
+                    error_log("[filtraManga] impossibile" .
+                            " effettuare il binding in input");
+                    $mysqli->close();
+                    return $mangas;
+                }
+                break;
+
+           
+        }
+
+        $mangas = self::caricaMangasDaStmt($stmt);
+        $mysqli->close();
+        return $mangas;
+    }
 
 }
 ?>

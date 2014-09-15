@@ -7,6 +7,9 @@ switch ($vista->getSottoPagina()) {
     case 'lista':
         include_once 'lista.php';
         break;
+    case 'manga_json':
+        include_once 'manga_json.php';
+        break;
     case 'manga':
         include_once 'manga.php';
         break;

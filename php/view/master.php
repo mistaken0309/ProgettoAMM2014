@@ -1,20 +1,9 @@
 <?php
     include_once 'ViewDescriptor.php';
     include_once basename(__DIR__) . '/../Settings.php';    
-?>
-<!DOCTYPE html>
-<!-- 
-         pagina master, contiene tutto il layout della applicazione 
-         le varie pagine vengono caricate a "pezzi" a seconda della zona
-         del layout:
-         - header (header)
-         - leftBar (sidebar sinistra)
-         - content (la parte centrale con il contenuto)
 
-          Queste informazioni sono manentute in una struttura dati, chiamata ViewDescriptor
-          la classe contiene anche le stringhe per i messaggi di feedback per 
-          l'utente (errori e conferme delle operazioni)
-    -->
+    if (!$vista->isJson()) {
+    ?>
 <html>
     <head>
         <title><?= $vista->getTitle()?></title>
@@ -30,6 +19,13 @@
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         <link href="http://roboto-webfont.googlecode.com/svn/trunk/roboto.all.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="../css/mainstylesheet.css">
+        <?php
+            foreach ($vista->getScripts() as $script) {
+                ?>
+                <script type="text/javascript" src="<?= $script ?>"></script>
+                <?php
+            }
+            ?>
         
     </head>
     <body>
@@ -115,3 +111,14 @@
         
     </body>
 </html>
+    <?php
+} else {
+
+    header('Cache-Control: no-cache, must-revalidate');
+    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+    header('Content-type: application/json');
+    
+    $content = $vista->getContent();
+    require "$content";
+}
+?>

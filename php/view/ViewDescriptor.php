@@ -22,11 +22,19 @@ class ViewDescriptor {
     private $sottopagina;
     private $messaggioErrore;
     private $messaggioConferma;
+
+    private $js;
     
+
+    private $json;
+    
+    /**
+     * Costruttore
+     */
     public function __construct() {
-        
+        $this->js = array();
+        $this->json = false;
     }
-    
     public function getTitle(){
         return $this->title;
     }
@@ -101,6 +109,37 @@ class ViewDescriptor {
      */
     public function setMessaggioConferma($msg) {
         $this->messaggioConferma = $msg;
+    }
+    
+    /**
+     * Aggiunge uno script alla pagina
+     * @param String $nome
+     */
+    public function addScript($nome){
+        $this->js[] = $nome;
+    }
+    
+    /**
+     * Restituisce la lista di script
+     * @return array
+     */
+    public function &getScripts(){
+        return $this->js;
+    }
+    
+    /**
+     * True se si devono scrivere dati json, false altrimenti
+     * @return Boolean
+     */
+    public function isJson(){
+        return $this->json;
+    }
+    
+    /**
+     * Da chiamare se la risposta contiene dati json
+     */
+    public function toggleJson(){
+        $this->json = true;
     }
     
 }
