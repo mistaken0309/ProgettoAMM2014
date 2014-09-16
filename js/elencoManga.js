@@ -6,8 +6,8 @@
 $(document).ready(function () {
     
     $(".error").hide();
-    //$("#table_manga").hide();
-    $("#nessuno").hide();
+    $("#table_manga").hide();
+    //$("#nessuno").hide();
     
     $('#filtra').click(function(e){
         // impedisco il submit
