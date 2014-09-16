@@ -1,3 +1,11 @@
+<?php
+switch ($vista->getSottoPagina()) {
+    case 'login':
+        include_once 'header-login.php';
+        break;
+    default:
+        ?>
+
 <div>
     <nav id="topbar">
         <div>
@@ -17,3 +25,8 @@
 </div>
 <div class="clear"></div>
 <div id="title"><div>Manga Mania</div></div>
+
+<?php
+        break;
+    }
+?>
