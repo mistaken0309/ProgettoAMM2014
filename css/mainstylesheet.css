@@ -32,8 +32,7 @@ header, footer, section, article, nav, aside {
     font-family: Roboto, Raleway, Batang;
     font-size: 16px;
     line-height: 18px;
-    mintext-align: left;
-    /*min-height: 480px;*/
+    text-align: left;
 }
 
 body {
