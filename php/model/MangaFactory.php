@@ -462,7 +462,7 @@ class MangaFactory {
         
         // costruisco la where "a pezzi" a seconda di quante 
         // variabili sono definite
-        $where;
+        $where=" ";
         $par = array();
         //$par[] = $user->getId();
         /*
