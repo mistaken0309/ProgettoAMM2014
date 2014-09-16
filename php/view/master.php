@@ -15,7 +15,7 @@
         <meta name="author" content="Annalisa Congiu">
         <link rel="shortcut icon" type="image/x-icon" href="<?=basename(__DIR__)?>/../../img/icona.png" />
         <!--Ricaricare la pagina ogni 30 secondi-->
-        <meta http-equiv="refresh" content="60">
+        <meta http-equiv="refresh" content="30">
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         <link href="http://roboto-webfont.googlecode.com/svn/trunk/roboto.all.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="../css/mainstylesheet.css">
