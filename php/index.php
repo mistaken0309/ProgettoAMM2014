@@ -2,6 +2,8 @@
     include_once 'control/Controller.php';
     include_once 'control/AcquirenteController.php';
     include_once 'control/VenditoreController.php';
+    
+    date_default_timezone_set("Europe/Rome");
     FrontController::dispatch($_REQUEST);
     
 class FrontController{

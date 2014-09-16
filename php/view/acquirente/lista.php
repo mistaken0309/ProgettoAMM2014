@@ -26,5 +26,6 @@
 </table>
 </div>
 
+
 <p id="nessuno">Non ci sono ancora manga in vendita.</p>
 
